@@ -146,8 +146,9 @@ export default function AgrishineGate() {
       setError(t.err + ' (' + insErr.message + ')')
       return
     }
-    // into the garden loop (next screen to be built)
-    router.push('/hub/fr/agrishine/' + garden)
+    // into the level's garden list (students see their gardens for their level)
+    const lvl = role.needsLevel && level ? level : 'primary'
+    router.push('/hub/fr/agrishine/level/' + lvl)
   }
 
   if (checking) {
