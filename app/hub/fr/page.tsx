@@ -12,93 +12,139 @@ const T = {
   muted: '#8A7B63',
   forest: '#0B3D26',
   forest2: '#072D1C',
+  gold: '#C8912E',
   goldSoft: '#E8B04B',
+  line: '#E4DAC4',
 }
 
-/* ---------- the four pillars ---------- */
-type Pillar = {
-  slug: string
-  name: string
-  who: string
-  whoFr: string
+/* ---------- roles (from the real roles table, garden_slug = school) ---------- */
+type Role = {
+  key: string          // role_key in DB
+  en: string
+  fr: string           // label_fr in DB
+  descEn: string
+  descFr: string
   accent: string
-  card: string
-  active: boolean
-  tagEn: string
-  tagFr: string
-  rolesEn: string
+  needsLevel: boolean  // students & the at-home child path pick a level
 }
 
-const PILLARS: Pillar[] = [
-  {
-    slug: 'agrishine', name: 'Agrishine', who: 'Schools', whoFr: 'Écoles',
-    accent: '#C8912E', card: '#F7ECD6', active: true,
-    tagEn: 'For students, teachers, and learning at home with your child.',
-    tagFr: 'Pour élèves, enseignants et apprentissage à la maison.',
-    rolesEn: 'Students · Teachers · Parents at home',
-  },
-  {
-    slug: 'agriable', name: 'Agriable', who: 'Women', whoFr: 'Femmes',
-    accent: '#B0568C', card: '#F5E4EE', active: false,
-    tagEn: 'For women in enterprise, nutrition, and the home garden.',
-    tagFr: 'Pour les femmes : entreprise, nutrition et jardin familial.',
-    rolesEn: 'Entrepreneurs · Small businesses · Cooperatives',
-  },
-  {
-    slug: 'agrinext', name: 'Agrinext', who: 'Youth', whoFr: 'Jeunes',
-    accent: '#3E7CA6', card: '#E4F0F7', active: false,
-    tagEn: 'For youth building green careers, skills, and enterprises.',
-    tagFr: 'Pour les jeunes : métiers verts, compétences et entreprises.',
-    rolesEn: 'Job seekers · Entrepreneurs · Researchers',
-  },
-  {
-    slug: 'agriroots', name: 'Agriroots', who: 'Men', whoFr: 'Hommes',
-    accent: '#3E9B7C', card: '#E0F1EA', active: false,
-    tagEn: 'For farmers, tradesmen, and community leaders in the field.',
-    tagFr: 'Pour agriculteurs, artisans et leaders communautaires.',
-    rolesEn: 'Farmers · Leaders · Cooperatives',
-  },
+const ROLES: Role[] = [
+  { key: 'learner', en: 'Student', fr: 'Élève', accent: '#5C9E3A', needsLevel: true,
+    descEn: 'Learn French through the garden — vocabulary, stories, quizzes, badges.',
+    descFr: 'Apprends le français par le jardin — vocabulaire, histoires, quiz, badges.' },
+  { key: 'teacher', en: 'Teacher', fr: 'Enseignant', accent: '#3E7CA6', needsLevel: false,
+    descEn: 'Classroom charts, printable activity books, and review your students’ work.',
+    descFr: 'Affiches, cahiers d’activités imprimables et suivi du travail des élèves.' },
+  { key: 'school_admin', en: 'School', fr: 'Direction', accent: '#C8912E', needsLevel: false,
+    descEn: 'Oversee classes, teachers, and progress across your school.',
+    descFr: 'Supervise les classes, les enseignants et les progrès de l’école.' },
 ]
 
-/* ---------- bilingual UI strings ---------- */
+/* ---------- age / level bands ---------- */
+const LEVELS = [
+  { key: 'nursery', en: 'Nursery', fr: 'Maternelle', hint: 'Ages 3–5' },
+  { key: 'primary', en: 'Primary', fr: 'Primaire', hint: 'Ages 6–11' },
+  { key: 'jss', en: 'JSS', fr: 'Collège', hint: 'Ages 12–14' },
+  { key: 'sss', en: 'SSS', fr: 'Lycée', hint: 'Ages 15–17' },
+]
+
+/* ---------- classes within each level (full Nigerian structure) ---------- */
+const CLASSES: Record<string, { key: string; label: string }[]> = {
+  nursery: [
+    { key: 'nursery-1', label: 'Nursery 1' },
+    { key: 'nursery-2', label: 'Nursery 2' },
+    { key: 'nursery-3', label: 'Nursery 3' },
+  ],
+  primary: [
+    { key: 'primary-1', label: 'Primary 1' },
+    { key: 'primary-2', label: 'Primary 2' },
+    { key: 'primary-3', label: 'Primary 3' },
+    { key: 'primary-4', label: 'Primary 4' },
+    { key: 'primary-5', label: 'Primary 5' },
+    { key: 'primary-6', label: 'Primary 6' },
+  ],
+  jss: [
+    { key: 'jss-1', label: 'JSS 1' },
+    { key: 'jss-2', label: 'JSS 2' },
+    { key: 'jss-3', label: 'JSS 3' },
+  ],
+  sss: [
+    { key: 'sss-1', label: 'SSS 1' },
+    { key: 'sss-2', label: 'SSS 2' },
+    { key: 'sss-3', label: 'SSS 3' },
+  ],
+}
+
+/* ---------- bilingual UI ---------- */
 const UI = {
   en: {
-    back: 'Back to hubs',
-    eyebrow: 'FRENCH HUB · CHOOSE YOUR COMMUNITY',
-    title: 'Which community are you in?',
-    lead: 'Everyone learns French through the garden — but each community enters through its own door.',
-    open: 'Enter',
-    soon: 'Coming soon',
+    back: 'Back to communities',
+    eyebrow: 'AGRISHINE · SCHOOLS',
+    q1: 'Who are you?',
+    q1sub: 'This sets up the right experience for you.',
+    q2: 'What is your level?',
+    q2sub: 'We’ll show content made for this age group.',
+    q2b: 'Which class?',
+    q2bsub: 'Pick your exact class.',
+    q3: 'Where would you like to start?',
+    q3sub: 'You can explore other gardens later. School Garden is a great start.',
+    continue: 'Continue',
+    saving: 'Setting up…',
     signout: 'Sign out',
-    rolesLabel: 'For',
+    err: 'Something went wrong. Please try again.',
   },
   fr: {
-    back: 'Retour aux pôles',
-    eyebrow: 'PÔLE FRANÇAIS · CHOISIS TA COMMUNAUTÉ',
-    title: 'Quelle est ta communauté ?',
-    lead: 'Chacun apprend le français par le jardin — mais chaque communauté entre par sa propre porte.',
-    open: 'Entrer',
-    soon: 'Bientôt',
+    back: 'Retour aux communautés',
+    eyebrow: 'AGRISHINE · ÉCOLES',
+    q1: 'Qui es-tu ?',
+    q1sub: 'Cela prépare la bonne expérience pour toi.',
+    q2: 'Quel est ton niveau ?',
+    q2sub: 'Nous montrerons du contenu adapté à cet âge.',
+    q2b: 'Quelle classe ?',
+    q2bsub: 'Choisis ta classe exacte.',
+    q3: 'Par où veux-tu commencer ?',
+    q3sub: 'Tu pourras explorer d’autres jardins plus tard. Le Jardin Scolaire est un bon début.',
+    continue: 'Continuer',
+    saving: 'Préparation…',
     signout: 'Se déconnecter',
-    rolesLabel: 'Pour',
+    err: 'Une erreur est survenue. Réessaie.',
   },
 }
 
-export default function FrenchHubPage() {
+type Garden = { slug: string; name_en: string; name_fr: string }
+
+export default function AgrishineGate() {
   const router = useRouter()
   const [lang, setLang] = useState<'en' | 'fr'>('en')
   const [checking, setChecking] = useState(true)
+  const [userId, setUserId] = useState<string>('')
+
+  const [role, setRole] = useState<Role | null>(null)
+  const [level, setLevel] = useState<string>('')
+  const [klass, setKlass] = useState<string>('')
+  const [garden, setGarden] = useState<string>('school') // School pre-selected
+  const [gardens, setGardens] = useState<Garden[]>([])
+
+  const [saving, setSaving] = useState(false)
+  const [error, setError] = useState('')
 
   const t = UI[lang]
 
   useEffect(() => {
     const supabase = browserClient()
     supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) {
-        router.replace('/login')
-        return
-      }
-      setChecking(false)
+      if (!data.user) { router.replace('/login'); return }
+      setUserId(data.user.id)
+      // load gardens live from the gardens table
+      supabase
+        .from('gardens')
+        .select('slug,name_en,name_fr')
+        .eq('active', true)
+        .order('sort_order')
+        .then(({ data: g }) => {
+          if (g) setGardens(g as Garden[])
+          setChecking(false)
+        })
     })
   }, [router])
 
@@ -108,9 +154,35 @@ export default function FrenchHubPage() {
     router.replace('/login')
   }
 
-  function openPillar(p: Pillar) {
-    if (!p.active) return
-    router.push('/hub/fr/' + p.slug)
+  const ready = role !== null && (!role.needsLevel || (level !== '' && klass !== '')) && garden !== ''
+
+  async function saveAndContinue() {
+    if (!role || !ready) return
+    setError('')
+    setSaving(true)
+    const supabase = browserClient()
+
+    const context: Record<string, string> = { pillar: 'agrishine' }
+    if (role.needsLevel && level) context.level = level
+    if (role.needsLevel && klass) context.klass = klass
+
+    const { error: insErr } = await supabase.from('enrolments').insert({
+      user_id: userId,
+      garden_slug: garden,
+      role_key: role.key,
+      context,
+      status: 'active',
+    })
+
+    setSaving(false)
+    if (insErr) {
+      setError(t.err + ' (' + insErr.message + ')')
+      return
+    }
+    // into the level's garden list (students see their gardens for their level)
+    const lvl = role.needsLevel && level ? level : 'primary'
+    const kq = role.needsLevel && klass ? ('?class=' + klass) : ''
+    router.push('/hub/fr/agrishine/level/' + lvl + kq)
   }
 
   if (checking) {
@@ -120,6 +192,18 @@ export default function FrenchHubPage() {
       </main>
     )
   }
+
+  const card = (selected: boolean, accent: string): React.CSSProperties => ({
+    textAlign: 'left',
+    background: selected ? '#fff' : 'rgba(255,255,255,.07)',
+    border: selected ? `2px solid ${accent}` : '1px solid rgba(255,255,255,.16)',
+    borderRadius: 16,
+    padding: '18px 20px',
+    cursor: 'pointer',
+    color: selected ? T.ink : '#fff',
+    width: '100%',
+    transition: 'all .12s',
+  })
 
   return (
     <main style={{
@@ -139,118 +223,136 @@ export default function FrenchHubPage() {
           </span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-          <button
-            onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
-            style={{ border: '1px solid rgba(255,255,255,.25)', background: 'rgba(255,255,255,.08)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'IBM Plex Mono, monospace' }}
-          >
+          <button onClick={() => setLang(lang === 'en' ? 'fr' : 'en')} style={{ border: '1px solid rgba(255,255,255,.25)', background: 'rgba(255,255,255,.08)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'IBM Plex Mono, monospace' }}>
             {lang === 'en' ? 'FR' : 'EN'}
           </button>
-          <button
-            onClick={signOut}
-            style={{ border: 'none', background: 'transparent', color: 'rgba(255,255,255,.7)', fontSize: 13, fontWeight: 500, cursor: 'pointer', fontFamily: 'Inter' }}
-          >
+          <button onClick={signOut} style={{ border: 'none', background: 'transparent', color: 'rgba(255,255,255,.7)', fontSize: 13, fontWeight: 500, cursor: 'pointer', fontFamily: 'Inter' }}>
             {t.signout}
           </button>
         </div>
       </nav>
 
-      {/* back link */}
-      <div style={{ maxWidth: 1180, margin: '0 auto', padding: '20px 26px 0' }}>
-        <button
-          onClick={() => router.push('/')}
-          style={{ border: 'none', background: 'transparent', color: 'rgba(255,255,255,.75)', fontSize: 14, cursor: 'pointer', fontFamily: 'Inter', padding: 0 }}
-        >
+      {/* back */}
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '20px 26px 0' }}>
+        <button onClick={() => router.push('/hub/fr')} style={{ border: 'none', background: 'transparent', color: 'rgba(255,255,255,.75)', fontSize: 14, cursor: 'pointer', fontFamily: 'Inter', padding: 0 }}>
           ← {t.back}
         </button>
       </div>
 
-      {/* header */}
-      <section style={{ maxWidth: 1180, margin: '0 auto', padding: '24px 26px 12px', textAlign: 'center' }}>
-        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 13, letterSpacing: '.18em', color: 'rgba(255,255,255,.6)', marginBottom: 16 }}>
+      <div style={{ maxWidth: 720, margin: '0 auto', padding: '18px 26px 70px' }}>
+        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 13, letterSpacing: '.18em', color: T.goldSoft, marginBottom: 24 }}>
           {t.eyebrow}
         </div>
-        <h1 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 'clamp(34px,4.2vw,52px)', margin: '0 0 16px', color: '#fff', lineHeight: 1.08 }}>
-          {t.title}
-        </h1>
-        <p style={{ color: 'rgba(255,255,255,.82)', fontSize: 17.5, lineHeight: 1.6, maxWidth: 640, margin: '0 auto' }}>
-          {t.lead}
-        </p>
-      </section>
 
-      {/* pillar grid */}
-      <section style={{ maxWidth: 1040, margin: '0 auto', padding: '34px 26px 64px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))', gap: 22 }}>
-          {PILLARS.map((p) => {
-            const active = p.active
+        {/* Q1 — who are you */}
+        <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 26, margin: '0 0 4px' }}>{t.q1}</h2>
+        <p style={{ color: 'rgba(255,255,255,.7)', fontSize: 15, margin: '0 0 16px' }}>{t.q1sub}</p>
+        <div style={{ display: 'grid', gap: 12, marginBottom: 34 }}>
+          {ROLES.map((r) => {
+            const sel = role?.key === r.key
             return (
-              <div
-                key={p.slug}
-                onClick={() => openPillar(p)}
-                style={{
-                  background: p.card,
-                  border: '1px solid rgba(0,0,0,.05)',
-                  borderRadius: 18,
-                  padding: '28px 26px 26px',
-                  position: 'relative',
-                  overflow: 'hidden',
-                  cursor: active ? 'pointer' : 'default',
-                  boxShadow: '0 16px 36px -18px rgba(0,0,0,.55)',
-                }}
-              >
-                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 5, background: p.accent }} />
-                {!active && (
-                  <span style={{ position: 'absolute', top: 20, right: 20, fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '.1em', textTransform: 'uppercase', color: p.accent, fontWeight: 500 }}>
-                    {t.soon}
+              <button key={r.key} onClick={() => { setRole(r); setError('') }} style={card(sel, r.accent)}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <span style={{ width: 44, height: 44, borderRadius: 12, background: r.accent, display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'Fraunces, serif', fontSize: 20, fontWeight: 600, flexShrink: 0 }}>
+                    {(lang === 'en' ? r.en : r.fr).charAt(0)}
                   </span>
-                )}
-                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-                  <div style={{ width: 56, height: 56, borderRadius: 14, background: p.accent, display: 'grid', placeItems: 'center', color: '#fff', fontFamily: 'Fraunces, serif', fontSize: 26, fontWeight: 600 }}>
-                    {p.name.charAt(0)}
-                  </div>
                   <div>
-                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 27, color: T.ink, lineHeight: 1.05 }}>
-                      {p.name}
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 20, lineHeight: 1.1 }}>
+                      {lang === 'en' ? r.en : r.fr}
                     </div>
-                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12.5, letterSpacing: '.08em', textTransform: 'uppercase', color: p.accent, marginTop: 3, fontWeight: 500 }}>
-                      {lang === 'en' ? p.who : p.whoFr}
+                    <div style={{ fontSize: 14, color: sel ? T.ink2 : 'rgba(255,255,255,.72)', marginTop: 3, lineHeight: 1.4 }}>
+                      {lang === 'en' ? r.descEn : r.descFr}
                     </div>
                   </div>
                 </div>
-                <div style={{ fontSize: 15.5, color: T.ink2, lineHeight: 1.55, marginBottom: 14 }}>
-                  {lang === 'en' ? p.tagEn : p.tagFr}
-                </div>
-                <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, color: T.muted, marginBottom: 18, lineHeight: 1.5 }}>
-                  {t.rolesLabel}: {p.rolesEn}
-                </div>
-                <button
-                  disabled={!active}
-                  onClick={(e) => { e.stopPropagation(); openPillar(p) }}
-                  style={{
-                    width: '100%',
-                    border: active ? 'none' : `1px solid ${p.accent}`,
-                    borderRadius: 12,
-                    padding: 14,
-                    fontSize: 15.5,
-                    fontWeight: 600,
-                    cursor: active ? 'pointer' : 'default',
-                    fontFamily: 'Inter',
-                    background: active ? T.forest : 'transparent',
-                    color: active ? '#fff' : p.accent,
-                  }}
-                >
-                  {active ? t.open : t.soon}
-                </button>
-              </div>
+              </button>
             )
           })}
         </div>
-      </section>
 
-      <footer style={{ padding: '24px 26px 40px', textAlign: 'center', color: 'rgba(255,255,255,.5)', fontSize: 12.5 }}>
-        <span style={{ fontFamily: 'IBM Plex Mono, monospace', letterSpacing: '.06em' }}>
-          LINGOGREEN · Lichipu — let&rsquo;s do it together
-        </span>
-      </footer>
+        {/* Q2 — level (only if role needs it) */}
+        {role?.needsLevel && (
+          <>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 26, margin: '0 0 4px' }}>{t.q2}</h2>
+            <p style={{ color: 'rgba(255,255,255,.7)', fontSize: 15, margin: '0 0 16px' }}>{t.q2sub}</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginBottom: 34 }}>
+              {LEVELS.map((lv) => {
+                const sel = level === lv.key
+                return (
+                  <button key={lv.key} onClick={() => { setLevel(lv.key); setKlass('') }} style={card(sel, T.gold)}>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 19 }}>{lang === 'en' ? lv.en : lv.fr}</div>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, color: sel ? T.muted : 'rgba(255,255,255,.6)', marginTop: 2 }}>{lv.hint}</div>
+                  </button>
+                )
+              })}
+            </div>
+
+            {/* Q2b — class (appears once a level is chosen) */}
+            {level && CLASSES[level] && (
+              <>
+                <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 26, margin: '0 0 4px' }}>{t.q2b}</h2>
+                <p style={{ color: 'rgba(255,255,255,.7)', fontSize: 15, margin: '0 0 16px' }}>{t.q2bsub}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 10, marginBottom: 34 }}>
+                  {CLASSES[level].map((c) => {
+                    const sel = klass === c.key
+                    return (
+                      <button key={c.key} onClick={() => setKlass(c.key)} style={card(sel, T.gold)}>
+                        <div style={{ fontFamily: 'Fraunces, serif', fontSize: 18, textAlign: 'center' }}>{c.label}</div>
+                      </button>
+                    )
+                  })}
+                </div>
+              </>
+            )}
+          </>
+        )}
+        {role && (
+          <>
+            <h2 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 26, margin: '0 0 4px' }}>{t.q3}</h2>
+            <p style={{ color: 'rgba(255,255,255,.7)', fontSize: 15, margin: '0 0 16px' }}>{t.q3sub}</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 12, marginBottom: 34 }}>
+              {gardens.map((g) => {
+                const sel = garden === g.slug
+                return (
+                  <button key={g.slug} onClick={() => setGarden(g.slug)} style={card(sel, '#5C9E3A')}>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 18 }}>{lang === 'en' ? g.name_en : g.name_fr}</div>
+                    {g.slug === 'school' && (
+                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, color: sel ? T.gold : T.goldSoft, marginTop: 2 }}>
+                        {lang === 'en' ? 'RECOMMENDED' : 'RECOMMANDÉ'}
+                      </div>
+                    )}
+                  </button>
+                )
+              })}
+            </div>
+          </>
+        )}
+
+        {error && (
+          <div style={{ background: 'rgba(180,60,60,.2)', border: '1px solid rgba(220,120,120,.5)', color: '#ffd9d9', padding: '12px 16px', borderRadius: 12, fontSize: 14, marginBottom: 18 }}>
+            {error}
+          </div>
+        )}
+
+        <button
+          onClick={saveAndContinue}
+          disabled={!ready || saving}
+          style={{
+            width: '100%',
+            border: 'none',
+            borderRadius: 14,
+            padding: 16,
+            fontSize: 16.5,
+            fontWeight: 600,
+            fontFamily: 'Inter',
+            cursor: ready && !saving ? 'pointer' : 'default',
+            background: ready && !saving ? T.gold : 'rgba(255,255,255,.15)',
+            color: ready && !saving ? '#20160a' : 'rgba(255,255,255,.55)',
+          }}
+        >
+          {saving ? t.saving : t.continue}
+        </button>
+      </div>
     </main>
   )
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { useRouter, useParams } from 'next/navigation'
+import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { browserClient } from '@/app/lib/supabase-browser'
 
@@ -56,7 +56,9 @@ const UI = {
 export default function LevelGardensPage() {
   const router = useRouter()
   const params = useParams()
+  const searchParams = useSearchParams()
   const level = String(params.level || 'primary')
+  const klass = searchParams.get('class') || ''
   const [lang, setLang] = useState<'en' | 'fr'>('en')
   const [checking, setChecking] = useState(true)
   const [gardens, setGardens] = useState<Garden[]>([])
@@ -89,7 +91,8 @@ export default function LevelGardensPage() {
 
   function openGarden(g: Garden) {
     if (g.min_tier !== 'free') return
-    router.push('/hub/fr/agrishine/garden/' + g.slug)
+    const kq = klass ? ('?class=' + klass) : ''
+    router.push('/hub/fr/agrishine/garden/' + g.slug + kq)
   }
 
   if (checking) {
