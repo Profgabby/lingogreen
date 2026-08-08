@@ -21,7 +21,7 @@ const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: bo
   flashcards:   { en: 'Flashcards', fr: 'Cartes', icon: '🃏', live: true },
   story:        { en: 'Storybook', fr: 'Histoire', icon: '📖', live: false },
   charts:       { en: 'Classroom charts', fr: 'Affiches', icon: '🖼️', live: false },
-  assessment:   { en: 'Quiz', fr: 'Quiz', icon: '✅', live: false },
+  assessment:   { en: 'Quiz', fr: 'Quiz', icon: '✅', live: true },
   games:        { en: 'Games', fr: 'Jeux', icon: '🎮', live: false },
   manual:       { en: 'Garden manual', fr: 'Manuel', icon: '📗', live: false },
   teacher_guide:{ en: 'Teacher guide', fr: 'Guide enseignant', icon: '👩‍🏫', live: false },
@@ -105,6 +105,7 @@ export default function GardenPage() {
   }
   function openTool(key: string) {
     if (key === 'flashcards' && lesson) { setIdx(0); setFlipped(false); setShowCards(true) }
+    if (key === 'assessment' && klass) { router.push('/hub/fr/agrishine/quiz/' + klass) }
   }
 
   if (checking || !garden) {
@@ -157,7 +158,12 @@ export default function GardenPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14 }}>
           {ORDER.filter((k) => garden.tools.includes(k)).map((key) => {
             const meta = TOOL_META[key]; if (!meta) return null
-            const live = meta.live && (key !== 'flashcards' || lesson !== null)
+            const hasQuiz = klass === 'primary-1'
+            const live = meta.live && (
+              key === 'flashcards' ? lesson !== null :
+              key === 'assessment' ? hasQuiz :
+              true
+            )
             const flashSoon = key === 'flashcards' && lesson === null && gardenHasFlashcards(garden.slug)
             return (
               <button key={key} onClick={() => openTool(key)} disabled={!live}
