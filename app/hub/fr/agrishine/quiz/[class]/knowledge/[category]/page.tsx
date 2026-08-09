@@ -149,7 +149,7 @@ export default function QuizPlayer() {
 
           <div style={{ display:'grid', gap:10, marginTop:8 }}>
             <button onClick={() => { window.location.reload() }} style={btn(cat.color, true)}>Try Again</button>
-            <button onClick={() => router.push(`/hub/fr/agrishine/quiz/${klass}`)} style={btn(cat.color, false)}>Back to Quizzes</button>
+            <button onClick={() => router.push(`/hub/fr/agrishine/quiz/${klass}/knowledge`)} style={btn(cat.color, false)}>Back to Quizzes</button>
           </div>
         </div>
       </main>
@@ -168,7 +168,7 @@ export default function QuizPlayer() {
       <div style={{ padding:'16px 22px 0', maxWidth:640, margin:'0 auto' }}>
         <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', marginBottom:10 }}>
           <span style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, color:T.goldSoft }}>{cat.icon} {cat.name}</span>
-          <button onClick={() => router.push(`/hub/fr/agrishine/quiz/${klass}`)} style={{ border:'1px solid rgba(255,255,255,.3)', background:'rgba(255,255,255,.1)', color:'#fff', borderRadius:16, padding:'4px 12px', fontSize:12, cursor:'pointer', fontFamily:'Inter' }}>Exit</button>
+          <button onClick={() => router.push(`/hub/fr/agrishine/quiz/${klass}/knowledge`)} style={{ border:'1px solid rgba(255,255,255,.3)', background:'rgba(255,255,255,.1)', color:'#fff', borderRadius:16, padding:'4px 12px', fontSize:12, cursor:'pointer', fontFamily:'Inter' }}>Exit</button>
         </div>
         {/* progress bar */}
         <div style={{ height:8, background:'rgba(255,255,255,.15)', borderRadius:8, overflow:'hidden', marginBottom:8 }}>
