@@ -33,6 +33,7 @@ export default function LangPlayer() {
   const [feedback, setFeedback] = useState('')
   const [timeLeft, setTimeLeft] = useState(30)
   const [ended, setEnded] = useState<null|'terminated'|'complete'>(null)
+  const [saved, setSaved] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval>|null>(null)
 
   const deck = useMemo(()=> cat ? cat.questions.map(shuffled) : [], [cat])
@@ -50,6 +51,38 @@ export default function LangPlayer() {
     return () => { timerRef.current && clearInterval(timerRef.current) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [qi, checking, ended])
+
+  // ---------- SAVE ATTEMPT (runs once when the quiz ends) ----------
+  useEffect(() => {
+    if (!ended || saved || !cat) return
+    setSaved(true) // guard: only ever write one row per attempt
+    const completed = correct + wrong
+    const accuracy = completed ? Math.round((correct / completed) * 100) : 0
+    const earnedBadge = ended === 'complete' && misses < 3
+    ;(async () => {
+      try {
+        const supabase = browserClient()
+        const { data: userData } = await supabase.auth.getUser()
+        if (!userData.user) return
+        await supabase.from('quiz_attempts').insert({
+          user_id: userData.user.id,
+          klass,
+          quiz_type: 'language',
+          category: catSlug,
+          score,
+          correct,
+          completed,
+          total: cat.questions.length,
+          accuracy,
+          badge_earned: earnedBadge,
+          ended,
+        })
+      } catch (e) {
+        console.error('quiz_attempts save failed', e)
+      }
+    })()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ended])
 
   if (!cat) return (<main style={{ minHeight:'100vh', display:'grid', placeItems:'center', background:T.forest, color:'#fff', fontFamily:'Inter' }}><div>Quiz not found.</div></main>)
   if (checking) return (<main style={{ minHeight:'100vh', display:'grid', placeItems:'center', background:T.forest, color:'rgba(255,255,255,.6)', fontFamily:'Inter' }}><div>…</div></main>)

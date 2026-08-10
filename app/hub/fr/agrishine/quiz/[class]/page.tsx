@@ -51,6 +51,12 @@ export default function QuizChooser() {
         <div style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, letterSpacing:'.16em', color:T.goldSoft, marginBottom:12 }}>PRIMARY 1 QUIZZES</div>
         <h1 style={{ fontFamily:'Fraunces, serif', fontWeight:500, fontSize:'clamp(30px,4vw,46px)', margin:'0 0 12px', lineHeight:1.08 }}>Pick a quiz type</h1>
         <p style={{ color:'rgba(255,255,255,.82)', fontSize:17, lineHeight:1.6, maxWidth:560, margin:'0 auto' }}>Two ways to play: test your knowledge, or test your French.</p>
+
+        {/* My Progress button */}
+        <button onClick={() => router.push(`/hub/fr/agrishine/quiz/${klass}/dashboard`)}
+          style={{ marginTop:20, border:`1px solid ${T.goldSoft}`, background:'rgba(200,145,46,.14)', color:'#fff', borderRadius:24, padding:'11px 24px', fontSize:15, fontWeight:600, cursor:'pointer', fontFamily:'Inter', display:'inline-flex', alignItems:'center', gap:8 }}>
+          📊 My Progress
+        </button>
       </section>
 
       <section style={{ maxWidth:900, margin:'0 auto', padding:'32px 26px 64px' }}>
