@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 import Image from 'next/image'
 import { browserClient } from '@/app/lib/supabase-browser'
 import { P1_LANG } from '@/app/lib/lang-p1'
+import { P2_LANG } from '@/app/lib/lang-p2'
 
 const T = { ink:'#2A2118', ink2:'#5A4A36', muted:'#8A7B63', forest:'#0B3D26', forest2:'#072D1C', gold:'#C8912E', goldSoft:'#E8B04B' }
 
@@ -58,14 +59,14 @@ export default function LanguageHome() {
       </nav>
 
       <section style={{ maxWidth:1080, margin:'0 auto', padding:'44px 26px 8px', textAlign:'center' }}>
-        <div style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, letterSpacing:'.16em', color:T.goldSoft, marginBottom:12 }}>🇫🇷 LANGUAGE QUIZ · PRIMARY 1</div>
+        <div style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, letterSpacing:'.16em', color:T.goldSoft, marginBottom:12 }}>🇫🇷 LANGUAGE QUIZ · {klass.replace('primary-','PRIMARY ').replace('jss-','JSS ').toUpperCase()}</div>
         <h1 style={{ fontFamily:'Fraunces, serif', fontWeight:500, fontSize:'clamp(30px,4vw,46px)', margin:'0 0 12px', lineHeight:1.08 }}>Apprends le français</h1>
         <p style={{ color:'rgba(255,255,255,.82)', fontSize:17, lineHeight:1.6, maxWidth:560, margin:'0 auto' }}>Six ways to test your French words. Learn • Play • Score.</p>
       </section>
 
       <section style={{ maxWidth:1080, margin:'0 auto', padding:'32px 26px 64px' }}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:20 }}>
-          {P1_LANG.map((cat) => {
+          {(klass === 'primary-2' ? P2_LANG : P1_LANG).map((cat) => {
             const bestScore = progress.best[cat.slug]
             const hasBadge = progress.badges[cat.slug]
             return (

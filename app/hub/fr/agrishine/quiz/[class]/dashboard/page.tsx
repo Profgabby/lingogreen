@@ -86,7 +86,7 @@ export default function Dashboard() {
       </nav>
 
       <section style={{ maxWidth:1000, margin:'0 auto', padding:'44px 26px 8px', textAlign:'center' }}>
-        <div style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, letterSpacing:'.16em', color:T.goldSoft, marginBottom:12 }}>MY PROGRESS · PRIMARY 1</div>
+        <div style={{ fontFamily:'IBM Plex Mono, monospace', fontSize:13, letterSpacing:'.16em', color:T.goldSoft, marginBottom:12 }}>MY PROGRESS · {klass.replace('primary-','PRIMARY ').replace('jss-','JSS ').toUpperCase()}</div>
         <h1 style={{ fontFamily:'Fraunces, serif', fontWeight:500, fontSize:'clamp(30px,4vw,46px)', margin:'0 0 12px', lineHeight:1.08 }}>How I&rsquo;m doing</h1>
         <p style={{ color:'rgba(255,255,255,.82)', fontSize:17, lineHeight:1.6, maxWidth:560, margin:'0 auto' }}>Every quiz you finish shows up here.</p>
       </section>
