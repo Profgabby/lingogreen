@@ -37,7 +37,13 @@ export default function LangPlayer() {
   const [saved, setSaved] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval>|null>(null)
 
-  const deck = useMemo(()=> cat ? cat.questions.map(shuffled) : [], [cat])
+  // Fresh shuffle each attempt: question ORDER randomized, options paired per question.
+  const deck = useMemo(()=> {
+    if (!cat) return []
+    const order = cat.questions.map((_, i) => i)
+    for (let i=order.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]] }
+    return order.map((qIndex)=> ({ q: cat.questions[qIndex], d: shuffled(cat.questions[qIndex]) }))
+  }, [cat])
 
   useEffect(() => {
     const supabase = browserClient()
@@ -88,8 +94,9 @@ export default function LangPlayer() {
   if (!cat) return (<main style={{ minHeight:'100vh', display:'grid', placeItems:'center', background:T.forest, color:'#fff', fontFamily:'Inter' }}><div>Quiz not found.</div></main>)
   if (checking) return (<main style={{ minHeight:'100vh', display:'grid', placeItems:'center', background:T.forest, color:'rgba(255,255,255,.6)', fontFamily:'Inter' }}><div>…</div></main>)
 
-  const q = cat.questions[qi]
-  const d = deck[qi]
+  const item = deck[qi]
+  const q = item ? item.q : cat.questions[0]
+  const d = item ? item.d : shuffled(cat.questions[0])
 
   function advance(nm:number){ setTimeout(()=>{ if(nm>=3){setEnded('terminated');return} if(qi+1>=cat!.questions.length){setEnded('complete');return} setQi(qi+1); setPicked(null); setLocked(false); setFeedback('') },1400) }
   function handleTimeout(){ if(locked)return; setLocked(true); const nm=misses+1; setWrong(w=>w+1); setMisses(nm); setFeedback('Temps écoulé!'); advance(nm) }

@@ -1,4 +1,5 @@
 'use client'
+
 import { useEffect, useState, useRef, useMemo } from 'react'
 import { useRouter, useParams } from 'next/navigation'
 import { browserClient } from '@/app/lib/supabase-browser'
@@ -41,8 +42,14 @@ export default function QuizPlayer() {
   const [saved, setSaved] = useState(false)
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
-  // precompute shuffled options per question (stable for the attempt)
-  const deck = useMemo(() => cat ? cat.questions.map(shuffled) : [], [cat])
+  // Build a freshly shuffled deck each attempt: question ORDER is randomized,
+  // and each question keeps its own shuffled options (paired, so they can't desync).
+  const deck = useMemo(() => {
+    if (!cat) return []
+    const order = cat.questions.map((_, i) => i)
+    for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(Math.random()*(i+1)); [order[i],order[j]]=[order[j],order[i]] }
+    return order.map((qIndex) => ({ q: cat.questions[qIndex], d: shuffled(cat.questions[qIndex]) }))
+  }, [cat])
 
   useEffect(() => {
     const supabase = browserClient()
@@ -106,8 +113,9 @@ export default function QuizPlayer() {
     return (<main style={{ minHeight:'100vh', display:'grid', placeItems:'center', background:T.forest, color:'rgba(255,255,255,.6)', fontFamily:'Inter' }}><div>…</div></main>)
   }
 
-  const q = cat.questions[qi]
-  const d = deck[qi]
+  const item = deck[qi]
+  const q = item ? item.q : cat.questions[0]
+  const d = item ? item.d : shuffled(cat.questions[0])
 
   function advance(nextMisses: number) {
     setTimeout(() => {
