@@ -5,6 +5,7 @@ import { useRouter, useParams } from 'next/navigation'
 import { browserClient } from '@/app/lib/supabase-browser'
 import { categoryBySlug, type QuizQuestion } from '@/app/lib/quiz-p1'
 import { p2CategoryBySlug } from '@/app/lib/quiz-p2'
+import { p3CategoryBySlug } from '@/app/lib/quiz-p3'
 
 const T = { ink:'#2A2118', ink2:'#5A4A36', muted:'#8A7B63', forest:'#0B3D26', forest2:'#072D1C', gold:'#C8912E', goldSoft:'#E8B04B',
   green:'#3E9B7C', red:'#D6604A' }
@@ -26,7 +27,7 @@ export default function QuizPlayer() {
   const params = useParams()
   const klass = String(params.class || 'primary-1')
   const catSlug = String(params.category || '')
-  const cat = klass === 'primary-2' ? p2CategoryBySlug(catSlug) : categoryBySlug(catSlug)
+  const cat = klass === 'primary-3' ? p3CategoryBySlug(catSlug) : klass === 'primary-2' ? p2CategoryBySlug(catSlug) : categoryBySlug(catSlug)
 
   const [checking, setChecking] = useState(true)
   const [qi, setQi] = useState(0)

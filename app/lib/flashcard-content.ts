@@ -88,12 +88,58 @@ const P2_GARDEN: FlashLesson = {
       ex: 'J’ai appris les légumes du jardin !', ex_en: 'I learned about garden vegetables!' },
   ],
 }
+const P3_GARDEN: FlashLesson = {
+  id: 'p3-garden',
+  theme_en: 'Working in the garden',
+  theme_fr: 'Travailler au jardin',
+  imgBase: '/lessons/p3-garden/',
+  cards: [
+    { type: 'intro', img: 'p3-garden-01.jpg', title_fr: '🌱 Découvrir le jardin', title_en: '🌱 Découvrir le jardin',
+      fr: 'A : Où sommes-nous ? B : Nous sommes dans le jardin de l’école.', en: 'A: Where are we? B: We are in the school garden.',
+      ex: 'A : Qu’allons-nous apprendre ? B : Nous allons apprendre à jardiner !', ex_en: 'A: What are we going to learn? B: We are going to learn how to garden!' },
+    { type: 'vocab', img: 'p3-garden-02.jpg', title_fr: '🪏 Creuser la terre', title_en: '🪏 Creuser la terre',
+      fr: 'A : Que fais-tu ? B : Je creuse la terre.', en: 'A: What are you doing? B: I am digging the soil.',
+      ex: 'A : Pourquoi ? B : Pour préparer le jardin.', ex_en: 'A: Why? B: To prepare the garden.' },
+    { type: 'vocab', img: 'p3-garden-03.jpg', title_fr: '🌿 Préparer le sol', title_en: '🌿 Préparer le sol',
+      fr: 'A : Que fais-tu avec la houe ? B : Je prépare le sol.', en: 'A: What are you doing with the hoe? B: I am preparing the soil.',
+      ex: 'A : Le sol est-il prêt ? B : Oui, il est prêt !', ex_en: 'A: Is the soil ready? B: Yes, it is ready!' },
+    { type: 'vocab', img: 'p3-garden-04.jpg', title_fr: '💧 Arroser les plantes', title_en: '💧 Arroser les plantes',
+      fr: 'A : Que fais-tu ? B : J’arrose les plantes.', en: 'A: What are you doing? B: I am watering the plants.',
+      ex: 'A : Pourquoi faut-il de l’eau ? B : Pour aider les plantes à pousser.', ex_en: 'A: Why do they need water? B: To help the plants grow.' },
+    { type: 'vocab', img: 'p3-garden-05.jpg', title_fr: '🍂 Ramasser les feuilles', title_en: '🍂 Ramasser les feuilles',
+      fr: 'A : Que ramasses-tu ? B : Je ramasse les feuilles sèches.', en: 'A: What are you collecting? B: I am collecting the dry leaves.',
+      ex: 'A : Le jardin est propre maintenant ? B : Oui, il est propre !', ex_en: 'A: Is the garden clean now? B: Yes, it is clean!' },
+    { type: 'vocab', img: 'p3-garden-06.jpg', title_fr: '🥕 Transporter les légumes', title_en: '🥕 Transporter les légumes',
+      fr: 'A : Qu’y a-t-il dans la brouette ? B : Il y a des légumes.', en: 'A: What is in the wheelbarrow? B: There are vegetables.',
+      ex: 'A : Où les emportes-tu ? B : Je les emporte à l’école.', ex_en: 'A: Where are you taking them? B: I am taking them to the school.' },
+    { type: 'vocab', img: 'p3-garden-07.jpg', title_fr: '🌱 Planter', title_en: '🌱 Planter',
+      fr: 'A : Que plantes-tu ? B : Je plante un jeune plant.', en: 'A: What are you planting? B: I am planting a young plant.',
+      ex: 'A : Que fais-tu après ? B : Je mets de la terre autour.', ex_en: 'A: What do you do next? B: I put soil around it.' },
+    { type: 'vocab', img: 'p3-garden-08.jpg', title_fr: '🥬 Récolter les légumes', title_en: '🥬 Récolter les légumes',
+      fr: 'A : Qu’avez-vous récolté ? B : Nous avons récolté des légumes !', en: 'A: What have you harvested? B: We have harvested vegetables!',
+      ex: 'A : Sont-ils frais ? B : Oui, ils sont très frais !', ex_en: 'A: Are they fresh? B: Yes, they are very fresh!' },
+    { type: 'vocab', img: 'p3-garden-09.jpg', title_fr: '🌰 Semer les graines', title_en: '🌰 Semer les graines',
+      fr: 'A : Que mets-tu dans la terre ? B : Je mets des graines.', en: 'A: What are you putting in the soil? B: I am putting seeds in it.',
+      ex: 'A : Que vont-elles devenir ? B : Elles vont devenir des plantes.', ex_en: 'A: What will they become? B: They will become plants.' },
+    { type: 'vocab', img: 'p3-garden-10.jpg', title_fr: '🌾 Ameublir le sol', title_en: '🌾 Ameublir le sol',
+      fr: 'A : Pourquoi travailles-tu la terre ? B : Pour rendre le sol meuble.', en: 'A: Why are you working the soil? B: To make the soil loose.',
+      ex: 'A : Est-ce bon pour les plantes ? B : Oui, très bon !', ex_en: 'A: Is that good for plants? B: Yes, very good!' },
+    { type: 'practice', img: 'p3-garden-11.jpg', title_fr: '👩🏾‍🌾 Travailler ensemble', title_en: '👩🏾‍🌾 Travailler ensemble',
+      fr: 'A : Que faisons-nous aujourd’hui ? B : Nous travaillons dans le jardin.', en: 'A: What are we doing today? B: We are working in the garden.',
+      ex: 'A : Qui s’occupe du jardin ? B : Nous tous !', ex_en: 'A: Who takes care of the garden? B: All of us!' },
+    { type: 'recap', img: 'p3-garden-12.jpg', title_fr: '🎉 Notre jardin', title_en: '🎉 Notre jardin',
+      fr: 'A : Qu’avons-nous appris ? B : À planter, arroser et récolter.', en: 'A: What have we learned? B: To plant, water and harvest.',
+      ex: 'A : Aimes-tu notre jardin ? B : Oui, j’adore notre jardin !', ex_en: 'A: Do you like our garden? B: Yes, I love our garden!' },
+  ],
+}
+
 // Which garden + class shows which flashcard lesson.
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
 const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-1': P1_FRUITS,
   'primary-nutrition|primary-2': P2_GARDEN,
+  'primary-nutrition|primary-3': P3_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
