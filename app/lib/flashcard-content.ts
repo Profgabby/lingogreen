@@ -1,7 +1,6 @@
 // Flashcard lesson content.
 // Each lesson is a 12-card mini-lesson. Images live in /public/lessons/<id>/.
 // Map: garden slug -> lesson id. Add more gardens/levels here later.
-
 export type FlashCard = {
   type: 'intro' | 'vocab' | 'practice' | 'recap'
   img: string
@@ -12,7 +11,6 @@ export type FlashCard = {
   title_fr?: string
   title_en?: string
 }
-
 export type FlashLesson = {
   id: string
   theme_en: string
@@ -20,7 +18,6 @@ export type FlashLesson = {
   imgBase: string
   cards: FlashCard[]
 }
-
 const P1_FRUITS: FlashLesson = {
   id: 'p1-fruits',
   theme_en: 'Fruits from the garden',
@@ -47,17 +44,59 @@ const P1_FRUITS: FlashLesson = {
       ex: 'Aujourd’hui, tu as appris 9 fruits.', ex_en: 'Today you learned 9 fruits.' },
   ],
 }
-
+const P2_GARDEN: FlashLesson = {
+  id: 'p2-garden',
+  theme_en: 'Vegetables from the garden',
+  theme_fr: 'Les légumes du jardin',
+  imgBase: '/lessons/p2-garden/',
+  cards: [
+    { type: 'intro', img: 'p2-garden-01.jpg', title_fr: 'Le jardin', title_en: 'Garden',
+      fr: 'Qu’est-ce que c’est ?', en: 'What is this?',
+      ex: 'C’est notre jardin.', ex_en: 'It is our garden.' },
+    { type: 'vocab', img: 'p2-garden-02.jpg', title_fr: 'La tomate', title_en: 'Tomato',
+      fr: 'Qu’est-ce que c’est ?', en: 'What is this?',
+      ex: 'C’est une tomate.', ex_en: 'It is a tomato.' },
+    { type: 'vocab', img: 'p2-garden-03.jpg', title_fr: 'L’oignon', title_en: 'Onion',
+      fr: 'Tu vois les oignons ?', en: 'Do you see the onions?',
+      ex: 'Oui, je vois les oignons.', ex_en: 'Yes, I see the onions.' },
+    { type: 'vocab', img: 'p2-garden-04.jpg', title_fr: 'La carotte', title_en: 'Carrot',
+      fr: 'Qu’est-ce que tu prends ?', en: 'What are you taking?',
+      ex: 'Je prends une carotte.', ex_en: 'I am taking a carrot.' },
+    { type: 'vocab', img: 'p2-garden-05.jpg', title_fr: 'La laitue', title_en: 'Lettuce',
+      fr: 'Tu aimes la laitue ?', en: 'Do you like lettuce?',
+      ex: 'Oui, j’aime la laitue.', ex_en: 'Yes, I like lettuce.' },
+    { type: 'vocab', img: 'p2-garden-06.jpg', title_fr: 'Le concombre', title_en: 'Cucumber',
+      fr: 'Qu’est-ce qui pousse ici ?', en: 'What is growing here?',
+      ex: 'Un concombre pousse ici.', ex_en: 'A cucumber is growing here.' },
+    { type: 'vocab', img: 'p2-garden-07.jpg', title_fr: 'Le poivron', title_en: 'Pepper',
+      fr: 'De quelle couleur est le poivron ?', en: 'What colour is the pepper?',
+      ex: 'Il est rouge.', ex_en: 'It is red.' },
+    { type: 'vocab', img: 'p2-garden-08.jpg', title_fr: 'La citrouille', title_en: 'Pumpkin',
+      fr: 'Regarde la citrouille !', en: 'Look at the pumpkin!',
+      ex: 'Elle est très grosse !', ex_en: 'It is very big!' },
+    { type: 'vocab', img: 'p2-garden-09.jpg', title_fr: 'Les épinards', title_en: 'Spinach',
+      fr: 'Qu’est-ce que tu touches ?', en: 'What are you touching?',
+      ex: 'Je touche les épinards.', ex_en: 'I am touching the spinach.' },
+    { type: 'vocab', img: 'p2-garden-10.jpg', title_fr: 'Le gombo', title_en: 'Okra',
+      fr: 'Tu connais le gombo ?', en: 'Do you know okra?',
+      ex: 'Oui, voici le gombo.', ex_en: 'Yes, here is the okra.' },
+    { type: 'practice', img: 'p2-garden-11.jpg', title_fr: 'La récolte', title_en: 'Harvest',
+      fr: 'Que faisons-nous ?', en: 'What are we doing?',
+      ex: 'Nous récoltons les légumes.', ex_en: 'We are harvesting the vegetables.' },
+    { type: 'recap', img: 'p2-garden-12.jpg', title_fr: 'Récapitulatif', title_en: 'Review',
+      fr: 'Qu’est-ce que tu as appris ?', en: 'What did you learn?',
+      ex: 'J’ai appris les légumes du jardin !', ex_en: 'I learned about garden vegetables!' },
+  ],
+}
 // Which garden + class shows which flashcard lesson.
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
 const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-1': P1_FRUITS,
+  'primary-nutrition|primary-2': P2_GARDEN,
 }
-
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
-
 export function lessonForGarden(slug: string, klass?: string): FlashLesson | null {
   if (klass) {
     const hit = LESSON_BY_GARDEN_CLASS[slug + '|' + klass]
@@ -65,7 +104,6 @@ export function lessonForGarden(slug: string, klass?: string): FlashLesson | nul
   }
   return null
 }
-
 export function gardenHasFlashcards(slug: string): boolean {
   return FREE_FLASH_GARDENS.includes(slug)
 }
