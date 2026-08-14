@@ -133,6 +133,50 @@ const P3_GARDEN: FlashLesson = {
   ],
 }
 
+const P4_GARDEN: FlashLesson = {
+  id: 'p4-garden',
+  theme_en: 'Parts of the plant',
+  theme_fr: 'Les parties de la plante',
+  imgBase: '/lessons/p4-garden/',
+  cards: [
+    { type: 'intro', img: 'p4-garden-01.jpg', title_fr: 'aliment – sain – jardin (food – healthy – garden)', title_en: 'aliment – sain – jardin (food – healthy – garden)',
+      fr: 'Les aliments du jardin sont sains.', en: 'Food from the garden is healthy.',
+      ex: 'A : Quels aliments vois-tu ? B : Je vois des fruits et des légumes.', ex_en: 'A: What foods do you see? B: I see fruits and vegetables.' },
+    { type: 'vocab', img: 'p4-garden-02.jpg', title_fr: 'fruit – arbre – cueillir (fruit – tree – pick)', title_en: 'fruit – arbre – cueillir (fruit – tree – pick)',
+      fr: 'Nous cueillons des fruits dans le jardin.', en: 'We pick fruits in the garden.',
+      ex: 'A : Que cueillez-vous ? B : Nous cueillons des fruits.', ex_en: 'A: What are you picking? B: We are picking fruits.' },
+    { type: 'vocab', img: 'p4-garden-03.jpg', title_fr: 'fleur – tige – pousser (flower – stem – grow)', title_en: 'fleur – tige – pousser (flower – stem – grow)',
+      fr: 'Les fleurs poussent sur la tige.', en: 'The flowers grow on the stem.',
+      ex: 'A : Où poussent les fleurs ? B : Elles poussent sur la tige.', ex_en: 'A: Where do the flowers grow? B: They grow on the stem.' },
+    { type: 'vocab', img: 'p4-garden-04.jpg', title_fr: 'feuille – verte – lumière (leaf – green – light)', title_en: 'feuille – verte – lumière (leaf – green – light)',
+      fr: 'Les grandes feuilles vertes reçoivent la lumière.', en: 'The large green leaves receive light.',
+      ex: 'A : De quelle couleur sont les feuilles ? B : Les feuilles sont vertes.', ex_en: 'A: What colour are the leaves? B: The leaves are green.' },
+    { type: 'vocab', img: 'p4-garden-05.jpg', title_fr: 'papillon – nectar – visiter (butterfly – nectar – visit)', title_en: 'papillon – nectar – visiter (butterfly – nectar – visit)',
+      fr: 'Le papillon visite la fleur pour le nectar.', en: 'The butterfly visits the flower for nectar.',
+      ex: 'A : Que visite le papillon ? B : Il visite une fleur.', ex_en: 'A: What does the butterfly visit? B: It visits a flower.' },
+    { type: 'vocab', img: 'p4-garden-06.jpg', title_fr: 'tomate – mûre – récolter (tomato – ripe – harvest)', title_en: 'tomate – mûre – récolter (tomato – ripe – harvest)',
+      fr: 'Nous récoltons les tomates mûres.', en: 'We harvest the ripe tomatoes.',
+      ex: 'A : Les tomates sont-elles mûres ? B : Oui, elles sont rouges et mûres.', ex_en: 'A: Are the tomatoes ripe? B: Yes, they are red and ripe.' },
+    { type: 'vocab', img: 'p4-garden-07.jpg', title_fr: 'graine – germer – plantule (seed – germinate – seedling)', title_en: 'graine – germer – plantule (seed – germinate – seedling)',
+      fr: 'La graine germe et devient une plantule.', en: 'The seed germinates and becomes a seedling.',
+      ex: 'A : Que devient la graine ? B : Elle devient une plantule.', ex_en: 'A: What does the seed become? B: It becomes a seedling.' },
+    { type: 'vocab', img: 'p4-garden-08.jpg', title_fr: 'arbre – branche – fruit (tree – branch – fruit)', title_en: 'arbre – branche – fruit (tree – branch – fruit)',
+      fr: 'Les fruits poussent sur les branches de l’arbre.', en: 'The fruits grow on the branches of the tree.',
+      ex: 'A : Que vois-tu sur l’arbre ? B : Je vois des branches, des feuilles et des fruits.', ex_en: 'A: What do you see on the tree? B: I see branches, leaves and fruits.' },
+    { type: 'vocab', img: 'p4-garden-09.jpg', title_fr: 'tronc – écorce – rugueux (trunk – bark – rough)', title_en: 'tronc – écorce – rugueux (trunk – bark – rough)',
+      fr: 'L’écorce protège le tronc de l’arbre.', en: 'The bark protects the trunk of the tree.',
+      ex: 'A : Comment est l’écorce ? B : Elle est dure et rugueuse.', ex_en: 'A: What is the bark like? B: It is hard and rough.' },
+    { type: 'vocab', img: 'p4-garden-10.jpg', title_fr: 'sol – racine – absorber (soil – root – absorb)', title_en: 'sol – racine – absorber (soil – root – absorb)',
+      fr: 'Les racines absorbent l’eau du sol.', en: 'The roots absorb water from the soil.',
+      ex: 'A : Où sont les racines ? B : Les racines sont dans le sol.', ex_en: 'A: Where are the roots? B: The roots are in the soil.' },
+    { type: 'practice', img: 'p4-garden-11.jpg', title_fr: 'observer – plante – partie (observe – plant – part)', title_en: 'observer – plante – partie (observe – plant – part)',
+      fr: 'Nous observons les différentes parties de la plante.', en: 'We observe the different parts of the plant.',
+      ex: 'A : Quelles parties vois-tu ? B : Je vois les racines, la tige, les feuilles et les fruits.', ex_en: 'A: Which parts do you see? B: I see the roots, stem, leaves and fruits.' },
+    { type: 'recap', img: 'p4-garden-12.jpg', title_fr: 'racine – tige – feuille – fleur – fruit (root – stem – leaf – flower – fruit)', title_en: 'racine – tige – feuille – fleur – fruit (root – stem – leaf – flower – fruit)',
+      fr: 'La plante a des racines, une tige, des feuilles, des fleurs et des fruits.', en: 'The plant has roots, a stem, leaves, flowers and fruits.',
+      ex: 'A : Peux-tu nommer les parties de la plante ? B : Oui : les racines, la tige, les feuilles, les fleurs et les fruits.', ex_en: 'A: Can you name the parts of the plant? B: Yes: the roots, stem, leaves, flowers and fruits.' },
+  ],
+}
 // Which garden + class shows which flashcard lesson.
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
@@ -140,6 +184,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-1': P1_FRUITS,
   'primary-nutrition|primary-2': P2_GARDEN,
   'primary-nutrition|primary-3': P3_GARDEN,
+  'primary-nutrition|primary-4': P4_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
