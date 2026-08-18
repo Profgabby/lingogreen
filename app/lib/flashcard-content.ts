@@ -10,6 +10,7 @@ export type FlashCard = {
   ex_en?: string
   title_fr?: string
   title_en?: string
+  words?: { fr: string; en: string }[]
 }
 export type FlashLesson = {
   id: string
@@ -177,6 +178,50 @@ const P4_GARDEN: FlashLesson = {
       ex: 'A : Peux-tu nommer les parties de la plante ? B : Oui : les racines, la tige, les feuilles, les fleurs et les fruits.', ex_en: 'A: Can you name the parts of the plant? B: Yes: the roots, stem, leaves, flowers and fruits.' },
   ],
 }
+const P5_GARDEN: FlashLesson = {
+  id: 'p5-garden',
+  theme_en: 'Healthy eating & the school garden',
+  theme_fr: 'Bien manger et le jardin scolaire',
+  imgBase: '/lessons/p5-garden/',
+  cards: [
+    { type: 'intro', img: 'p5-garden-01.jpg', title_fr: '🥗 Une alimentation saine', title_en: 'Healthy eating',
+      fr: 'A : Regarde tous les aliments sur la table. Il y a beaucoup de fruits et de légumes. Ils ont l’air délicieux ! B : Oui, j’aime manger des aliments frais. Ils nous donnent de l’énergie et nous aident à rester en bonne santé. A : Quel aliment préfères-tu ? J’aime beaucoup les fruits. B : Moi, je préfère les légumes. J’aime surtout les carottes et les tomates.', en: 'A: Look at all the food on the table. There are many fruits and vegetables. They look delicious! B: Yes, I like eating fresh food. It gives us energy and helps us stay healthy. A: Which food do you prefer? I really like fruits. B: I prefer vegetables. I especially like carrots and tomatoes.',
+      words: [{ fr: 'les aliments', en: 'food' }, { fr: 'les légumes', en: 'vegetables' }, { fr: 'l\'énergie', en: 'energy' }, { fr: 'en bonne santé', en: 'healthy' }] },
+    { type: 'vocab', img: 'p5-garden-02.jpg', title_fr: '🍊 La récolte des fruits', title_en: 'Harvesting fruits',
+      fr: 'A : Regarde tous les fruits dans le jardin ! Les élèves sont en train de les récolter. Les arbres ont donné beaucoup de fruits. B : Oui, je vois des oranges, des bananes et des papayes. Nous allons remplir nos paniers avec les fruits mûrs. A : Comment sais-tu qu’un fruit est mûr ? B : On peut regarder sa couleur et le toucher doucement. Il faut aussi demander au professeur si on n’est pas sûr.', en: 'A: Look at all the fruits in the garden! The pupils are harvesting them. The trees have produced many fruits. B: Yes, I can see oranges, bananas and papayas. We are going to fill our baskets with ripe fruits. A: How do you know that a fruit is ripe? B: We can look at its colour and touch it gently. We should also ask the teacher if we are not sure.',
+      words: [{ fr: 'récolter', en: 'to harvest' }, { fr: 'les fruits', en: 'fruits' }, { fr: 'mûr/mûre', en: 'ripe' }, { fr: 'le panier', en: 'basket' }] },
+    { type: 'vocab', img: 'p5-garden-03.jpg', title_fr: '🥕 La récolte des légumes', title_en: 'Harvesting vegetables',
+      fr: 'A : Que font les élèves dans le jardin ? Je les vois avec de grands paniers. B : Ils récoltent les légumes qu’ils ont cultivés. Il y a des tomates, des carottes et des légumes verts. A : Pourquoi cultivons-nous des légumes à l’école ? B : Nous apprenons comment les aliments poussent. Nous pouvons aussi manger les légumes frais après la récolte.', en: 'A: What are the pupils doing in the garden? I can see them with big baskets. B: They are harvesting the vegetables they have grown. There are tomatoes, carrots and green vegetables. A: Why do we grow vegetables at school? B: We learn how food grows. We can also eat the fresh vegetables after harvesting them.',
+      words: [{ fr: 'les légumes', en: 'vegetables' }, { fr: 'cultiver', en: 'to grow' }, { fr: 'la récolte', en: 'harvest' }, { fr: 'frais/fraîche', en: 'fresh' }] },
+    { type: 'vocab', img: 'p5-garden-04.jpg', title_fr: '🌽 La récolte du maïs', title_en: 'Harvesting maize',
+      fr: 'A : Qu’est-ce que tu fais avec ce maïs ? Je vois que tu as déjà récolté plusieurs épis. B : Je récolte le maïs avec mes camarades. Ensuite, nous mettons les épis frais dans les paniers. A : Est-ce que le maïs est important dans notre alimentation ? B : Oui, nous pouvons préparer plusieurs repas avec le maïs. C’est aussi une bonne source d’énergie.', en: 'A: What are you doing with this maize? I can see that you have already harvested several ears. B: I am harvesting maize with my classmates. Then, we put the fresh ears into the baskets. A: Is maize important in our diet? B: Yes, we can prepare several meals with maize. It is also a good source of energy.',
+      words: [{ fr: 'le maïs', en: 'maize' }, { fr: 'un épi', en: 'an ear of maize' }, { fr: 'récolter', en: 'to harvest' }, { fr: 'le panier', en: 'basket' }] },
+    { type: 'vocab', img: 'p5-garden-05.jpg', title_fr: '🌽 Le maïs frais', title_en: 'Fresh maize',
+      fr: 'A : Ce maïs vient-il de notre jardin ? Il a l’air très frais. B : Oui, nous venons de le récolter. Nous avons choisi les épis qui étaient prêts. A : Qu’allons-nous faire après la récolte ? B : Nous allons compter les épis et les mettre dans les paniers. Ensuite, nous pourrons les utiliser pour préparer un repas.', en: 'A: Does this maize come from our garden? It looks very fresh. B: Yes, we have just harvested it. We chose the ears that were ready. A: What are we going to do after the harvest? B: We are going to count the ears and put them in the baskets. Then, we can use them to prepare a meal.',
+      words: [{ fr: 'le maïs frais', en: 'fresh maize' }, { fr: 'récolter', en: 'to harvest' }, { fr: 'compter', en: 'to count' }, { fr: 'préparer', en: 'to prepare' }] },
+    { type: 'vocab', img: 'p5-garden-06.jpg', title_fr: '🫘 La récolte des haricots', title_en: 'Harvesting beans',
+      fr: 'A : Que cueilles-tu sur cette plante ? Je vois beaucoup de gousses vertes. B : Je cueille des haricots frais. Je les mets doucement dans mon panier. A : Pourquoi faut-il faire attention pendant la récolte ? B : Il ne faut pas abîmer la plante. Nous devons aussi laisser les haricots qui ne sont pas encore prêts.', en: 'A: What are you picking from this plant? I can see many green pods. B: I am picking fresh beans. I am gently putting them in my basket. A: Why should we be careful during harvesting? B: We should not damage the plant. We should also leave the beans that are not ready yet.',
+      words: [{ fr: 'les haricots', en: 'beans' }, { fr: 'cueillir', en: 'to pick' }, { fr: 'la plante', en: 'plant' }, { fr: 'le panier', en: 'basket' }] },
+    { type: 'vocab', img: 'p5-garden-07.jpg', title_fr: '🥛 Le lait et le repas sain', title_en: 'Milk and a healthy meal',
+      fr: 'A : Qu’est-ce que tu manges aujourd’hui ? Ton repas a l’air très bon. B : Je mange des légumes et je bois du lait. J’essaie de choisir des aliments différents pour mon repas. A : Pourquoi est-il important de bien manger ? B : Une bonne alimentation aide notre corps à grandir. Elle nous donne aussi de l’énergie pour apprendre et jouer.', en: 'A: What are you eating today? Your meal looks very good. B: I am eating vegetables and drinking milk. I try to choose different foods for my meal. A: Why is it important to eat well? B: Good food helps our bodies grow. It also gives us energy to learn and play.',
+      words: [{ fr: 'le lait', en: 'milk' }, { fr: 'un repas sain', en: 'a healthy meal' }, { fr: 'grandir', en: 'to grow' }, { fr: 'l\'énergie', en: 'energy' }] },
+    { type: 'vocab', img: 'p5-garden-08.jpg', title_fr: '💧 L’eau propre', title_en: 'Clean water',
+      fr: 'A : J’ai soif après avoir travaillé dans le jardin. Est-ce que je peux boire cette eau ? B : Oui, c’est de l’eau propre. Nous devons boire suffisamment d’eau, surtout quand il fait chaud. A : Je vois aussi un système pour récupérer l’eau. À quoi sert-il ? B : Il nous aide à récupérer de l’eau pour le jardin. Nous pouvons ainsi mieux gérer l’eau disponible.', en: 'A: I am thirsty after working in the garden. Can I drink this water? B: Yes, it is clean water. We need to drink enough water, especially when it is hot. A: I can also see a system for collecting water. What is it used for? B: It helps us collect water for the garden. This way, we can manage the available water better.',
+      words: [{ fr: 'l\'eau propre', en: 'clean water' }, { fr: 'avoir soif', en: 'to be thirsty' }, { fr: 'récupérer l\'eau', en: 'to collect water' }, { fr: 'le jardin', en: 'garden' }] },
+    { type: 'vocab', img: 'p5-garden-09.jpg', title_fr: '🧺 Les aliments du jardin', title_en: 'Food from the garden',
+      fr: 'A : Quelle belle récolte ! Vos paniers sont remplis de fruits et de légumes. B : Oui, nous avons beaucoup travaillé dans le jardin. Aujourd’hui, nous sommes contents de voir le résultat. A : Quel légume as-tu récolté toi-même ? B : J’ai récolté des tomates et des carottes. J’étais très content de les mettre dans mon panier.', en: 'A: What a beautiful harvest! Your baskets are filled with fruits and vegetables. B: Yes, we have worked hard in the garden. Today, we are happy to see the result. A: Which vegetable did you harvest yourself? B: I harvested tomatoes and carrots. I was very happy to put them in my basket.',
+      words: [{ fr: 'la récolte', en: 'harvest' }, { fr: 'les fruits', en: 'fruits' }, { fr: 'les légumes', en: 'vegetables' }, { fr: 'le jardin scolaire', en: 'school garden' }] },
+    { type: 'vocab', img: 'p5-garden-10.jpg', title_fr: '⚽ Manger sainement et rester actif', title_en: 'Eating well and staying active',
+      fr: 'A : Tu cours très vite aujourd’hui ! Tu as encore beaucoup d’énergie après les cours. B : Oui, j’aime jouer au football avec mes amis. Je mange aussi bien pour avoir de l’énergie. A : Est-ce que l’activité physique est importante ? B : Oui, elle aide notre corps à rester fort. C’est aussi amusant de jouer ensemble.', en: 'A: You are running very fast today! You still have a lot of energy after class. B: Yes, I like playing football with my friends. I also eat well so that I have energy. A: Is physical activity important? B: Yes, it helps our bodies stay strong. It is also fun to play together.',
+      words: [{ fr: 'jouer au football', en: 'to play football' }, { fr: 'courir', en: 'to run' }, { fr: 'rester actif', en: 'to stay active' }, { fr: 'l\'énergie', en: 'energy' }] },
+    { type: 'practice', img: 'p5-garden-11.jpg', title_fr: '🍲 Préparer un repas sain', title_en: 'Preparing a healthy meal',
+      fr: 'A : Qu’est-ce que nous allons préparer avec notre récolte ? Nous avons beaucoup de légumes frais. B : Nous allons préparer un repas sain ensemble. Nous pouvons utiliser les tomates, les carottes et les légumes verts. A : Est-ce que je peux aider à préparer le repas ? B : Bien sûr ! Tu peux commencer par laver les légumes avec de l’eau propre.', en: 'A: What are we going to prepare with our harvest? We have lots of fresh vegetables. B: We are going to prepare a healthy meal together. We can use the tomatoes, carrots and green vegetables. A: Can I help prepare the meal? B: Of course! You can start by washing the vegetables with clean water.',
+      words: [{ fr: 'préparer', en: 'to prepare' }, { fr: 'un repas sain', en: 'a healthy meal' }, { fr: 'laver', en: 'to wash' }, { fr: 'les légumes', en: 'vegetables' }] },
+    { type: 'recap', img: 'p5-garden-12.jpg', title_fr: '🎉 Célébrons notre récolte', title_en: 'Celebrating our harvest',
+      fr: 'A : Tout le monde semble très content aujourd’hui. Qu’est-ce que nous célébrons ? B : Nous célébrons notre belle récolte. Nous avons cultivé et récolté beaucoup d’aliments dans notre jardin. A : Qu’as-tu appris grâce au jardin scolaire ? B : J’ai appris à planter, à prendre soin des plantes et à récolter les aliments. J’ai aussi appris qu’il faut travailler ensemble pour avoir un beau jardin.', en: 'A: Everyone seems very happy today. What are we celebrating? B: We are celebrating our beautiful harvest. We have grown and harvested lots of food from our garden. A: What have you learned from the school garden? B: I have learned to plant, care for plants and harvest food. I have also learned that we need to work together to have a beautiful garden.',
+      words: [{ fr: 'célébrer', en: 'to celebrate' }, { fr: 'la récolte', en: 'harvest' }, { fr: 'prendre soin de', en: 'to take care of' }, { fr: 'travailler ensemble', en: 'to work together' }] },
+  ],
+}
 // Which garden + class shows which flashcard lesson.
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
@@ -185,6 +230,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-2': P2_GARDEN,
   'primary-nutrition|primary-3': P3_GARDEN,
   'primary-nutrition|primary-4': P4_GARDEN,
+  'primary-nutrition|primary-5': P5_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']

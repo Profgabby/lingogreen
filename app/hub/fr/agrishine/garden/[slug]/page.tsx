@@ -44,6 +44,10 @@ const UI = {
     tapFlip: 'Toucher pour l’anglais', tapBack: 'Toucher pour le français', card: 'Carte', of: 'sur', prev: 'Précédent', next: 'Suivant', close: 'Fermer', lesson: 'Leçon' },
 }
 
+function formatDialogue(s: string): string {
+  return s.replace(/\s(A|B)\s*:/g, '\n$1 :').replace(/^\n/, '').trim()
+}
+
 export default function GardenPage() {
   const router = useRouter()
   const params = useParams()
@@ -158,7 +162,7 @@ export default function GardenPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14 }}>
           {ORDER.filter((k) => garden.tools.includes(k)).map((key) => {
             const meta = TOOL_META[key]; if (!meta) return null
-            const hasQuiz = klass === 'primary-1' || klass === 'primary-2' || klass === 'primary-3' || klass === 'primary-4'
+            const hasQuiz = klass === 'primary-1' || klass === 'primary-2' || klass === 'primary-3' || klass === 'primary-4' || klass === 'primary-5'
             const live = meta.live && (
               key === 'flashcards' ? lesson !== null :
               key === 'assessment' ? hasQuiz :
@@ -180,69 +184,106 @@ export default function GardenPage() {
       </section>
 
       {showCards && lesson && card && (
-        <div style={{ position: 'absolute', inset: 0, minHeight: '100%', background: 'rgba(7,28,18,.82)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '70px 18px 40px', zIndex: 100 }}>
-          <div style={{ width: '100%', maxWidth: 460 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 14 }}>
+        <div style={{ position: 'absolute', inset: 0, minHeight: '100%', background: 'rgba(7,28,18,.82)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '54px 16px 24px', zIndex: 100, overflowY: 'auto' }}>
+          <div className="fc-shell" style={{ width: '100%', maxWidth: card.words ? 860 : 460, display: 'flex', flexDirection: 'column', maxHeight: 'calc(100vh - 78px)' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12.5, letterSpacing: '.1em', color: T.goldSoft }}>{t.lesson}: {lang === 'en' ? lesson.theme_en : lesson.theme_fr}</span>
               <button onClick={() => setShowCards(false)} style={{ border: '1px solid rgba(255,255,255,.3)', background: 'rgba(255,255,255,.1)', color: '#fff', borderRadius: 20, padding: '6px 16px', fontSize: 14, cursor: 'pointer', fontFamily: 'Inter' }}>{t.close}</button>
             </div>
 
-            <div onClick={() => { if (card.type === 'vocab') { const goingToFrench = flipped; setFlipped(!flipped); if (goingToFrench) speak(card.fr) } }} style={{ background: '#fff', borderRadius: 22, overflow: 'hidden', cursor: card.type === 'vocab' ? 'pointer' : 'default', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', borderTop: `6px solid ${accent}` }}>
-              <div style={{ position: 'relative', width: '100%', aspectRatio: '5 / 4', background: '#eee' }}>
-                <Image src={lesson.imgBase + card.img} alt="" fill sizes="460px" style={{ objectFit: 'cover' }} priority />
-                {canSpeak && (
-                  <button
-                    onClick={(e) => { e.stopPropagation(); speak(card.type === 'vocab' ? card.fr : (card.ex || card.fr)) }}
-                    aria-label="Listen"
-                    style={{
-                      position: 'absolute', bottom: 12, right: 12,
-                      height: 48, borderRadius: 24, border: 'none',
-                      background: 'rgba(11,61,38,.92)', color: '#fff', fontSize: 15, fontWeight: 600,
-                      cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, padding: '0 18px 0 14px',
-                      boxShadow: '0 6px 16px -4px rgba(0,0,0,.5)', fontFamily: 'Inter',
-                    }}
-                  >
-                    <span style={{ fontSize: 20 }}>🔊</span> {lang === 'en' ? 'Listen' : 'Écouter'}
-                  </button>
-                )}
+            {card.words ? (
+              // ===== TWO-PANEL LAYOUT (Primary 5+): image left, text right; stacks on mobile =====
+              <div className="fc-two" style={{ background: '#fff', borderRadius: 22, overflow: 'hidden', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', borderTop: `6px solid ${accent}`, display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 0, flex: '1 1 auto' }}>
+                <div className="fc-img" style={{ position: 'relative', background: '#eee', minHeight: 260 }}>
+                  <Image src={lesson.imgBase + card.img} alt="" fill sizes="430px" style={{ objectFit: 'cover' }} priority />
+                  {canSpeak && (
+                    <button onClick={(e) => { e.stopPropagation(); speak(card.fr) }} aria-label="Listen"
+                      style={{ position: 'absolute', bottom: 12, right: 12, height: 44, borderRadius: 22, border: 'none', background: 'rgba(11,61,38,.92)', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, padding: '0 16px 0 12px', boxShadow: '0 6px 16px -4px rgba(0,0,0,.5)', fontFamily: 'Inter' }}>
+                      <span style={{ fontSize: 18 }}>🔊</span> {lang === 'en' ? 'Listen' : 'Écouter'}
+                    </button>
+                  )}
+                </div>
+                <div className="fc-text" style={{ padding: '20px 22px', textAlign: 'left', overflowY: 'auto', minHeight: 0 }}>
+                  <div style={{ marginBottom: 14 }}>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 23, color: accent, lineHeight: 1.15 }}>{card.title_fr}</div>
+                    {card.title_en && <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, color: T.muted, marginTop: 2 }}>{card.title_en}</div>}
+                  </div>
+                  <div style={{ background: 'rgba(11,61,38,.05)', borderRadius: 14, padding: '13px 15px', marginBottom: 11 }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11.5, letterSpacing: '.06em', color: T.forest, fontWeight: 600, marginBottom: 7 }}>🇫🇷 Parlons français !</div>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 16, color: T.ink, lineHeight: 1.55, whiteSpace: 'pre-line' }}>{formatDialogue(card.fr)}</div>
+                  </div>
+                  <div style={{ background: 'rgba(200,145,46,.06)', borderRadius: 14, padding: '11px 15px', marginBottom: 11 }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, letterSpacing: '.06em', color: '#9A7C33', fontWeight: 600, marginBottom: 6 }}>🇬🇧 What does it mean?</div>
+                    <div style={{ fontSize: 13, color: T.ink2, lineHeight: 1.5, whiteSpace: 'pre-line' }}>{formatDialogue(card.en)}</div>
+                  </div>
+                  <div style={{ background: 'rgba(62,155,124,.08)', borderRadius: 14, padding: '11px 15px' }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, letterSpacing: '.06em', color: '#2E7D57', fontWeight: 600, marginBottom: 8 }}>⭐ Mots utiles</div>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
+                      {card.words.map((w, wi) => (
+                        <span key={wi} style={{ background: '#fff', border: '1px solid #E4DAC4', borderRadius: 20, padding: '5px 11px', fontSize: 12.5 }}>
+                          <b style={{ color: T.forest }}>{w.fr}</b> <span style={{ color: T.muted }}>= {w.en}</span>
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div style={{ padding: '20px 22px 24px', textAlign: 'center' }}>
-                {card.type === 'vocab' ? (
-                  !flipped ? (
-                    <>
-                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '.1em', color: T.muted, textTransform: 'uppercase', marginBottom: 8 }}>Français</div>
-                      <div style={{ fontFamily: 'Fraunces, serif', fontSize: 32, color: T.ink, lineHeight: 1.1 }}>{card.fr}</div>
-                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, color: '#B9AE97', marginTop: 14 }}>{t.tapFlip}</div>
-                    </>
+            ) : (
+              // ===== ORIGINAL SINGLE CARD (Primary 1-4): unchanged =====
+              <div onClick={() => { if (card.type === 'vocab') { const goingToFrench = flipped; setFlipped(!flipped); if (goingToFrench) speak(card.fr) } }} style={{ background: '#fff', borderRadius: 22, overflow: 'hidden', cursor: card.type === 'vocab' ? 'pointer' : 'default', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', borderTop: `6px solid ${accent}`, display: 'flex', flexDirection: 'column', minHeight: 0, flex: '1 1 auto' }}>
+                <div style={{ position: 'relative', width: '100%', aspectRatio: '5 / 4', background: '#eee', flexShrink: 0 }}>
+                  <Image src={lesson.imgBase + card.img} alt="" fill sizes="460px" style={{ objectFit: 'cover' }} priority />
+                  {canSpeak && (
+                    <button onClick={(e) => { e.stopPropagation(); speak(card.type === 'vocab' ? card.fr : (card.ex || card.fr)) }} aria-label="Listen"
+                      style={{ position: 'absolute', bottom: 12, right: 12, height: 48, borderRadius: 24, border: 'none', background: 'rgba(11,61,38,.92)', color: '#fff', fontSize: 15, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, padding: '0 18px 0 14px', boxShadow: '0 6px 16px -4px rgba(0,0,0,.5)', fontFamily: 'Inter' }}>
+                      <span style={{ fontSize: 20 }}>🔊</span> {lang === 'en' ? 'Listen' : 'Écouter'}
+                    </button>
+                  )}
+                </div>
+                <div style={{ padding: '20px 22px 24px', textAlign: 'center', overflowY: 'auto', minHeight: 0 }}>
+                  {card.type === 'vocab' ? (
+                    !flipped ? (
+                      <>
+                        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '.1em', color: T.muted, textTransform: 'uppercase', marginBottom: 8 }}>Français</div>
+                        <div style={{ fontFamily: 'Fraunces, serif', fontSize: 32, color: T.ink, lineHeight: 1.1 }}>{card.fr}</div>
+                        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, color: '#B9AE97', marginTop: 14 }}>{t.tapFlip}</div>
+                      </>
+                    ) : (
+                      <>
+                        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '.1em', color: T.muted, textTransform: 'uppercase', marginBottom: 8 }}>English</div>
+                        <div style={{ fontFamily: 'Fraunces, serif', fontSize: 28, color: accent, lineHeight: 1.1, marginBottom: 10 }}>{card.en}</div>
+                        <div style={{ fontSize: 15, color: T.ink2, lineHeight: 1.5, fontStyle: 'italic' }}>“{card.ex}”</div>
+                        {card.ex_en && <div style={{ fontSize: 13, color: T.muted, marginTop: 4 }}>{card.ex_en}</div>}
+                        <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, color: '#B9AE97', marginTop: 14 }}>{t.tapBack}</div>
+                      </>
+                    )
                   ) : (
                     <>
-                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11, letterSpacing: '.1em', color: T.muted, textTransform: 'uppercase', marginBottom: 8 }}>English</div>
-                      <div style={{ fontFamily: 'Fraunces, serif', fontSize: 28, color: accent, lineHeight: 1.1, marginBottom: 10 }}>{card.en}</div>
-                      <div style={{ fontSize: 15, color: T.ink2, lineHeight: 1.5, fontStyle: 'italic' }}>“{card.ex}”</div>
-                      {card.ex_en && <div style={{ fontSize: 13, color: T.muted, marginTop: 4 }}>{card.ex_en}</div>}
-                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, color: '#B9AE97', marginTop: 14 }}>{t.tapBack}</div>
+                      {(card.title_fr || card.title_en) && (<div style={{ fontFamily: 'Fraunces, serif', fontSize: 26, color: accent, lineHeight: 1.1, marginBottom: 12 }}>{lang === 'en' ? card.title_en : card.title_fr}</div>)}
+                      <div style={{ fontFamily: 'Fraunces, serif', fontSize: 20, color: T.ink, lineHeight: 1.25, marginBottom: 8 }}>{card.fr}</div>
+                      <div style={{ fontSize: 15, color: T.ink2, lineHeight: 1.5 }}>{card.en}</div>
+                      {card.ex && <div style={{ fontSize: 14.5, color: T.ink2, lineHeight: 1.5, fontStyle: 'italic', marginTop: 12 }}>“{card.ex}”</div>}
+                      {card.ex_en && <div style={{ fontSize: 13, color: T.muted, marginTop: 3 }}>{card.ex_en}</div>}
                     </>
-                  )
-                ) : (
-                  <>
-                    {(card.title_fr || card.title_en) && (<div style={{ fontFamily: 'Fraunces, serif', fontSize: 26, color: accent, lineHeight: 1.1, marginBottom: 12 }}>{lang === 'en' ? card.title_en : card.title_fr}</div>)}
-                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 20, color: T.ink, lineHeight: 1.25, marginBottom: 8 }}>{card.fr}</div>
-                    <div style={{ fontSize: 15, color: T.ink2, lineHeight: 1.5 }}>{card.en}</div>
-                    {card.ex && <div style={{ fontSize: 14.5, color: T.ink2, lineHeight: 1.5, fontStyle: 'italic', marginTop: 12 }}>“{card.ex}”</div>}
-                    {card.ex_en && <div style={{ fontSize: 13, color: T.muted, marginTop: 3 }}>{card.ex_en}</div>}
-                  </>
-                )}
+                  )}
+                </div>
               </div>
-            </div>
+            )}
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 16 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 14, flexShrink: 0 }}>
               <button onClick={() => { setFlipped(false); setIdx((idx - 1 + lesson.cards.length) % lesson.cards.length) }} style={{ border: '1px solid rgba(255,255,255,.3)', background: 'rgba(255,255,255,.1)', color: '#fff', borderRadius: 12, padding: '10px 16px', fontSize: 14, cursor: 'pointer', fontFamily: 'Inter' }}>← {t.prev}</button>
               <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 13, color: 'rgba(255,255,255,.75)' }}>{t.card} {idx + 1} {t.of} {lesson.cards.length}</span>
               <button onClick={() => { setFlipped(false); setIdx((idx + 1) % lesson.cards.length) }} style={{ border: 'none', background: T.gold, color: '#20160a', borderRadius: 12, padding: '10px 16px', fontSize: 14, fontWeight: 600, cursor: 'pointer', fontFamily: 'Inter' }}>{t.next} →</button>
             </div>
+
+            <style>{`
+              @media (max-width: 720px) {
+                .fc-two { grid-template-columns: 1fr !important; }
+                .fc-img { min-height: 200px !important; aspect-ratio: 5 / 4; }
+              }
+            `}</style>
           </div>
         </div>
-      )}
-    </main>
+      )}    </main>
   )
 }
