@@ -222,6 +222,50 @@ const P5_GARDEN: FlashLesson = {
       words: [{ fr: 'célébrer', en: 'to celebrate' }, { fr: 'la récolte', en: 'harvest' }, { fr: 'prendre soin de', en: 'to take care of' }, { fr: 'travailler ensemble', en: 'to work together' }] },
   ],
 }
+const P6_GARDEN: FlashLesson = {
+  id: 'p6-garden',
+  theme_en: 'Caring for a sustainable garden',
+  theme_fr: 'Prendre soin d’un jardin durable',
+  imgBase: '/lessons/p6-garden/',
+  cards: [
+    { type: 'intro', img: 'p6-garden-01.jpg', title_fr: '🌱 Prendre soin du jardin', title_en: 'Taking Care of the Garden',
+      fr: 'A : Que font les élèves dans le jardin ? B : Ils enlèvent les mauvaises herbes et prennent soin des légumes. A : Pourquoi faut-il enlever les mauvaises herbes ? B : Parce qu’elles prennent l’eau et les éléments nutritifs dont les plantes ont besoin.', en: 'A: What are the pupils doing in the garden? B: They are removing weeds and taking care of the vegetables. A: Why should we remove weeds? B: Because they take water and nutrients that the plants need.',
+      words: [{ fr: 'entretenir le jardin', en: 'to care for the garden' }, { fr: 'désherber', en: 'to weed' }, { fr: 'les légumes', en: 'vegetables' }, { fr: 'prendre soin de', en: 'to take care of' }] },
+    { type: 'vocab', img: 'p6-garden-02.jpg', title_fr: '♻️ Faire du compost', title_en: 'Making Compost',
+      fr: 'A : Pourquoi mettez-vous les feuilles dans ce bac ? B : Nous les utilisons pour faire du compost. A : À quoi sert le compost ? B : Il enrichit le sol et aide les plantes à pousser.', en: 'A: Why are you putting the leaves in this bin? B: We use them to make compost. A: What is compost used for? B: It enriches the soil and helps plants grow.',
+      words: [{ fr: 'le compost', en: 'compost' }, { fr: 'les déchets organiques', en: 'organic waste' }, { fr: 'les feuilles mortes', en: 'dead leaves' }, { fr: 'enrichir le sol', en: 'to enrich the soil' }] },
+    { type: 'vocab', img: 'p6-garden-03.jpg', title_fr: '🍂 Le paillis', title_en: 'Mulch',
+      fr: 'A : Pourquoi couvrez-vous le sol avec des feuilles sèches ? B : Nous faisons du paillis pour protéger le sol. A : Est-ce que le paillis aide à conserver l’eau ? B : Oui, il réduit la perte d’eau du sol.', en: 'A: Why are you covering the soil with dry leaves? B: We are making mulch to protect the soil. A: Does mulch help conserve water? B: Yes, it reduces water loss from the soil.',
+      words: [{ fr: 'le paillis', en: 'mulch' }, { fr: 'pailler', en: 'to mulch' }, { fr: 'garder l\'humidité', en: 'to retain moisture' }, { fr: 'protéger le sol', en: 'to protect the soil' }] },
+    { type: 'vocab', img: 'p6-garden-04.jpg', title_fr: '💧 Bien utiliser l’eau', title_en: 'Using Water Wisely',
+      fr: 'A : Pourquoi arrosez-vous près des plantes ? B : Pour donner de l’eau directement aux racines. A : Pourquoi faut-il éviter de gaspiller l’eau ? B : Parce que l’eau est une ressource importante.', en: 'A: Why are you watering near the plants? B: To give water directly to the roots. A: Why should we avoid wasting water? B: Because water is an important resource.',
+      words: [{ fr: 'arroser', en: 'to water' }, { fr: 'l\'arrosoir', en: 'watering can' }, { fr: 'l\'irrigation', en: 'irrigation' }, { fr: 'économiser l\'eau', en: 'to save water' }] },
+    { type: 'vocab', img: 'p6-garden-05.jpg', title_fr: '🐝 La biodiversité', title_en: 'Biodiversity',
+      fr: 'A : Regarde les abeilles et les papillons dans le jardin ! B : Oui, ils visitent les fleurs. A : Pourquoi avons-nous différentes plantes ici ? B : Elles favorisent la biodiversité dans le jardin.', en: 'A: Look at the bees and butterflies in the garden! B: Yes, they are visiting the flowers. A: Why do we have different plants here? B: They support biodiversity in the garden.',
+      words: [{ fr: 'les pollinisateurs', en: 'pollinators' }, { fr: 'le papillon', en: 'butterfly' }, { fr: 'les fleurs', en: 'flowers' }, { fr: 'la biodiversité', en: 'biodiversity' }] },
+    { type: 'vocab', img: 'p6-garden-06.jpg', title_fr: '🌿 L’écosystème du jardin', title_en: 'The Garden Ecosystem',
+      fr: 'A : Pourquoi y a-t-il des plantes, des oiseaux et des insectes dans le jardin ? B : Ils font tous partie de l’écosystème. A : Est-ce qu’ils sont liés ? B : Oui, les êtres vivants dépendent les uns des autres et de leur environnement.', en: 'A: Why are there plants, birds and insects in the garden? B: They are all part of the ecosystem. A: Are they connected? B: Yes, living things depend on one another and on their environment.',
+      words: [{ fr: 'observer', en: 'to observe' }, { fr: 'les cultures', en: 'crops' }, { fr: 'les légumes frais', en: 'fresh vegetables' }, { fr: 'la croissance', en: 'growth' }] },
+    { type: 'vocab', img: 'p6-garden-07.jpg', title_fr: '♻️ Trier les déchets', title_en: 'Sorting Waste',
+      fr: 'A : Pourquoi utilisez-vous différentes poubelles ? B : Nous trions les déchets. A : Que faisons-nous des matériaux recyclables ? B : Nous les séparons pour qu’ils puissent être recyclés.', en: 'A: Why are you using different bins? B: We are sorting the waste. A: What do we do with recyclable materials? B: We separate them so they can be recycled.',
+      words: [{ fr: 'trier les déchets', en: 'to sort waste' }, { fr: 'recycler', en: 'to recycle' }, { fr: 'la poubelle de recyclage', en: 'recycling bin' }, { fr: 'protéger l\'environnement', en: 'to protect the environment' }] },
+    { type: 'vocab', img: 'p6-garden-08.jpg', title_fr: '🌧️ Récupérer l’eau de pluie', title_en: 'Collecting Rainwater',
+      fr: 'A : D’où vient l’eau dans ce réservoir ? B : C’est de l’eau de pluie récupérée du toit. A : Comment pouvons-nous utiliser cette eau ? B : Nous pouvons l’utiliser pour arroser le jardin.', en: 'A: Where does the water in this tank come from? B: It is rainwater collected from the roof. A: How can we use this water? B: We can use it to water the garden.',
+      words: [{ fr: 'récupérer l\'eau de pluie', en: 'to collect rainwater' }, { fr: 'le réservoir', en: 'water tank' }, { fr: 'arroser le jardin', en: 'to water the garden' }, { fr: 'économiser l\'eau', en: 'to save water' }] },
+    { type: 'vocab', img: 'p6-garden-09.jpg', title_fr: '🧺 La récolte du jardin', title_en: 'The Garden Harvest',
+      fr: 'A : Que mettez-vous dans les paniers ? B : Nous récoltons les légumes mûrs du jardin. A : Comment savez-vous qu’ils sont prêts ? B : Nous observons leur taille et leur couleur.', en: 'A: What are you putting in the baskets? B: We are harvesting ripe vegetables from the garden. A: How do you know they are ready? B: We observe their size and colour.',
+      words: [{ fr: 'la récolte', en: 'harvest' }, { fr: 'récolter', en: 'to harvest' }, { fr: 'les produits du jardin', en: 'garden produce' }, { fr: 'le panier', en: 'basket' }] },
+    { type: 'vocab', img: 'p6-garden-10.jpg', title_fr: '☀️ L’énergie solaire', title_en: 'Solar Energy',
+      fr: 'A : À quoi servent les panneaux solaires ? B : Ils utilisent l’énergie du soleil pour produire de l’électricité. A : Peut-on utiliser cette énergie dans le jardin ? B : Oui, elle peut alimenter certains équipements.', en: 'A: What are the solar panels used for? B: They use energy from the sun to produce electricity. A: Can we use this energy in the garden? B: Yes, it can power some equipment.',
+      words: [{ fr: 'le jardin durable', en: 'sustainable garden' }, { fr: 'l\'énergie solaire', en: 'solar energy' }, { fr: 'cultiver', en: 'to grow' }, { fr: 'préserver les ressources', en: 'to conserve resources' }] },
+    { type: 'practice', img: 'p6-garden-11.jpg', title_fr: '🥬 Récolter sans gaspiller', title_en: 'Harvesting Without Waste',
+      fr: 'A : Pourquoi ne récoltez-vous que certains légumes ? B : Parce que nous choisissons seulement ceux qui sont mûrs. A : Pourquoi ne faut-il pas trop récolter ? B : Pour éviter de gaspiller les aliments.', en: 'A: Why are you harvesting only some vegetables? B: Because we choose only those that are ripe. A: Why shouldn\'t we harvest too much? B: To avoid wasting food.',
+      words: [{ fr: 'travailler ensemble', en: 'to work together' }, { fr: 'entretenir', en: 'to maintain' }, { fr: 'récolter les légumes', en: 'to harvest vegetables' }, { fr: 'le jardin scolaire', en: 'school garden' }] },
+    { type: 'recap', img: 'p6-garden-12.jpg', title_fr: '🎉 Ce que nous avons appris', title_en: 'What We Have Learned',
+      fr: 'A : Qu’as-tu appris dans le jardin cette année ? B : J’ai appris à protéger le sol, l’eau et les plantes. A : Et quelle est ta leçon préférée ? B : J’ai appris que la nourriture, l’eau et l’énergie sont liées.', en: 'A: What have you learned in the garden this year? B: I have learned to protect the soil, water and plants. A: And what is your favourite lesson? B: I learned that food, water and energy are connected.',
+      words: [{ fr: 'célébrer', en: 'to celebrate' }, { fr: 'la réussite', en: 'success' }, { fr: 'la récolte', en: 'harvest' }, { fr: 'être fier/fière de', en: 'to be proud of' }] },
+  ],
+}
 // Which garden + class shows which flashcard lesson.
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
@@ -231,6 +275,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-3': P3_GARDEN,
   'primary-nutrition|primary-4': P4_GARDEN,
   'primary-nutrition|primary-5': P5_GARDEN,
+  'primary-nutrition|primary-6': P6_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
