@@ -29,35 +29,42 @@ type Hub = {
   accent: string   // bright signature color (stripe + letter circle)
   card: string     // light card background
   active: boolean
+  dir: 'ltr' | 'rtl'
   tagEn: string
   tagFr: string
 }
 
 const HUBS: Hub[] = [
-  { slug: 'fr', fr: 'Français', en: 'French', accent: '#5C9E3A', card: '#FFFFFF', active: true,
+  { slug: 'fr', fr: 'Français', en: 'French', accent: '#5C9E3A', card: '#FFFFFF', active: true, dir: 'ltr',
     tagEn: 'The flagship hub — gardens, climate, agribusiness.',
     tagFr: 'Le pôle phare — jardins, climat, agrobusiness.' },
-  { slug: 'en', fr: 'Anglais', en: 'English', accent: '#3E7CA6', card: '#E4F0F7', active: false,
+  { slug: 'en', fr: 'Anglais', en: 'English', accent: '#3E7CA6', card: '#E4F0F7', active: false, dir: 'ltr',
     tagEn: 'The bridge language to the world.',
     tagFr: 'La langue-passerelle vers le monde.' },
-  { slug: 'ha', fr: 'Haoussa', en: 'Hausa', accent: '#C8912E', card: '#F7ECD6', active: false,
+  { slug: 'ha', fr: 'Haoussa', en: 'Hausa', accent: '#C8912E', card: '#F7ECD6', active: false, dir: 'ltr',
     tagEn: 'The great language of the Sahel.',
     tagFr: 'La grande langue du Sahel.' },
-  { slug: 'yo', fr: 'Yoruba', en: 'Yoruba', accent: '#B0568C', card: '#F5E4EE', active: false,
+  { slug: 'yo', fr: 'Yoruba', en: 'Yoruba', accent: '#B0568C', card: '#F5E4EE', active: false, dir: 'ltr',
     tagEn: 'Rhythm, proverb and marketplace.',
     tagFr: 'Rythme, proverbe et marché.' },
-  { slug: 'ig', fr: 'Igbo', en: 'Igbo', accent: '#3E9B7C', card: '#E0F1EA', active: false,
+  { slug: 'ig', fr: 'Igbo', en: 'Igbo', accent: '#3E9B7C', card: '#E0F1EA', active: false, dir: 'ltr',
     tagEn: 'Enterprise, roots and community.',
     tagFr: 'Entreprise, racine et communauté.' },
-  { slug: 'de', fr: 'Allemand', en: 'German', accent: '#7A7488', card: '#ECEAF0', active: false,
+  { slug: 'de', fr: 'Allemand', en: 'German', accent: '#7A7488', card: '#ECEAF0', active: false, dir: 'ltr',
     tagEn: 'Green energy and the professional path.',
     tagFr: 'Énergie verte et voie professionnelle.' },
+  { slug: 'ar', fr: 'Arabe', en: 'Arabic', accent: '#B5893C', card: '#F3ECD9', active: false, dir: 'rtl',
+    tagEn: 'Faith, trade and the wider world.',
+    tagFr: 'Foi, commerce et le monde élargi.' },
+  { slug: 'es', fr: 'Espagnol', en: 'Spanish', accent: '#C36A4A', card: '#F7E6DE', active: false, dir: 'ltr',
+    tagEn: 'A global language across continents.',
+    tagFr: 'Une langue mondiale sur tous les continents.' },
 ]
 
 /* ---------- bilingual UI strings ---------- */
 const UI = {
   en: {
-    eyebrow: 'SIX LANGUAGES · ONE GARDEN',
+    eyebrow: 'EIGHT LANGUAGES · ONE GARDEN',
     title: 'Choose your language hub',
     lead: 'Each hub teaches a language through the garden. The French hub is open now — the others are on the way.',
     open: 'Enter hub',
@@ -66,7 +73,7 @@ const UI = {
     greeting: 'Welcome back',
   },
   fr: {
-    eyebrow: 'SIX LANGUES · UN JARDIN',
+    eyebrow: 'HUIT LANGUES · UN JARDIN',
     title: 'Choisis ton pôle linguistique',
     lead: 'Chaque pôle enseigne une langue à travers le jardin. Le pôle français est ouvert — les autres arrivent.',
     open: 'Entrer',
@@ -175,7 +182,7 @@ export default function HomePage() {
 
       {/* hub grid */}
       <section style={{ maxWidth: 1180, margin: '0 auto', padding: '34px 26px 64px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
+        <div style={{ display: 'grid', gap: 20 }} className="hub-grid">
           {HUBS.map((hub) => {
             const active = hub.active
             return (
@@ -240,6 +247,11 @@ export default function HomePage() {
           LINGOGREEN · Lichipu — let&rsquo;s do it together
         </span>
       </footer>
+      <style>{`
+        .hub-grid { grid-template-columns: repeat(4, 1fr); }
+        @media (max-width: 900px) { .hub-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+        @media (max-width: 560px) { .hub-grid { grid-template-columns: 1fr !important; } }
+      `}</style>
     </main>
   )
 }
