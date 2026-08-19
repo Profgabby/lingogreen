@@ -19,15 +19,15 @@ type Garden = {
 
 const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: boolean }> = {
   flashcards:   { en: 'Flashcards', fr: 'Cartes', icon: '🃏', live: true },
-  story:        { en: 'Storybook', fr: 'Histoire', icon: '📖', live: false },
+  story:        { en: 'Storybooks', fr: 'Histoires', icon: '📚', live: false },
   charts:       { en: 'Classroom charts', fr: 'Affiches', icon: '🖼️', live: false },
   assessment:   { en: 'Quiz', fr: 'Quiz', icon: '✅', live: true },
   games:        { en: 'Games', fr: 'Jeux', icon: '🎮', live: false },
   manual:       { en: 'Garden manual', fr: 'Manuel', icon: '📗', live: false },
   teacher_guide:{ en: 'Teacher guide', fr: 'Guide enseignant', icon: '👩‍🏫', live: false },
   ai_bot:       { en: 'AI helper', fr: 'Assistant IA', icon: '🤖', live: false },
-  course:       { en: 'Online course', fr: 'Cours en ligne', icon: '🎓', live: false },
-  vocabulary:   { en: 'Vocabulary', fr: 'Vocabulaire', icon: '📚', live: false },
+  course:       { en: 'Garden Lab', fr: 'Labo Jardin', icon: '🧪', live: false },
+  vocabulary:   { en: 'Vocabulary', fr: 'Vocabulaire', icon: '📖', live: false },
   challenges:   { en: 'Challenges', fr: 'Défis', icon: '🏆', live: false },
   weather:      { en: 'Weather', fr: 'Météo', icon: '🌦️', live: false },
   competitions: { en: 'Competitions', fr: 'Concours', icon: '🏆', live: false },
@@ -37,7 +37,7 @@ const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: bo
   training:     { en: 'Training', fr: 'Formation', icon: '📅', live: false },
 }
 
-const ORDER = ['flashcards','assessment','story','games','ai_bot','course','vocabulary','challenges'] // language tools only; agri/school tiles hidden (see /tmp/garden_before_tiles.tsx to restore)
+const ORDER = ['flashcards','assessment','story','vocabulary','course','games','challenges','ai_bot'] // language tools only; agri/school tiles hidden (see /tmp/garden_before_tiles.tsx to restore)
 
 const UI = {
   en: { back: 'Back to gardens', signout: 'Sign out', tools: 'Tools in this garden', soon: 'Coming soon', open: 'Open',
@@ -280,8 +280,8 @@ export default function GardenPage() {
 
             <style>{`
               .tools-grid { grid-template-columns: repeat(4, 1fr); }
-              @media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-              @media (max-width: 560px) { .tools-grid { grid-template-columns: 1fr !important; } }
+              @media (max-width: 720px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media (max-width: 480px) { .tools-grid { grid-template-columns: 1fr !important; } }
               @media (max-width: 720px) {
                 .fc-two { grid-template-columns: 1fr !important; }
                 .fc-img { min-height: 200px !important; aspect-ratio: 5 / 4; }

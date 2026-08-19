@@ -137,8 +137,8 @@ export default function LevelGardensPage() {
         <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 13, letterSpacing: '.18em', color: T.goldSoft, marginBottom: 14 }}>
           {t.eyebrow}
         </div>
-        <h1 style={{ fontFamily: 'Fraunces, serif', fontWeight: 500, fontSize: 'clamp(30px,4vw,46px)', margin: '0 0 14px', color: '#fff', lineHeight: 1.08 }}>
-          {levelName} {t.title}
+        <h1 style={{ fontFamily: 'Fraunces, serif', fontWeight: 700, fontSize: 'clamp(36px,5vw,58px)', margin: '0 0 14px', color: '#fff', lineHeight: 1.08 }}>
+          LIFEWS Garden Systems
         </h1>
         <p style={{ color: 'rgba(255,255,255,.82)', fontSize: 16.5, lineHeight: 1.6, maxWidth: 620, margin: '0 auto' }}>
           {t.lead}
@@ -152,6 +152,15 @@ export default function LevelGardensPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
             {gardens.map((g) => {
               const free = g.min_tier === 'free'
+              const GARDEN_IMG: Record<string,{src:string;alt:string}> = {
+                GrowMeal:{src:'/images/gardens/growmeal-school-nutrition.jpg',alt:'Nigerian pupils learning about vegetables and nutrition in a school garden'},
+                GrowFlow:{src:'/images/gardens/growflow-water-irrigation.jpg',alt:'Nigerian pupils learning about water measurement and drip irrigation'},
+                GrowFloat:{src:'/images/gardens/growfloat-soilless-growing.jpg',alt:'Nigerian pupils investigating a school hydroponic growing system'},
+                GrowAqua:{src:'/images/gardens/growaqua-fish-water-life.jpg',alt:'Nigerian pupils studying fish and water quality in a school aquaculture pond'},
+                GrowFarm:{src:'/images/gardens/growfarm-livestock-animal.jpg',alt:'Nigerian pupils learning about chickens, goats and rabbits in a school livestock garden'},
+                GrowPower:{src:'/images/gardens/growpower-energy-smart.jpg',alt:'Nigerian pupils exploring energy, sensors and smart irrigation in a school garden'},
+              }
+              const gimg = g.grow_name ? GARDEN_IMG[g.grow_name] : undefined
               const trackLabel = g.track && TRACK_LABEL[g.track] ? (lang === 'en' ? TRACK_LABEL[g.track].en : TRACK_LABEL[g.track].fr) : g.track
               return (
                 <div
@@ -160,7 +169,7 @@ export default function LevelGardensPage() {
                   style={{
                     background: '#fff',
                     borderRadius: 18,
-                    padding: '24px 22px 22px',
+                    padding: 0,
                     position: 'relative',
                     overflow: 'hidden',
                     cursor: free ? 'pointer' : 'default',
@@ -180,13 +189,16 @@ export default function LevelGardensPage() {
                     {free ? t.free : (g.min_tier === 'school' ? '🔒 ' + t.tierSchool : '🔒 ' + t.tierPro)}
                   </span>
 
-                  <div style={{ width: 54, height: 54, borderRadius: 14, background: g.theme_color, display: 'grid', placeItems: 'center', marginBottom: 14, color: '#fff', fontFamily: 'Fraunces, serif', fontSize: 22, fontWeight: 600 }}>
-                    {(g.grow_name || g.name_en).replace('Grow', 'G').charAt(0)}
+                  <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', background: g.theme_color, overflow: 'hidden' }}>
+                    {gimg && (
+                      <Image src={gimg.src} alt={gimg.alt} fill sizes="(max-width:700px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
+                    )}
                   </div>
+                  <div style={{ padding: '18px 22px 22px' }}>
 
                   {g.grow_name && (
                     <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, color: g.theme_color, fontWeight: 600, marginBottom: 2 }}>
-                      {g.grow_name}™{trackLabel ? ' · ' + trackLabel : ''}
+                      {g.grow_name}{trackLabel ? ' · ' + trackLabel : ''}
                     </div>
                   )}
                   <div style={{ fontFamily: 'Fraunces, serif', fontSize: 23, color: T.ink, lineHeight: 1.12 }}>
@@ -209,6 +221,7 @@ export default function LevelGardensPage() {
                   >
                     {free ? t.open : '🔒 ' + t.locked}
                   </button>
+                  </div>
                 </div>
               )
             })}
