@@ -27,6 +27,8 @@ const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: bo
   teacher_guide:{ en: 'Teacher guide', fr: 'Guide enseignant', icon: '👩‍🏫', live: false },
   ai_bot:       { en: 'AI helper', fr: 'Assistant IA', icon: '🤖', live: false },
   course:       { en: 'Online course', fr: 'Cours en ligne', icon: '🎓', live: false },
+  vocabulary:   { en: 'Vocabulary', fr: 'Vocabulaire', icon: '📚', live: false },
+  challenges:   { en: 'Challenges', fr: 'Défis', icon: '🏆', live: false },
   weather:      { en: 'Weather', fr: 'Météo', icon: '🌦️', live: false },
   competitions: { en: 'Competitions', fr: 'Concours', icon: '🏆', live: false },
   kit:          { en: 'Garden kit', fr: 'Kit de jardin', icon: '🧰', live: false },
@@ -35,7 +37,7 @@ const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: bo
   training:     { en: 'Training', fr: 'Formation', icon: '📅', live: false },
 }
 
-const ORDER = ['flashcards','story','charts','assessment','games','manual','teacher_guide','ai_bot','course','weather','competitions','kit','seeds','install','training']
+const ORDER = ['flashcards','assessment','story','games','ai_bot','course','vocabulary','challenges'] // language tools only; agri/school tiles hidden (see /tmp/garden_before_tiles.tsx to restore)
 
 const UI = {
   en: { back: 'Back to gardens', signout: 'Sign out', tools: 'Tools in this garden', soon: 'Coming soon', open: 'Open',
@@ -159,8 +161,8 @@ export default function GardenPage() {
 
       <section style={{ maxWidth: 1080, margin: '0 auto', padding: '24px 26px 64px' }}>
         <h2 style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12.5, letterSpacing: '.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,.6)', marginBottom: 18 }}>{t.tools}</h2>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(160px, 1fr))', gap: 14 }}>
-          {ORDER.filter((k) => garden.tools.includes(k)).map((key) => {
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }} className="tools-grid">
+          {ORDER.map((key) => {
             const meta = TOOL_META[key]; if (!meta) return null
             const hasQuiz = klass === 'primary-1' || klass === 'primary-2' || klass === 'primary-3' || klass === 'primary-4' || klass === 'primary-5' || klass === 'primary-6'
             const live = meta.live && (
@@ -277,6 +279,9 @@ export default function GardenPage() {
             </div>
 
             <style>{`
+              .tools-grid { grid-template-columns: repeat(4, 1fr); }
+              @media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(2, 1fr) !important; } }
+              @media (max-width: 560px) { .tools-grid { grid-template-columns: 1fr !important; } }
               @media (max-width: 720px) {
                 .fc-two { grid-template-columns: 1fr !important; }
                 .fc-img { min-height: 200px !important; aspect-ratio: 5 / 4; }
