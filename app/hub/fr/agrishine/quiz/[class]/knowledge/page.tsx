@@ -10,6 +10,7 @@ import { P3_QUIZ } from '@/app/lib/quiz-p3'
 import { P4_QUIZ } from '@/app/lib/quiz-p4'
 import { P5_QUIZ } from '@/app/lib/quiz-p5'
 import { P6_QUIZ } from '@/app/lib/quiz-p6'
+import { JSS1_QUIZ } from '@/app/lib/quiz-jss1'
 
 const T = { ink:'#2A2118', ink2:'#5A4A36', muted:'#8A7B63', forest:'#0B3D26', forest2:'#072D1C', gold:'#C8912E', goldSoft:'#E8B04B' }
 
@@ -73,7 +74,7 @@ export default function KnowledgeHome() {
 
       <section style={{ maxWidth:1080, margin:'0 auto', padding:'32px 26px 64px' }}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:20 }}>
-          {(klass === 'primary-6' ? P6_QUIZ : klass === 'primary-5' ? P5_QUIZ : klass === 'primary-4' ? P4_QUIZ : klass === 'primary-3' ? P3_QUIZ : klass === 'primary-2' ? P2_QUIZ : P1_QUIZ).map((cat) => {
+          {(klass === 'jss-1' ? JSS1_QUIZ : klass === 'primary-6' ? P6_QUIZ : klass === 'primary-5' ? P5_QUIZ : klass === 'primary-4' ? P4_QUIZ : klass === 'primary-3' ? P3_QUIZ : klass === 'primary-2' ? P2_QUIZ : P1_QUIZ).map((cat) => {
             const bestScore = progress.best[cat.slug]
             const hasBadge = progress.badges[cat.slug]
             return (

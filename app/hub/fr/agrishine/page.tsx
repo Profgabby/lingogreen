@@ -49,6 +49,8 @@ const LEVELS = [
 ]
 
 /* ---------- classes within each level (full Nigerian structure) ---------- */
+const READY_CLASSES = new Set(['primary-1','primary-2','primary-3','primary-4','primary-5','primary-6','jss-1'])
+
 const CLASSES: Record<string, { key: string; label: string }[]> = {
   nursery: [
     { key: 'nursery-1', label: 'Nursery 1' },
@@ -92,6 +94,7 @@ const UI = {
     saving: 'Setting up…',
     signout: 'Sign out',
     err: 'Something went wrong. Please try again.',
+    soon: 'Coming soon',
   },
   fr: {
     back: 'Retour aux communautés',
@@ -108,6 +111,7 @@ const UI = {
     saving: 'Préparation…',
     signout: 'Se déconnecter',
     err: 'Une erreur est survenue. Réessaie.',
+    soon: 'Bientôt',
   },
 }
 
@@ -295,9 +299,14 @@ export default function AgrishineGate() {
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 10, marginBottom: 34 }}>
                   {CLASSES[level].map((c) => {
                     const sel = klass === c.key
+                    const ready = READY_CLASSES.has(c.key)
                     return (
-                      <button key={c.key} onClick={() => setKlass(c.key)} style={card(sel, T.gold)}>
+                      <button key={c.key} disabled={!ready} onClick={() => ready && setKlass(c.key)}
+                        style={{ ...card(sel, T.gold), opacity: ready ? 1 : 0.45, cursor: ready ? 'pointer' : 'default' }}>
                         <div style={{ fontFamily: 'Fraunces, serif', fontSize: 18, textAlign: 'center' }}>{c.label}</div>
+                        {!ready && (
+                          <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, letterSpacing: '.06em', textAlign: 'center', marginTop: 3, color: 'rgba(255,255,255,.55)' }}>{t.soon}</div>
+                        )}
                       </button>
                     )
                   })}
