@@ -187,13 +187,57 @@ export default function GardenPage() {
 
       {showCards && lesson && card && (
         <div style={{ position: 'absolute', inset: 0, minHeight: '100%', background: 'rgba(7,28,18,.82)', backdropFilter: 'blur(6px)', display: 'flex', alignItems: 'flex-start', justifyContent: 'center', padding: '54px 16px 24px', zIndex: 100, overflowY: 'auto' }}>
-          <div className="fc-shell" style={{ width: '100%', maxWidth: card.words ? 860 : 460, display: 'flex', flexDirection: 'column', maxHeight: 'calc(100vh - 78px)' }}>
+          <div className="fc-shell" style={{ width: '100%', maxWidth: (card.words || card.aToi) ? 860 : 460, display: 'flex', flexDirection: 'column', maxHeight: 'calc(100vh - 78px)' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
               <span style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 12.5, letterSpacing: '.1em', color: T.goldSoft }}>{t.lesson}: {lang === 'en' ? lesson.theme_en : lesson.theme_fr}</span>
               <button onClick={() => setShowCards(false)} style={{ border: '1px solid rgba(255,255,255,.3)', background: 'rgba(255,255,255,.1)', color: '#fff', borderRadius: 20, padding: '6px 16px', fontSize: 14, cursor: 'pointer', fontFamily: 'Inter' }}>{t.close}</button>
             </div>
 
-            {card.words ? (
+            {card.aToi ? (
+              // ===== JSS 7-section LAYOUT: image left, text right; stacks on mobile =====
+              <div className="fc-two" style={{ background: '#fff', borderRadius: 22, overflow: 'hidden', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', borderTop: `6px solid ${accent}`, display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 0, flex: '1 1 auto' }}>
+                <div className="fc-img" style={{ position: 'relative', background: '#eee', minHeight: 260 }}>
+                  <Image src={lesson.imgBase + card.img} alt="" fill sizes="430px" style={{ objectFit: 'cover' }} priority />
+                  {canSpeak && (
+                    <button onClick={(e) => { e.stopPropagation(); speak(card.fr) }} aria-label="Listen"
+                      style={{ position: 'absolute', bottom: 12, right: 12, height: 44, borderRadius: 22, border: 'none', background: 'rgba(11,61,38,.92)', color: '#fff', fontSize: 14, fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 8, padding: '0 16px 0 12px', boxShadow: '0 6px 16px -4px rgba(0,0,0,.5)', fontFamily: 'Inter' }}>
+                      <span style={{ fontSize: 18 }}>🔊</span> {lang === 'en' ? 'Listen' : 'Écouter'}
+                    </button>
+                  )}
+                </div>
+                <div className="fc-text" style={{ padding: '20px 22px', textAlign: 'left', overflowY: 'auto', minHeight: 0 }}>
+                  <div style={{ marginBottom: 12 }}>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 24, fontWeight: 600, color: accent, lineHeight: 1.12 }}>{card.title_fr}</div>
+                    {card.title_en && <div style={{ fontFamily: 'Inter, sans-serif', fontSize: 13.5, color: T.muted, marginTop: 2 }}>{card.title_en}</div>}
+                  </div>
+                  {card.whatHappening_en && (
+                    <div style={{ marginBottom: 11 }}>
+                      <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10, letterSpacing: '.06em', color: T.muted, fontWeight: 600, marginBottom: 4, textTransform: 'uppercase' }}>What is happening</div>
+                      <div style={{ fontSize: 12.5, color: T.ink2, lineHeight: 1.5 }}>{card.whatHappening_en}</div>
+                    </div>
+                  )}
+                  <div style={{ background: 'rgba(11,61,38,.05)', borderRadius: 14, padding: '13px 15px', marginBottom: 11 }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11.5, letterSpacing: '.06em', color: T.forest, fontWeight: 600, marginBottom: 7 }}>🇫🇷 Parlons français !</div>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 16, color: T.ink, lineHeight: 1.55, whiteSpace: 'pre-line' }}>{formatDialogue(card.fr)}</div>
+                  </div>
+                  <div style={{ background: 'rgba(200,145,46,.06)', borderRadius: 14, padding: '11px 15px', marginBottom: 11 }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, letterSpacing: '.06em', color: '#9A7C33', fontWeight: 600, marginBottom: 6 }}>🇬🇧 What does it mean?</div>
+                    <div style={{ fontSize: 13, color: T.ink2, lineHeight: 1.5, whiteSpace: 'pre-line' }}>{formatDialogue(card.en)}</div>
+                  </div>
+                  {card.motCle && (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(62,155,124,.10)', borderRadius: 20, padding: '8px 14px', marginBottom: 11 }}>
+                      <span style={{ fontSize: 13 }}>⭐</span>
+                      <span style={{ fontSize: 13.5 }}><b style={{ color: T.forest }}>{card.motCle.fr}</b> <span style={{ color: T.muted }}>= {card.motCle.en}</span></span>
+                    </div>
+                  )}
+                  <div style={{ background: 'rgba(176,86,140,.08)', border: '1px solid rgba(176,86,140,.25)', borderRadius: 14, padding: '11px 15px' }}>
+                    <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 10.5, letterSpacing: '.06em', color: '#9A3C74', fontWeight: 600, marginBottom: 6 }}>❓ À toi !</div>
+                    <div style={{ fontFamily: 'Fraunces, serif', fontSize: 15.5, color: T.ink, lineHeight: 1.4, fontWeight: 600 }}>{card.aToi.fr}</div>
+                    <div style={{ fontSize: 12.5, color: T.muted, fontStyle: 'italic', marginTop: 3 }}>{card.aToi.en}</div>
+                  </div>
+                </div>
+              </div>
+            ) : card.words ? (
               // ===== TWO-PANEL LAYOUT (Primary 5+): image left, text right; stacks on mobile =====
               <div className="fc-two" style={{ background: '#fff', borderRadius: 22, overflow: 'hidden', boxShadow: '0 24px 60px -20px rgba(0,0,0,.6)', borderTop: `6px solid ${accent}`, display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: 0, flex: '1 1 auto' }}>
                 <div className="fc-img" style={{ position: 'relative', background: '#eee', minHeight: 260 }}>

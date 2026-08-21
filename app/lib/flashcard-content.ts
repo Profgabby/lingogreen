@@ -11,6 +11,9 @@ export type FlashCard = {
   title_fr?: string
   title_en?: string
   words?: { fr: string; en: string }[]
+  whatHappening_en?: string
+  motCle?: { fr: string; en: string }
+  aToi?: { fr: string; en: string }
 }
 export type FlashLesson = {
   id: string
@@ -267,6 +270,123 @@ const P6_GARDEN: FlashLesson = {
   ],
 }
 // Which garden + class shows which flashcard lesson.
+const JSS1_GARDEN: FlashLesson = {
+  id: 'jss1-garden',
+  theme_en: 'Caring for the Garden',
+  theme_fr: 'Prendre soin du jardin',
+  imgBase: '/lessons/jss1-garden/',
+  cards: [
+    {
+      type: 'vocab', img: 'jss1-garden-01.jpg',
+      title_fr: 'Prendre soin du jardin', title_en: 'Caring for the Garden',
+      whatHappening_en: 'The students are working with their teacher in the school garden. They are examining young plants, caring for the vegetable beds, and learning how healthy plants grow.',
+      fr: 'A : Que faites-vous dans le jardin aujourd’hui ? B : Nous prenons soin des plantes avec notre professeur. Nous regardons aussi les racines d’une jeune plante. A : Pourquoi faut-il bien entretenir le jardin ? B : Parce que les plantes ont besoin de bons soins pour bien pousser.',
+      en: 'A: What are you doing in the garden today? B: We are taking care of the plants with our teacher. We are also looking at the roots of a young plant. A: Why should we take good care of the garden? B: Because plants need good care to grow well.',
+      motCle: { fr: 'prendre soin de', en: 'to take care of' },
+      aToi: { fr: 'Comment prends-tu soin d’une plante ?', en: 'How do you take care of a plant?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-02.jpg',
+      title_fr: 'Semer des graines', title_en: 'Sowing Seeds',
+      whatHappening_en: 'A student is planting seeds carefully in prepared soil. Young seedlings beside her show what the seeds can become after germination.',
+      fr: 'A : Qu’est-ce que tu mets dans le sol ? B : Je sème des graines dans la terre. Je les place doucement dans les petits trous. A : Que vas-tu faire après ? B : Je vais couvrir les graines avec un peu de terre et les arroser.',
+      en: 'A: What are you putting in the soil? B: I am sowing seeds in the soil. I am placing them gently in the small holes. A: What are you going to do next? B: I am going to cover the seeds with a little soil and water them.',
+      motCle: { fr: 'semer', en: 'to sow' },
+      aToi: { fr: 'De quoi une graine a-t-elle besoin pour pousser ?', en: 'What does a seed need to grow?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-03.jpg',
+      title_fr: 'Observer le sol', title_en: 'Observing the Soil',
+      whatHappening_en: 'Students are examining the soil around healthy vegetables. One student holds some soil while the others observe its appearance and condition.',
+      fr: 'A : Qu’est-ce que tu as dans les mains ? B : J’ai un peu de terre. Elle est sombre et elle semble humide. A : Pourquoi observes-tu le sol ? B : Parce qu’un bon sol aide les légumes à bien pousser.',
+      en: 'A: What do you have in your hands? B: I have some soil. It is dark and it looks moist. A: Why are you observing the soil? B: Because good soil helps vegetables grow well.',
+      motCle: { fr: 'le sol', en: 'soil' },
+      aToi: { fr: 'Comment reconnais-tu un bon sol ?', en: 'How do you recognize good soil?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-04.jpg',
+      title_fr: 'Arroser les plantes', title_en: 'Watering the Plants',
+      whatHappening_en: 'The students are watering vegetables with watering cans. A water-storage system is also visible in the school garden.',
+      fr: 'A : Pourquoi arrosez-vous les plantes ? B : Nous les arrosons parce qu’elles ont besoin d’eau pour pousser. Nous donnons l’eau directement au sol. A : Faut-il utiliser beaucoup d’eau ? B : Non. Il faut utiliser seulement la quantité nécessaire et éviter le gaspillage.',
+      en: 'A: Why are you watering the plants? B: We are watering them because they need water to grow. We give the water directly to the soil. A: Should we use a lot of water? B: No. We should use only the amount needed and avoid waste.',
+      motCle: { fr: 'arroser', en: 'to water' },
+      aToi: { fr: 'Quand faut-il arroser les plantes ?', en: 'When should plants be watered?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-05.jpg',
+      title_fr: 'Observer les légumes', title_en: 'Observing Vegetables',
+      whatHappening_en: 'A group of students is closely examining healthy leafy vegetables in the school garden and comparing how the plants are growing.',
+      fr: 'A : Regarde ces légumes ! Comment sont-ils aujourd’hui ? B : Ils sont verts et leurs feuilles sont grandes. Ils semblent pousser très bien. A : Pourquoi observons-nous régulièrement les plantes ? B : Pour voir leur croissance et vérifier si elles sont en bonne santé.',
+      en: 'A: Look at these vegetables! How are they today? B: They are green and their leaves are large. They seem to be growing very well. A: Why do we observe the plants regularly? B: To see their growth and check whether they are healthy.',
+      motCle: { fr: 'la croissance', en: 'growth' },
+      aToi: { fr: 'Quels signes montrent qu’une plante pousse bien ?', en: 'What signs show that a plant is growing well?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-06.jpg',
+      title_fr: 'Mesurer la croissance', title_en: 'Measuring Growth',
+      whatHappening_en: 'The students are using rulers to measure vegetable plants. Other students are recording the measurements so they can follow plant growth over time.',
+      fr: 'A : Pourquoi utilises-tu une règle dans le jardin ? B : Je mesure la hauteur de cette plante. Mon camarade note le résultat. A : Pourquoi faut-il noter les mesures ? B : Cela nous permet de comparer la croissance des plantes au fil du temps.',
+      en: 'A: Why are you using a ruler in the garden? B: I am measuring the height of this plant. My classmate is recording the result. A: Why should we record the measurements? B: It allows us to compare the growth of the plants over time.',
+      motCle: { fr: 'mesurer', en: 'to measure' },
+      aToi: { fr: 'Comment peux-tu mesurer la croissance d’une plante ?', en: 'How can you measure the growth of a plant?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-07.jpg',
+      title_fr: 'Observer les pollinisateurs', title_en: 'Observing Pollinators',
+      whatHappening_en: 'Students are using a magnifying glass to observe bees and butterflies visiting flowers in the garden.',
+      fr: 'A : Qu’est-ce que vous observez sur les fleurs ? B : Nous observons des abeilles et des papillons. Ils visitent beaucoup de fleurs dans le jardin. A : Pourquoi ces insectes sont-ils importants ? B : Ils transportent le pollen d’une fleur à une autre et aident les plantes à se reproduire.',
+      en: 'A: What are you observing on the flowers? B: We are observing bees and butterflies. They visit many flowers in the garden. A: Why are these insects important? B: They carry pollen from one flower to another and help plants reproduce.',
+      motCle: { fr: 'un pollinisateur', en: 'a pollinator' },
+      aToi: { fr: 'Quels pollinisateurs peux-tu voir dans un jardin ?', en: 'Which pollinators can you see in a garden?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-08.jpg',
+      title_fr: 'Récolter les légumes', title_en: 'Harvesting Vegetables',
+      whatHappening_en: 'Students are harvesting lettuce, tomatoes, peppers and carrots. They are collecting the fresh produce in baskets.',
+      fr: 'A : Qu’est-ce que vous récoltez aujourd’hui ? B : Nous récoltons des tomates, des carottes, des poivrons et de la laitue. Nous mettons les légumes dans des paniers. A : Comment savez-vous qu’ils sont prêts ? B : Nous regardons leur taille, leur couleur et leur maturité avant de les récolter.',
+      en: 'A: What are you harvesting today? B: We are harvesting tomatoes, carrots, peppers and lettuce. We are putting the vegetables into baskets. A: How do you know they are ready? B: We look at their size, colour and ripeness before harvesting them.',
+      motCle: { fr: 'récolter', en: 'to harvest' },
+      aToi: { fr: 'Quel légume aimerais-tu récolter ? Pourquoi ?', en: 'Which vegetable would you like to harvest? Why?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-09.jpg',
+      title_fr: 'Planter un arbre', title_en: 'Planting a Tree',
+      whatHappening_en: 'Students are working together to plant a young tree and flowers. Other students are digging and watering different parts of the garden.',
+      fr: 'A : Qu’est-ce que vous plantez ici ? B : Nous plantons un jeune arbre. Mes camarades ajoutent de la terre autour de ses racines. A : Que faut-il faire après la plantation ? B : Il faut arroser l’arbre et continuer à prendre soin de lui.',
+      en: 'A: What are you planting here? B: We are planting a young tree. My classmates are adding soil around its roots. A: What should we do after planting? B: We should water the tree and continue to take care of it.',
+      motCle: { fr: 'planter', en: 'to plant' },
+      aToi: { fr: 'Pourquoi est-il utile de planter des arbres ?', en: 'Why is it useful to plant trees?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-10.jpg',
+      title_fr: 'Travailler ensemble', title_en: 'Working Together',
+      whatHappening_en: 'The students are doing different garden jobs at the same time: planting seedlings, watering vegetables, tending the soil and carrying harvested produce.',
+      fr: 'A : Tout le monde travaille aujourd’hui ! Que fait ton groupe ? B : Nous plantons de jeunes légumes. Un autre groupe arrose les plantes et d’autres élèves récoltent les légumes. A : Pourquoi partageons-nous les tâches ? B : Parce que le travail en équipe facilite l’entretien du jardin.',
+      en: 'A: Everyone is working today! What is your group doing? B: We are planting young vegetables. Another group is watering the plants, and other students are harvesting vegetables. A: Why do we share the tasks? B: Because teamwork makes it easier to care for the garden.',
+      motCle: { fr: 'le travail en équipe', en: 'teamwork' },
+      aToi: { fr: 'Quelle tâche préfères-tu faire dans le jardin ?', en: 'Which task do you prefer doing in the garden?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-11.jpg',
+      title_fr: 'Découvrir la biodiversité', title_en: 'Discovering Biodiversity',
+      whatHappening_en: 'Students are observing different forms of life in the garden, including birds, butterflies, bees, flowers and food crops.',
+      fr: 'A : Il y a beaucoup d’animaux dans le jardin aujourd’hui ! Qu’est-ce que tu vois ? B : Je vois des oiseaux, des papillons et des abeilles. Il y a aussi beaucoup de plantes différentes. A : Pourquoi cette diversité est-elle importante ? B : Parce que les plantes et les animaux vivent ensemble et jouent différents rôles dans le jardin.',
+      en: 'A: There are many animals in the garden today! What can you see? B: I can see birds, butterflies and bees. There are also many different plants. A: Why is this diversity important? B: Because plants and animals live together and play different roles in the garden.',
+      motCle: { fr: 'la biodiversité', en: 'biodiversity' },
+      aToi: { fr: 'Quels êtres vivants peux-tu trouver dans ton jardin scolaire ?', en: 'What living things can you find in your school garden?' },
+    },
+    {
+      type: 'vocab', img: 'jss1-garden-12.jpg',
+      title_fr: 'Célébrer la récolte', title_en: 'Celebrating the Harvest',
+      whatHappening_en: 'The students are celebrating a successful harvest with their teacher. They are proudly showing baskets filled with carrots, tomatoes, peppers, lettuce and other vegetables.',
+      fr: 'A : Pourquoi tout le monde est-il si content ? B : Parce que nous avons terminé notre récolte. Nos paniers sont remplis de légumes frais. A : Qu’avez-vous appris grâce au jardin ? B : Nous avons appris à semer, planter, mesurer, arroser et récolter. Nous avons surtout appris à travailler ensemble.',
+      en: 'A: Why is everyone so happy? B: Because we have finished our harvest. Our baskets are filled with fresh vegetables. A: What have you learned from the garden? B: We have learned to sow, plant, measure, water and harvest. Most importantly, we have learned to work together.',
+      motCle: { fr: 'la récolte', en: 'harvest' },
+      aToi: { fr: 'Quelle activité du jardin as-tu le plus aimée, et pourquoi ?', en: 'Which garden activity did you like most, and why?' },
+    },
+  ],
+}
+
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
 const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
@@ -276,6 +396,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-4': P4_GARDEN,
   'primary-nutrition|primary-5': P5_GARDEN,
   'primary-nutrition|primary-6': P6_GARDEN,
+  'jss-nutrition|jss-1': JSS1_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
