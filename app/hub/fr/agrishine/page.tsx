@@ -49,7 +49,7 @@ const LEVELS = [
 ]
 
 /* ---------- classes within each level (full Nigerian structure) ---------- */
-const READY_CLASSES = new Set(['primary-1','primary-2','primary-3','primary-4','primary-5','primary-6','jss-1'])
+const READY_CLASSES = new Set(['primary-1','primary-2','primary-3','primary-4','primary-5','primary-6','jss-1','jss-2'])
 
 const CLASSES: Record<string, { key: string; label: string }[]> = {
   nursery: [

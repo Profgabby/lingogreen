@@ -10,6 +10,7 @@ import { p4LangCategoryBySlug } from '@/app/lib/lang-p4'
 import { p5LangCategoryBySlug } from '@/app/lib/lang-p5'
 import { p6LangCategoryBySlug } from '@/app/lib/lang-p6'
 import { jss1LangCategoryBySlug } from '@/app/lib/lang-jss1'
+import { jss2LangCategoryBySlug } from '@/app/lib/lang-jss2'
 
 const T = { ink:'#2A2118', ink2:'#5A4A36', muted:'#8A7B63', forest:'#0B3D26', forest2:'#072D1C', gold:'#C8912E', goldSoft:'#E8B04B', green:'#3E9B7C', red:'#D6604A' }
 const CORRECT = ['Bravo! 🌟','Très bien! 🎉','Excellent! ⭐','C\u2019est ça! 👏']
@@ -26,7 +27,7 @@ export default function LangPlayer() {
   const params = useParams()
   const klass = String(params.class || 'primary-1')
   const catSlug = String(params.category || '')
-  const cat = klass === 'jss-1' ? jss1LangCategoryBySlug(catSlug) : klass === 'primary-6' ? p6LangCategoryBySlug(catSlug) : klass === 'primary-5' ? p5LangCategoryBySlug(catSlug) : klass === 'primary-4' ? p4LangCategoryBySlug(catSlug) : klass === 'primary-3' ? p3LangCategoryBySlug(catSlug) : klass === 'primary-2' ? p2LangCategoryBySlug(catSlug) : langCategoryBySlug(catSlug)
+  const cat = klass === 'jss-2' ? jss2LangCategoryBySlug(catSlug) : klass === 'jss-1' ? jss1LangCategoryBySlug(catSlug) : klass === 'primary-6' ? p6LangCategoryBySlug(catSlug) : klass === 'primary-5' ? p5LangCategoryBySlug(catSlug) : klass === 'primary-4' ? p4LangCategoryBySlug(catSlug) : klass === 'primary-3' ? p3LangCategoryBySlug(catSlug) : klass === 'primary-2' ? p2LangCategoryBySlug(catSlug) : langCategoryBySlug(catSlug)
 
   const [checking, setChecking] = useState(true)
   const [qi, setQi] = useState(0)

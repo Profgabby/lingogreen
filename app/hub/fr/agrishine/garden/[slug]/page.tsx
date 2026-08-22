@@ -164,7 +164,7 @@ export default function GardenPage() {
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 14 }} className="tools-grid">
           {ORDER.map((key) => {
             const meta = TOOL_META[key]; if (!meta) return null
-            const hasQuiz = klass === 'jss-1' || klass === 'primary-1' || klass === 'primary-2' || klass === 'primary-3' || klass === 'primary-4' || klass === 'primary-5' || klass === 'primary-6'
+            const hasQuiz = klass === 'jss-2' || klass === 'jss-1' || klass === 'primary-1' || klass === 'primary-2' || klass === 'primary-3' || klass === 'primary-4' || klass === 'primary-5' || klass === 'primary-6'
             const live = meta.live && (
               key === 'flashcards' ? lesson !== null :
               key === 'assessment' ? hasQuiz :

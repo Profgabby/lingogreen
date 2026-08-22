@@ -11,6 +11,7 @@ import { P4_LANG } from '@/app/lib/lang-p4'
 import { P5_LANG } from '@/app/lib/lang-p5'
 import { P6_LANG } from '@/app/lib/lang-p6'
 import { JSS1_LANG } from '@/app/lib/lang-jss1'
+import { JSS2_LANG } from '@/app/lib/lang-jss2'
 
 const T = { ink:'#2A2118', ink2:'#5A4A36', muted:'#8A7B63', forest:'#0B3D26', forest2:'#072D1C', gold:'#C8912E', goldSoft:'#E8B04B' }
 
@@ -71,7 +72,7 @@ export default function LanguageHome() {
 
       <section style={{ maxWidth:1080, margin:'0 auto', padding:'32px 26px 64px' }}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill, minmax(280px, 1fr))', gap:20 }}>
-          {(klass === 'jss-1' ? JSS1_LANG : klass === 'primary-6' ? P6_LANG : klass === 'primary-5' ? P5_LANG : klass === 'primary-4' ? P4_LANG : klass === 'primary-3' ? P3_LANG : klass === 'primary-2' ? P2_LANG : P1_LANG).map((cat) => {
+          {(klass === 'jss-2' ? JSS2_LANG : klass === 'jss-1' ? JSS1_LANG : klass === 'primary-6' ? P6_LANG : klass === 'primary-5' ? P5_LANG : klass === 'primary-4' ? P4_LANG : klass === 'primary-3' ? P3_LANG : klass === 'primary-2' ? P2_LANG : P1_LANG).map((cat) => {
             const bestScore = progress.best[cat.slug]
             const hasBadge = progress.badges[cat.slug]
             return (

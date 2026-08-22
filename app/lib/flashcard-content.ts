@@ -387,6 +387,123 @@ const JSS1_GARDEN: FlashLesson = {
   ],
 }
 
+const JSS2_GARDEN: FlashLesson = {
+  id: 'jss2-garden',
+  theme_en: 'Growing and Caring for a Garden',
+  theme_fr: 'Cultiver et entretenir un jardin',
+  imgBase: '/lessons/jss2-garden/',
+  cards: [
+    {
+      type: 'vocab', img: 'jss2-garden-02.jpg',
+      title_fr: 'Préparer le sol', title_en: 'Preparing the Soil',
+      whatHappening_en: 'The students are loosening and leveling the soil before planting. They are using simple garden tools to make the bed ready for seeds and seedlings.',
+      fr: 'A : Pourquoi travaillez-vous le sol avant de planter ? B : Nous l’ameublissons pour que les racines puissent se développer facilement. Nous retirons aussi les gros débris. A : Comment doit être le sol avant le semis ? B : Il doit être meuble, propre et assez humide.',
+      en: 'A: Why are you working the soil before planting? B: We loosen it so that the roots can develop easily. We also remove large pieces of debris. A: What should the soil be like before sowing? B: It should be loose, clean and moist enough.',
+      motCle: { fr: 'ameublir', en: 'to loosen the soil' },
+      aToi: { fr: 'Pourquoi un sol bien préparé aide-t-il les plantes à pousser ?', en: 'Why does well-prepared soil help plants grow?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-03.jpg',
+      title_fr: 'Semer en lignes', title_en: 'Sowing in Rows',
+      whatHappening_en: 'The students are sowing seeds in straight, evenly spaced rows. They are following lines in the garden bed so the seeds are planted in an organized way.',
+      fr: 'A : Pourquoi semez-vous les graines en lignes ? B : Cela nous aide à garder un bon espacement. C’est aussi plus facile pour arroser et désherber plus tard. A : Faut-il mettre beaucoup de graines au même endroit ? B : Non. Il vaut mieux respecter l’espace nécessaire entre les graines.',
+      en: 'A: Why are you sowing the seeds in rows? B: It helps us keep good spacing. It is also easier to water and weed later. A: Should we put many seeds in the same place? B: No. It is better to respect the space needed between the seeds.',
+      motCle: { fr: 'l’espacement', en: 'spacing' },
+      aToi: { fr: 'Quel est l’avantage de semer les graines en lignes ?', en: 'What is the advantage of sowing seeds in rows?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-01.jpg',
+      title_fr: 'Repiquer les jeunes plants', title_en: 'Transplanting Seedlings',
+      whatHappening_en: 'The students are carefully moving young seedlings into prepared garden beds. Their teacher is guiding them as they place each plant in the soil and check the spacing.',
+      fr: 'A : Qu’est-ce que vous faites avec ces jeunes plants ? B : Nous les repiquons dans le jardin. Nous faisons attention aux racines pour ne pas les abîmer. A : Pourquoi faut-il laisser de l’espace entre les plants ? B : Parce qu’ils ont besoin de place pour grandir et recevoir assez de lumière.',
+      en: 'A: What are you doing with these young plants? B: We are transplanting them into the garden. We are being careful with the roots so that we do not damage them. A: Why should we leave space between the plants? B: Because they need room to grow and receive enough light.',
+      motCle: { fr: 'repiquer', en: 'to transplant' },
+      aToi: { fr: 'Pourquoi faut-il protéger les racines pendant le repiquage ?', en: 'Why should the roots be protected during transplanting?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-04.jpg',
+      title_fr: 'Arroser efficacement', title_en: 'Watering Efficiently',
+      whatHappening_en: 'The students are watering different parts of the vegetable garden with watering cans. They are directing the water toward the soil around the plants.',
+      fr: 'A : Où faut-il verser l’eau quand on arrose ? B : Il vaut mieux arroser le sol près des racines. Cela aide l’eau à atteindre directement la plante. A : Pourquoi ne faut-il pas gaspiller l’eau ? B : Parce que l’eau est une ressource importante et le jardin n’a besoin que de la quantité nécessaire.',
+      en: 'A: Where should the water be poured when watering? B: It is better to water the soil near the roots. This helps the water reach the plant directly. A: Why should we not waste water? B: Because water is an important resource and the garden only needs the amount required.',
+      motCle: { fr: 'économiser l’eau', en: 'to conserve water' },
+      aToi: { fr: 'Comment peux-tu réduire le gaspillage d’eau dans un jardin ?', en: 'How can you reduce water waste in a garden?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-05.jpg',
+      title_fr: 'Désherber le jardin', title_en: 'Weeding the Garden',
+      whatHappening_en: 'The students are removing unwanted plants from around the vegetables. They are checking the beds carefully so the crops have enough space and resources.',
+      fr: 'A : Pourquoi enlèves-tu ces petites plantes ? B : Ce sont des mauvaises herbes. Elles peuvent prendre l’eau, la lumière et les nutriments dont nos légumes ont besoin. A : Faut-il les enlever régulièrement ? B : Oui. Un désherbage régulier aide les cultures à mieux se développer.',
+      en: 'A: Why are you removing these small plants? B: They are weeds. They can take the water, light and nutrients that our vegetables need. A: Should they be removed regularly? B: Yes. Regular weeding helps the crops develop better.',
+      motCle: { fr: 'désherber', en: 'to weed' },
+      aToi: { fr: 'Pourquoi les mauvaises herbes peuvent-elles gêner les cultures ?', en: 'Why can weeds interfere with crops?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-06.jpg',
+      title_fr: 'Pailler le sol', title_en: 'Mulching the Soil',
+      whatHappening_en: 'The students are placing dry plant material around the vegetables. The mulch covers the soil while irrigation lines run through the garden bed.',
+      fr: 'A : Pourquoi mettez-vous cette matière sèche autour des plantes ? B : Nous faisons du paillage. Le paillis aide le sol à garder son humidité plus longtemps. A : Est-ce qu’il a d’autres avantages ? B : Oui. Il peut aussi limiter les mauvaises herbes et protéger la surface du sol.',
+      en: 'A: Why are you putting this dry material around the plants? B: We are mulching. Mulch helps the soil retain moisture for longer. A: Does it have other advantages? B: Yes. It can also reduce weeds and protect the soil surface.',
+      motCle: { fr: 'le paillage', en: 'mulching' },
+      aToi: { fr: 'Comment le paillage aide-t-il à conserver l’eau dans le sol ?', en: 'How does mulching help conserve water in the soil?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-07.jpg',
+      title_fr: 'Faire du compost', title_en: 'Making Compost',
+      whatHappening_en: 'The students are adding plant residues and organic materials to a compost container. Other students are working the compost into the garden soil.',
+      fr: 'A : Que mettez-vous dans le composteur ? B : Nous y mettons des feuilles, des restes de plantes et d’autres matières organiques. Avec le temps, ces matières se décomposent. A : Pourquoi utilisons-nous le compost dans le jardin ? B : Parce qu’il apporte de la matière organique au sol et aide les plantes à bien pousser.',
+      en: 'A: What are you putting in the compost bin? B: We put leaves, plant residues and other organic materials in it. Over time, these materials decompose. A: Why do we use compost in the garden? B: Because it adds organic matter to the soil and helps plants grow well.',
+      motCle: { fr: 'se décomposer', en: 'to decompose' },
+      aToi: { fr: 'Quels déchets naturels peut-on mettre dans un composteur ?', en: 'What natural waste can be put into a compost bin?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-08.jpg',
+      title_fr: 'Mesurer et noter la croissance', title_en: 'Measuring and Recording Growth',
+      whatHappening_en: 'The students are measuring plants, observing leaves and recording information in notebooks and on a tablet. They are collecting data about how the crops are developing.',
+      fr: 'A : Pourquoi notes-tu les mesures dans ton cahier ? B : Je veux suivre la croissance des plantes. Nous comparons les résultats chaque semaine. A : Quelles informations pouvez-vous enregistrer ? B : Nous pouvons noter la hauteur, le nombre de feuilles et l’état général de la plante.',
+      en: 'A: Why are you recording the measurements in your notebook? B: I want to follow the growth of the plants. We compare the results every week. A: What information can you record? B: We can record the height, number of leaves and general condition of the plant.',
+      motCle: { fr: 'enregistrer des données', en: 'to record data' },
+      aToi: { fr: 'Quelle information mesurerais-tu pour suivre la croissance d’une plante ?', en: 'What information would you measure to track a plant’s growth?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-09.jpg',
+      title_fr: 'Récolter au bon moment', title_en: 'Harvesting at the Right Time',
+      whatHappening_en: 'The students are picking ripe tomatoes and leafy vegetables and placing them into baskets. They are selecting produce that is ready for harvest.',
+      fr: 'A : Comment choisissez-vous les légumes à récolter ? B : Nous observons leur couleur, leur taille et leur maturité. Nous ne récoltons que ceux qui sont prêts. A : Pourquoi le bon moment est-il important ? B : Parce qu’une récolte trop précoce ou trop tardive peut réduire la qualité des produits.',
+      en: 'A: How do you choose the vegetables to harvest? B: We observe their colour, size and maturity. We only harvest those that are ready. A: Why is the right time important? B: Because harvesting too early or too late can reduce the quality of the produce.',
+      motCle: { fr: 'la maturité', en: 'ripeness / maturity' },
+      aToi: { fr: 'Quels signes peuvent montrer qu’un légume est prêt à récolter ?', en: 'What signs can show that a vegetable is ready to harvest?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-10.jpg',
+      title_fr: 'Gérer l’eau du jardin', title_en: 'Managing Garden Water',
+      whatHappening_en: 'The garden uses stored rainwater together with careful irrigation. Students are checking plants, watering where needed and observing the water-management system.',
+      fr: 'A : D’où vient l’eau utilisée dans ce jardin ? B : Une partie de l’eau est récupérée et stockée dans les réservoirs. Ensuite, nous l’utilisons pour arroser les cultures. A : Pourquoi faut-il bien gérer cette eau ? B : Pour éviter le gaspillage et donner aux plantes seulement ce dont elles ont besoin.',
+      en: 'A: Where does the water used in this garden come from? B: Some of the water is collected and stored in tanks. Then we use it to water the crops. A: Why should this water be managed carefully? B: To avoid waste and give the plants only what they need.',
+      motCle: { fr: 'la gestion de l’eau', en: 'water management' },
+      aToi: { fr: 'Comment un réservoir peut-il aider un jardin scolaire ?', en: 'How can a water tank help a school garden?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-11.jpg',
+      title_fr: 'Organiser le travail du jardin', title_en: 'Organizing Garden Work',
+      whatHappening_en: 'Different groups of students are watering, planting, tending crops, managing compost and harvesting vegetables at the same time.',
+      fr: 'A : Pourquoi chaque groupe fait-il une tâche différente ? B : Nous organisons le travail pour entretenir tout le jardin efficacement. Chaque équipe a une responsabilité. A : Est-ce que la coopération est importante ? B : Oui. Quand nous travaillons ensemble, nous avançons plus vite et nous apprenons les uns des autres.',
+      en: 'A: Why is each group doing a different task? B: We organize the work so that we can maintain the whole garden efficiently. Each team has a responsibility. A: Is cooperation important? B: Yes. When we work together, we make faster progress and learn from one another.',
+      motCle: { fr: 'la responsabilité', en: 'responsibility' },
+      aToi: { fr: 'Comment répartirais-tu les tâches dans une équipe de jardinage ?', en: 'How would you divide the tasks in a gardening team?' },
+    },
+    {
+      type: 'vocab', img: 'jss2-garden-12.jpg',
+      title_fr: 'Évaluer notre récolte', title_en: 'Evaluating Our Harvest',
+      whatHappening_en: 'The students and teacher are celebrating a successful garden harvest. They are displaying baskets of vegetables produced through the different activities they practiced.',
+      fr: 'A : Notre récolte est impressionnante ! Qu’est-ce qui a contribué à ce résultat ? B : Nous avons bien préparé le sol, semé, arrosé, désherbé et suivi la croissance des plantes. Nous avons aussi travaillé en équipe. A : Que pouvons-nous améliorer la prochaine fois ? B : Nous pouvons comparer nos résultats et choisir de meilleures méthodes pour le prochain cycle de culture.',
+      en: 'A: Our harvest is impressive! What contributed to this result? B: We prepared the soil well, sowed, watered, weeded and monitored plant growth. We also worked as a team. A: What can we improve next time? B: We can compare our results and choose better methods for the next growing cycle.',
+      motCle: { fr: 'évaluer', en: 'to evaluate' },
+      aToi: { fr: 'Quelle activité a le plus contribué à une bonne récolte, selon toi ? Pourquoi ?', en: 'Which activity contributed most to a good harvest, in your opinion? Why?' },
+    },
+  ],
+}
+
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
 const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
@@ -397,6 +514,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-5': P5_GARDEN,
   'primary-nutrition|primary-6': P6_GARDEN,
   'jss-nutrition|jss-1': JSS1_GARDEN,
+  'jss-nutrition|jss-2': JSS2_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
