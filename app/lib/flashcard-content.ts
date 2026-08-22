@@ -504,6 +504,123 @@ const JSS2_GARDEN: FlashLesson = {
   ],
 }
 
+const JSS3_GARDEN: FlashLesson = {
+  id: 'jss3-garden',
+  theme_en: "A Sustainable Garden",
+  theme_fr: "Un jardin durable",
+  imgBase: '/lessons/jss3-garden/',
+  cards: [
+    {
+      type: 'vocab', img: 'jss3-garden-01.jpg',
+      title_fr: "Comprendre le système du jardin", title_en: "Understanding the Garden System",
+      whatHappening_en: "The teacher is introducing students to an integrated school garden. The learners can see vegetable beds, a compost container, a water tank and an energy system working together.",
+      fr: "A : Pourquoi notre professeur nous montre-t-il tout le jardin aujourd’hui ? B : Il veut nous aider à comprendre comment les différentes parties du jardin fonctionnent ensemble. L’eau, le sol, les plantes et les autres équipements ont chacun un rôle. A : Pourquoi est-il utile de voir le jardin comme un système ? B : Parce qu’une décision dans une partie du jardin peut avoir des effets sur les autres parties.",
+      en: "A: Why is our teacher showing us the whole garden today? B: He wants to help us understand how the different parts of the garden work together. Water, soil, plants and the other equipment each have a role. A: Why is it useful to see the garden as a system? B: Because a decision in one part of the garden can affect the other parts.",
+      motCle: { fr: "un système", en: "a system" },
+      aToi: { fr: "Quelles parties du jardin semblent fonctionner ensemble dans cette image ?", en: "Which parts of the garden seem to work together in this image?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-02.jpg',
+      title_fr: "Organiser les travaux du jardin", title_en: "Organizing Garden Activities",
+      whatHappening_en: "The students are carrying out several garden tasks at the same time. Some are watering, others are caring for crops, and another group is handling harvested produce.",
+      fr: "A : Pourquoi les élèves font-ils des activités différentes ? B : Nous avons réparti les tâches pour mieux gérer le jardin. Chaque groupe s’occupe d’une activité précise. A : Quel est l’avantage de cette organisation ? B : Elle nous permet de travailler efficacement et de vérifier que toutes les cultures reçoivent les soins nécessaires.",
+      en: "A: Why are the students doing different activities? B: We have divided the tasks to manage the garden better. Each group is responsible for a specific activity. A: What is the advantage of this organization? B: It allows us to work efficiently and make sure that all the crops receive the care they need.",
+      motCle: { fr: "répartir les tâches", en: "to divide the tasks" },
+      aToi: { fr: "Comment organiserais-tu une équipe pour entretenir ce jardin ?", en: "How would you organize a team to maintain this garden?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-03.jpg',
+      title_fr: "Comparer la croissance des cultures", title_en: "Comparing Crop Growth",
+      whatHappening_en: "The students are observing different vegetable beds and recording what they see. They are comparing plant size, appearance and growth across the garden.",
+      fr: "A : Pourquoi prenez-vous des notes devant les différentes parcelles ? B : Nous comparons la croissance des cultures. Nous observons la taille, le nombre de feuilles et l’état général des plantes. A : Que pouvez-vous apprendre grâce à cette comparaison ? B : Nous pouvons identifier les parcelles qui se développent bien et celles qui ont peut-être besoin de plus de soins.",
+      en: "A: Why are you taking notes in front of the different plots? B: We are comparing crop growth. We observe the size, number of leaves and general condition of the plants. A: What can you learn from this comparison? B: We can identify the plots that are developing well and those that may need more care.",
+      motCle: { fr: "comparer", en: "to compare" },
+      aToi: { fr: "Quels critères utiliserais-tu pour comparer deux parcelles ?", en: "What criteria would you use to compare two plots?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-04.jpg',
+      title_fr: "Gérer l’irrigation", title_en: "Managing Irrigation",
+      whatHappening_en: "Students are checking the water tank and irrigation lines while others water and inspect crops. They are learning how water moves from storage to the plants.",
+      fr: "A : Pourquoi vérifiez-vous le réservoir et les tuyaux d’irrigation ? B : Nous voulons nous assurer que l’eau arrive correctement jusqu’aux cultures. Nous vérifions aussi qu’il n’y a pas de fuite. A : Pourquoi faut-il surveiller la quantité d’eau utilisée ? B : Parce qu’un bon système d’irrigation doit répondre aux besoins des plantes sans gaspiller l’eau.",
+      en: "A: Why are you checking the tank and irrigation pipes? B: We want to make sure that water reaches the crops properly. We are also checking that there are no leaks. A: Why should we monitor the amount of water used? B: Because a good irrigation system should meet the plants' needs without wasting water.",
+      motCle: { fr: "l’irrigation", en: "irrigation" },
+      aToi: { fr: "Comment peut-on vérifier si un système d’irrigation fonctionne bien ?", en: "How can we check whether an irrigation system is working well?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-05.jpg',
+      title_fr: "Préparer une nouvelle parcelle", title_en: "Preparing a New Plot",
+      whatHappening_en: "The students and their teacher are preparing an empty garden bed. They are digging, loosening and examining the soil before planting.",
+      fr: "A : Pourquoi préparez-vous cette parcelle avant de planter ? B : Nous ameublissons le sol et nous retirons ce qui pourrait gêner les jeunes plantes. Nous voulons créer de bonnes conditions pour les racines. A : Comment saurez-vous si la parcelle est prête ? B : Nous allons observer la structure et l’humidité du sol avant de commencer la plantation.",
+      en: "A: Why are you preparing this plot before planting? B: We are loosening the soil and removing anything that could interfere with the young plants. We want to create good conditions for the roots. A: How will you know if the plot is ready? B: We will observe the soil structure and moisture before we begin planting.",
+      motCle: { fr: "une parcelle", en: "a plot" },
+      aToi: { fr: "Quelles vérifications ferais-tu avant de planter dans une nouvelle parcelle ?", en: "What checks would you make before planting in a new plot?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-06.jpg',
+      title_fr: "Étudier les pollinisateurs", title_en: "Studying Pollinators",
+      whatHappening_en: "The students are closely observing flowering plants and the insects visiting them. They are investigating the relationship between flowers, insects and crop production.",
+      fr: "A : Pourquoi observez-vous les insectes autour des fleurs ? B : Nous étudions les pollinisateurs et leur comportement. Nous voulons savoir quelles fleurs attirent le plus d’insectes. A : Quel lien existe-t-il entre les pollinisateurs et les cultures ? B : Certains pollinisateurs transportent le pollen entre les fleurs et contribuent ainsi à la reproduction de nombreuses plantes.",
+      en: "A: Why are you observing the insects around the flowers? B: We are studying pollinators and their behaviour. We want to know which flowers attract the most insects. A: What connection exists between pollinators and crops? B: Some pollinators carry pollen between flowers and therefore contribute to the reproduction of many plants.",
+      motCle: { fr: "la pollinisation", en: "pollination" },
+      aToi: { fr: "Comment pourrais-tu attirer davantage de pollinisateurs dans le jardin ?", en: "How could you attract more pollinators to the garden?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-07.jpg',
+      title_fr: "Observer l’énergie et l’eau", title_en: "Observing Energy and Water",
+      whatHappening_en: "The students are examining equipment connected with energy generation, water storage and irrigation. Their teacher is explaining how these resources support garden activities.",
+      fr: "A : Que mesurez-vous près de ces équipements ? B : Nous observons comment l’énergie et l’eau sont utilisées dans le jardin. Nous relevons aussi certaines informations sur le fonctionnement du système. A : Pourquoi faut-il suivre ces ressources ? B : Pour comprendre leur utilisation et chercher des moyens d’améliorer l’efficacité du jardin.",
+      en: "A: What are you measuring near this equipment? B: We are observing how energy and water are used in the garden. We are also recording some information about how the system operates. A: Why should these resources be monitored? B: To understand their use and look for ways to improve the efficiency of the garden.",
+      motCle: { fr: "l’efficacité", en: "efficiency" },
+      aToi: { fr: "Pourquoi est-il utile de mesurer l’utilisation de l’eau et de l’énergie ?", en: "Why is it useful to measure water and energy use?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-08.jpg',
+      title_fr: "Collecter des données", title_en: "Collecting Data",
+      whatHappening_en: "Students are using notebooks, a laptop and measuring equipment to collect information from the garden. They are combining direct observations with digital records.",
+      fr: "A : Pourquoi utilisez-vous un ordinateur dans le jardin ? B : Nous enregistrons les données que nous avons recueillies. Ensuite, nous pouvons les organiser et les comparer. A : À quoi servent ces données ? B : Elles nous aident à suivre les changements dans le jardin et à prendre de meilleures décisions.",
+      en: "A: Why are you using a computer in the garden? B: We are recording the data that we have collected. Then we can organize and compare it. A: What are these data used for? B: They help us track changes in the garden and make better decisions.",
+      motCle: { fr: "les données", en: "data" },
+      aToi: { fr: "Quelles données aimerais-tu collecter dans un jardin scolaire ?", en: "What data would you like to collect in a school garden?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-09.jpg',
+      title_fr: "Protéger le sol", title_en: "Protecting the Soil",
+      whatHappening_en: "The students are examining a garden bed covered with dry plant material. They are discussing how soil cover can influence moisture, weeds and soil condition.",
+      fr: "A : Pourquoi cette parcelle est-elle couverte de matière végétale sèche ? B : Cette couverture protège la surface du sol. Elle peut aider à conserver l’humidité et à limiter certaines mauvaises herbes. A : Pourquoi comparez-vous cette parcelle avec les autres ? B : Nous voulons observer si la couverture du sol change les conditions de croissance des plantes.",
+      en: "A: Why is this plot covered with dry plant material? B: This cover protects the soil surface. It can help retain moisture and reduce some weeds. A: Why are you comparing this plot with the others? B: We want to observe whether soil cover changes the growing conditions of the plants.",
+      motCle: { fr: "la couverture du sol", en: "soil cover" },
+      aToi: { fr: "Quels avantages la couverture du sol peut-elle apporter au jardin ?", en: "What benefits can soil cover provide to the garden?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-10.jpg',
+      title_fr: "Partager les connaissances", title_en: "Sharing Knowledge",
+      whatHappening_en: "Students are working with teachers and community members during a practical garden activity. They are harvesting, discussing methods and learning from one another.",
+      fr: "A : Pourquoi y a-t-il des adultes et des élèves qui travaillent ensemble aujourd’hui ? B : Nous partageons nos connaissances et nos expériences. Les adultes nous montrent certaines pratiques et nous expliquons aussi ce que nous avons appris à l’école. A : Pourquoi cet échange est-il important ? B : Parce que chacun peut apporter des idées différentes pour améliorer le jardin.",
+      en: "A: Why are adults and students working together today? B: We are sharing our knowledge and experiences. The adults show us certain practices, and we also explain what we have learned at school. A: Why is this exchange important? B: Because everyone can contribute different ideas for improving the garden.",
+      motCle: { fr: "partager les connaissances", en: "to share knowledge" },
+      aToi: { fr: "Qu’aimerais-tu apprendre d’un jardinier expérimenté ?", en: "What would you like to learn from an experienced gardener?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-11.jpg',
+      title_fr: "Examiner la santé des plantes", title_en: "Examining Plant Health",
+      whatHappening_en: "The students are closely examining leaves and plants with guidance from an adult specialist. They are recording observations and looking for signs of healthy growth or possible problems.",
+      fr: "A : Pourquoi examinez-vous les feuilles de si près ? B : Nous cherchons des signes qui peuvent indiquer l’état de santé des plantes. Nous observons la couleur, la forme et les éventuels dommages. A : Que faites-vous si vous remarquez un problème ? B : Nous le notons d’abord, puis nous essayons d’en comprendre la cause avant de choisir une solution.",
+      en: "A: Why are you examining the leaves so closely? B: We are looking for signs that may indicate the health of the plants. We observe the colour, shape and any possible damage. A: What do you do if you notice a problem? B: We record it first, then try to understand the cause before choosing a solution.",
+      motCle: { fr: "diagnostiquer", en: "to diagnose" },
+      aToi: { fr: "Quels signes observerais-tu pour vérifier la santé d’une plante ?", en: "What signs would you observe to check the health of a plant?" },
+    },
+    {
+      type: 'vocab', img: 'jss3-garden-12.jpg',
+      title_fr: "Évaluer et célébrer les résultats", title_en: "Evaluating and Celebrating Results",
+      whatHappening_en: "The students, teachers and an invited professional are reviewing the garden after a successful growing cycle. The students are presenting harvested produce and celebrating what they have learned.",
+      fr: "A : Pourquoi célébrez-vous aujourd’hui ? B : Nous avons terminé un cycle de travail dans le jardin et obtenu une bonne récolte. Nous avons aussi appris à observer, mesurer et prendre des décisions. A : Est-ce que le travail s’arrête après la récolte ? B : Non. Nous devons évaluer nos résultats, identifier ce qui a bien fonctionné et proposer des améliorations pour la prochaine saison.",
+      en: "A: Why are you celebrating today? B: We have completed a cycle of work in the garden and achieved a good harvest. We have also learned to observe, measure and make decisions. A: Does the work stop after the harvest? B: No. We need to evaluate our results, identify what worked well and suggest improvements for the next season.",
+      motCle: { fr: "améliorer", en: "to improve" },
+      aToi: { fr: "Quelle amélioration proposerais-tu pour le prochain cycle du jardin ? Pourquoi ?", en: "What improvement would you suggest for the garden's next cycle? Why?" },
+    },
+  ],
+}
+
 // The fruits lesson is Primary 1 content specifically.
 // Key format: "<gardenSlug>|<classKey>". Falls back to garden-only if no class.
 const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
@@ -515,6 +632,7 @@ const LESSON_BY_GARDEN_CLASS: Record<string, FlashLesson> = {
   'primary-nutrition|primary-6': P6_GARDEN,
   'jss-nutrition|jss-1': JSS1_GARDEN,
   'jss-nutrition|jss-2': JSS2_GARDEN,
+  'jss-nutrition|jss-3': JSS3_GARDEN,
 }
 // gardens where the free flashcards tool exists at all (any class)
 const FREE_FLASH_GARDENS = ['nursery-nutrition', 'primary-nutrition', 'jss-nutrition', 'sss-nutrition']
