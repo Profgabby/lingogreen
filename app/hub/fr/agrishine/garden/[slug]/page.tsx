@@ -5,6 +5,7 @@ import { useRouter, useParams, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { browserClient } from '@/app/lib/supabase-browser'
 import { lessonForGarden, gardenHasFlashcards, type FlashLesson } from '@/app/lib/flashcard-content'
+import { hasVocab } from '@/app/lib/vocab-types'
 
 const T = {
   ink: '#2A2118', ink2: '#5A4A36', muted: '#8A7B63',
@@ -27,7 +28,7 @@ const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: bo
   teacher_guide:{ en: 'Teacher guide', fr: 'Guide enseignant', icon: '👩‍🏫', live: false },
   ai_bot:       { en: 'AI helper', fr: 'Assistant IA', icon: '🤖', live: false },
   course:       { en: 'Garden Lab', fr: 'Labo Jardin', icon: '🧪', live: false },
-  vocabulary:   { en: 'Vocabulary', fr: 'Vocabulaire', icon: '📖', live: false },
+  vocabulary:   { en: 'Vocabulary', fr: 'Vocabulaire', icon: '📖', live: true },
   challenges:   { en: 'Challenges', fr: 'Défis', icon: '🏆', live: false },
   weather:      { en: 'Weather', fr: 'Météo', icon: '🌦️', live: false },
   competitions: { en: 'Competitions', fr: 'Concours', icon: '🏆', live: false },
@@ -112,6 +113,7 @@ export default function GardenPage() {
   function openTool(key: string) {
     if (key === 'flashcards' && lesson) { setIdx(0); setFlipped(false); setShowCards(true) }
     if (key === 'assessment' && klass) { router.push('/hub/fr/agrishine/quiz/' + klass) }
+    if (key === 'vocabulary') { router.push('/hub/fr/agrishine/garden/' + garden!.slug + '/vocabulary' + (klass ? '?class=' + klass : '')) }
   }
 
   if (checking || !garden) {
@@ -168,6 +170,7 @@ export default function GardenPage() {
             const live = meta.live && (
               key === 'flashcards' ? lesson !== null :
               key === 'assessment' ? hasQuiz :
+              key === 'vocabulary' ? hasVocab(garden.grow_name, klass) :
               true
             )
             const flashSoon = key === 'flashcards' && lesson === null && gardenHasFlashcards(garden.slug)
