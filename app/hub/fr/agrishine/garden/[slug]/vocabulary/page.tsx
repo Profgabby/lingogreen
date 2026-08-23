@@ -63,7 +63,7 @@ export default function VocabularyPage() {
         </button>
         <button onClick={() => { setLoading(true); setLang(lang === 'en' ? 'fr' : 'en') }}
           style={{ float: 'right', border: '1px solid rgba(255,255,255,.25)', background: 'rgba(255,255,255,.08)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'IBM Plex Mono, monospace' }}>
-          {lang === 'en' ? 'FR' : 'EN'}
+          {lang === 'en' ? 'EN · tap for FR' : 'FR · tap for EN'}
         </button>
 
         <div style={{ marginBottom: 6, fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, letterSpacing: '.12em', color: T.gold, textTransform: 'uppercase' }}>
