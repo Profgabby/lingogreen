@@ -159,6 +159,11 @@ export default function LevelGardensPage() {
                 GrowAqua:{src:'/images/gardens/growaqua-fish-water-life.jpg',alt:'Nigerian pupils studying fish and water quality in a school aquaculture pond'},
                 GrowFarm:{src:'/images/gardens/growfarm-livestock-animal.jpg',alt:'Nigerian pupils learning about chickens, goats and rabbits in a school livestock garden'},
                 GrowPower:{src:'/images/gardens/growpower-energy-smart.jpg',alt:'Nigerian pupils exploring energy, sensors and smart irrigation in a school garden'},
+                GrowEnterprise:{src:'/images/gardens/growenterprise-livestock-care.png',alt:'SSS students learning small livestock care and enterprise planning'},
+                GrowVolt:{src:'/images/gardens/growvolt-solar-farm.png',alt:'SSS students learning solar-farm and agrivoltaics systems'},
+                GrowOptimize:{src:'/images/gardens/growoptimize-soilless.png',alt:'SSS students learning soilless and hydroponic growing systems'},
+                GrowAquaSystem:{src:'/images/gardens/growaquasystem-fish-water.png',alt:'SSS students learning fish and water life aquaculture systems'},
+                GrowCapstone:{src:'/images/gardens/growcapstone-growbox.png',alt:'SSS students building integrated food-water-energy GrowBox systems'},
               }
               const gimg = g.grow_name ? GARDEN_IMG[g.grow_name] : undefined
               const trackLabel = g.track && TRACK_LABEL[g.track] ? (lang === 'en' ? TRACK_LABEL[g.track].en : TRACK_LABEL[g.track].fr) : g.track
