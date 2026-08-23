@@ -96,6 +96,22 @@ const LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   'gpower-sss-3': () => import('./vocab-data/vocab-gpower-sss-3'),
 }
 
+// French layer — GrowMeal only for now; same IDs, French term/def/example. Additive; EN untouched.
+const LOADERS_FR: Record<string, () => Promise<Record<string, unknown>>> = {
+  'gmeal-primary-1': () => import('./vocab-data/vocab-gmeal-primary-1-fr'),
+  'gmeal-primary-2': () => import('./vocab-data/vocab-gmeal-primary-2-fr'),
+  'gmeal-primary-3': () => import('./vocab-data/vocab-gmeal-primary-3-fr'),
+  'gmeal-primary-4': () => import('./vocab-data/vocab-gmeal-primary-4-fr'),
+  'gmeal-primary-5': () => import('./vocab-data/vocab-gmeal-primary-5-fr'),
+  'gmeal-primary-6': () => import('./vocab-data/vocab-gmeal-primary-6-fr'),
+  'gmeal-jss-1': () => import('./vocab-data/vocab-gmeal-jss-1-fr'),
+  'gmeal-jss-2': () => import('./vocab-data/vocab-gmeal-jss-2-fr'),
+  'gmeal-jss-3': () => import('./vocab-data/vocab-gmeal-jss-3-fr'),
+  'gmeal-sss-1': () => import('./vocab-data/vocab-gmeal-sss-1-fr'),
+  'gmeal-sss-2': () => import('./vocab-data/vocab-gmeal-sss-2-fr'),
+  'gmeal-sss-3': () => import('./vocab-data/vocab-gmeal-sss-3-fr'),
+}
+
 export function vocabKey(growName: string | null, klass: string | undefined): string | null {
   if (!growName || !klass) return null
   const g = GROW_TO_KEY[growName]
@@ -108,11 +124,13 @@ export function hasVocab(growName: string | null, klass: string | undefined): bo
   return k !== null && k in LOADERS
 }
 
-export async function loadVocab(growName: string | null, klass: string | undefined): Promise<VocabEntry[]> {
+export async function loadVocab(growName: string | null, klass: string | undefined, lang: 'en' | 'fr' = 'en'): Promise<VocabEntry[]> {
   const key = vocabKey(growName, klass)
-  if (!key || !(key in LOADERS)) return []
+  if (!key) return []
+  const map = lang === 'fr' && key in LOADERS_FR ? LOADERS_FR : LOADERS
+  if (!(key in map)) return []
   try {
-    const mod = await LOADERS[key]()
+    const mod = await map[key]()
     const arr = Object.values(mod).find((v) => Array.isArray(v)) as VocabEntry[] | undefined
     return arr ?? []
   } catch {

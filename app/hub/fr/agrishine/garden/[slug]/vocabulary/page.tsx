@@ -20,6 +20,7 @@ export default function VocabularyPage() {
   const [loading, setLoading] = useState(true)
   const [q, setQ] = useState('')
   const [cat, setCat] = useState<string>('all')
+  const [lang, setLang] = useState<'en' | 'fr'>('en')
 
   useEffect(() => {
     const supabase = browserClient()
@@ -29,11 +30,11 @@ export default function VocabularyPage() {
         .then(async ({ data: g }) => {
           const gn = g?.grow_name ?? null
           setGrowName(gn); setGardenName(g?.name_en ?? ''); setAccent(g?.theme_color ?? '#3E9B7C')
-          const v = await loadVocab(gn, klass)
-          setEntries(v); setLoading(false)
+          const v = await loadVocab(gn, klass, lang)
+          setEntries(v); setCat('all'); setQ(''); setLoading(false)
         })
     })
-  }, [router, slug, klass])
+  }, [router, slug, klass, lang])
 
   const categories = useMemo(() => {
     const set = new Set(entries.map((e) => e.category).filter(Boolean))
@@ -50,7 +51,7 @@ export default function VocabularyPage() {
   }, [entries, q, cat])
 
   function speak(text: string) {
-    try { const u = new SpeechSynthesisUtterance(text); u.lang = 'en-GB'; window.speechSynthesis.speak(u) } catch {}
+    try { const u = new SpeechSynthesisUtterance(text); u.lang = lang === 'fr' ? 'fr-FR' : 'en-GB'; window.speechSynthesis.speak(u) } catch {}
   }
 
   return (
@@ -59,6 +60,10 @@ export default function VocabularyPage() {
         <button onClick={() => router.push('/hub/fr/agrishine/garden/' + slug + (klass ? '?class=' + klass : ''))}
           style={{ background: 'none', border: 'none', color: 'rgba(255,255,255,.75)', fontSize: 14, cursor: 'pointer', padding: 0, marginBottom: 18 }}>
           ← Back to garden
+        </button>
+        <button onClick={() => { setLoading(true); setLang(lang === 'en' ? 'fr' : 'en') }}
+          style={{ float: 'right', border: '1px solid rgba(255,255,255,.25)', background: 'rgba(255,255,255,.08)', color: '#fff', borderRadius: 20, padding: '6px 14px', fontSize: 13, fontWeight: 600, cursor: 'pointer', fontFamily: 'IBM Plex Mono, monospace' }}>
+          {lang === 'en' ? 'FR' : 'EN'}
         </button>
 
         <div style={{ marginBottom: 6, fontFamily: 'IBM Plex Mono, monospace', fontSize: 12, letterSpacing: '.12em', color: T.gold, textTransform: 'uppercase' }}>
