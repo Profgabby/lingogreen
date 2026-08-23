@@ -11,6 +11,9 @@ export type VocabEntry = {
 const GROW_TO_KEY: Record<string, string> = {
   GrowMeal: 'gmeal', GrowFlow: 'gflow', GrowFloat: 'gfloat',
   GrowAqua: 'gaqua', GrowFarm: 'gfarm', GrowPower: 'gpower',
+  // SSS advanced-garden aliases -> reuse existing SSS vocab
+  GrowEnterprise: 'gfarm', GrowOptimize: 'gfloat', GrowAquaSystem: 'gaqua',
+  // GrowVolt, GrowCapstone: intentionally absent -> hasVocab false -> Coming Soon
 }
 const KLASS_OK = new Set([
   'primary-1','primary-2','primary-3','primary-4','primary-5','primary-6',
