@@ -12,14 +12,28 @@ const CLASS_LABEL: Record<string, string> = {
   'primary-1':'Primary 1','primary-2':'Primary 2','primary-3':'Primary 3','primary-4':'Primary 4','primary-5':'Primary 5','primary-6':'Primary 6',
   'jss-1':'JSS 1','jss-2':'JSS 2','jss-3':'JSS 3','sss-1':'SSS 1','sss-2':'SSS 2','sss-3':'SSS 3',
 }
-const GARDENS = [
-  { key: 'gmeal', en: 'GrowMeal', img: '/images/gardens/growmeal-school-nutrition.jpg' },
-  { key: 'gflow', en: 'GrowFlow', img: '/images/gardens/growflow-water-irrigation.jpg' },
-  { key: 'gfloat', en: 'GrowFloat', img: '/images/gardens/growfloat-soilless-growing.jpg' },
-  { key: 'gaqua', en: 'GrowAqua', img: '/images/gardens/growaqua-fish-water-life.jpg' },
-  { key: 'gfarm', en: 'GrowFarm', img: '/images/gardens/growfarm-livestock-animal.jpg' },
-  { key: 'gpower', en: 'GrowPower', img: '/images/gardens/growpower-energy-smart.jpg' },
+type GardenDef = { key: string; en: string; img: string; ckey: string | null }
+// Base gardens for Primary + JSS (ckey = own content key).
+const GARDENS_BASE: GardenDef[] = [
+  { key: 'gmeal', en: 'GrowMeal', img: '/images/gardens/growmeal-school-nutrition.jpg', ckey: 'gmeal' },
+  { key: 'gflow', en: 'GrowFlow', img: '/images/gardens/growflow-water-irrigation.jpg', ckey: 'gflow' },
+  { key: 'gfloat', en: 'GrowFloat', img: '/images/gardens/growfloat-soilless-growing.jpg', ckey: 'gfloat' },
+  { key: 'gaqua', en: 'GrowAqua', img: '/images/gardens/growaqua-fish-water-life.jpg', ckey: 'gaqua' },
+  { key: 'gfarm', en: 'GrowFarm', img: '/images/gardens/growfarm-livestock-animal.jpg', ckey: 'gfarm' },
+  { key: 'gpower', en: 'GrowPower', img: '/images/gardens/growpower-energy-smart.jpg', ckey: 'gpower' },
 ]
+// Advanced gardens for SSS. ckey aliases to existing teacher content; null = no content yet (Coming Soon).
+const GARDENS_SSS: GardenDef[] = [
+  { key: 'genterprise', en: 'GrowEnterprise', img: '/images/gardens/growenterprise-livestock-care.png', ckey: 'gfarm' },
+  { key: 'gvolt', en: 'GrowVolt', img: '/images/gardens/growvolt-solar-farm.png', ckey: null },
+  { key: 'goptimize', en: 'GrowOptimize', img: '/images/gardens/growoptimize-soilless.png', ckey: 'gfloat' },
+  { key: 'gmeal', en: 'GrowMeal', img: '/images/gardens/growmeal-school-nutrition.jpg', ckey: 'gmeal' },
+  { key: 'gaquasystem', en: 'GrowAquaSystem', img: '/images/gardens/growaquasystem-fish-water.png', ckey: 'gaqua' },
+  { key: 'gcapstone', en: 'GrowCapstone', img: '/images/gardens/growcapstone-growbox.png', ckey: null },
+]
+function gardensForClass(classKey: string): GardenDef[] {
+  return classKey.startsWith('sss-') ? GARDENS_SSS : GARDENS_BASE
+}
 
 const UI: Record<TeachLang, {
   eyebrow: string; title: string; pickClass: string; pickGarden: string; back: string;
@@ -108,7 +122,8 @@ export default function TeachCurriculum() {
   const [gkey, setGkey] = useState('')
   const [term, setTerm] = useState(1)
   const [openWeek, setOpenWeek] = useState<number | null>(null)
-  const garden = GARDENS.find((g) => g.key === gkey)
+  const gardenList = gardensForClass(klass)
+  const garden = gardenList.find((g) => g.key === gkey)
   const selected = klass && gkey
 
   const lesson = useMemo<Lesson | null>(() => {
@@ -172,11 +187,11 @@ export default function TeachCurriculum() {
 
         <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11.5, letterSpacing: '.1em', color: 'rgba(255,255,255,.55)', marginBottom: 10, textTransform: 'uppercase' }}>{t.pickClass}</div>
         <div style={{ display: 'flex', gap: 9, flexWrap: 'wrap', marginBottom: 22 }}>
-          {CLASSES.map((c) => (<button key={c} onClick={() => { setKlass(c); setOpenWeek(null) }} style={chip(klass === c)}>{CLASS_LABEL[c]}</button>))}
+          {CLASSES.map((c) => (<button key={c} onClick={() => { setKlass(c); setGkey(''); setOpenWeek(null) }} style={chip(klass === c)}>{CLASS_LABEL[c]}</button>))}
         </div>
         <div style={{ fontFamily: 'IBM Plex Mono, monospace', fontSize: 11.5, letterSpacing: '.1em', color: 'rgba(255,255,255,.55)', marginBottom: 10, textTransform: 'uppercase' }}>{t.pickGarden}</div>
         <div style={{ display: 'flex', gap: 9, flexWrap: 'wrap', marginBottom: 30 }}>
-          {GARDENS.map((g) => (<button key={g.key} onClick={() => { setGkey(g.key); setOpenWeek(null) }} style={chip(gkey === g.key)}>{g.en}</button>))}
+          {gardenList.map((g) => (<button key={g.key} onClick={() => { setGkey(g.key); setOpenWeek(null) }} style={chip(gkey === g.key)}>{g.en}</button>))}
         </div>
 
         {!selected && (
