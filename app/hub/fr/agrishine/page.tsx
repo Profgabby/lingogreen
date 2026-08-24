@@ -183,7 +183,9 @@ export default function AgrishineGate() {
       setError(t.err + ' (' + insErr.message + ')')
       return
     }
-    // into the level's garden list (students see their gardens for their level)
+    // route by role: students -> level garden list; teacher -> teach workspace; school -> coming soon
+    if (role.key === 'teacher') { router.push('/hub/fr/agrishine/teacher'); return }
+    if (role.key === 'school_admin') { router.push('/hub/fr/agrishine/coming-soon?role=school_admin'); return }
     const lvl = role.needsLevel && level ? level : 'primary'
     const kq = role.needsLevel && klass ? ('?class=' + klass) : ''
     router.push('/hub/fr/agrishine/level/' + lvl + kq)
