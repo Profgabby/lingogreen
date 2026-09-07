@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { browserClient } from '@/app/lib/supabase-browser'
 import { lessonForGarden, gardenHasFlashcards, type FlashLesson } from '@/app/lib/flashcard-content'
 import { hasVocab } from '@/app/lib/vocab-types'
+import { hasStory } from '@/app/lib/story-types'
 
 const T = {
   ink: '#2A2118', ink2: '#5A4A36', muted: '#8A7B63',
@@ -20,7 +21,7 @@ type Garden = {
 
 const TOOL_META: Record<string, { en: string; fr: string; icon: string; live: boolean }> = {
   flashcards:   { en: 'Flashcards', fr: 'Cartes', icon: '🃏', live: true },
-  story:        { en: 'Storybooks', fr: 'Histoires', icon: '📚', live: false },
+  story:        { en: 'Storybooks', fr: 'Histoires', icon: '📚', live: true },
   charts:       { en: 'Classroom charts', fr: 'Affiches', icon: '🖼️', live: false },
   assessment:   { en: 'Quiz', fr: 'Quiz', icon: '✅', live: true },
   games:        { en: 'Games', fr: 'Jeux', icon: '🎮', live: false },
@@ -114,6 +115,7 @@ export default function GardenPage() {
     if (key === 'flashcards' && lesson) { setIdx(0); setFlipped(false); setShowCards(true) }
     if (key === 'assessment' && klass) { router.push('/hub/fr/agrishine/quiz/' + klass) }
     if (key === 'vocabulary') { router.push('/hub/fr/agrishine/garden/' + garden!.slug + '/vocabulary' + (klass ? '?class=' + klass : '')) }
+    if (key === 'story') { router.push('/hub/fr/agrishine/garden/' + garden!.slug + '/storybooks' + (klass ? '?class=' + klass : '')) }
   }
 
   if (checking || !garden) {
@@ -171,6 +173,7 @@ export default function GardenPage() {
               key === 'flashcards' ? lesson !== null :
               key === 'assessment' ? hasQuiz :
               key === 'vocabulary' ? hasVocab(garden.grow_name, klass) :
+              key === 'story' ? hasStory(garden.grow_name, klass) :
               true
             )
             const flashSoon = key === 'flashcards' && lesson === null && gardenHasFlashcards(garden.slug)
