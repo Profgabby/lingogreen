@@ -27,6 +27,8 @@ const GROW_TO_STORYKEY: Record<string, string> = {
   GrowFlow: 'gflow',
   GrowFloat: 'gfloat',
   GrowAqua: 'gaqua',
+  GrowFarm: 'gfarm',
+  GrowPower: 'gpower',
   // SSS advanced garden aliases (reuse base-garden stories):
   GrowOptimize: 'gfloat',
   GrowAquaSystem: 'gaqua',
@@ -87,6 +89,18 @@ const LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   'gaqua-sss-1': () => import('./story-data/story-gaqua-sss-1'),
   'gaqua-sss-2': () => import('./story-data/story-gaqua-sss-2'),
   'gaqua-sss-3': () => import('./story-data/story-gaqua-sss-3'),
+  'gfarm-primary-1': () => import('./story-data/story-gfarm-primary-1'),
+  'gfarm-primary-2': () => import('./story-data/story-gfarm-primary-2'),
+  'gfarm-primary-3': () => import('./story-data/story-gfarm-primary-3'),
+  'gfarm-primary-4': () => import('./story-data/story-gfarm-primary-4'),
+  'gfarm-primary-5': () => import('./story-data/story-gfarm-primary-5'),
+  'gfarm-primary-6': () => import('./story-data/story-gfarm-primary-6'),
+  'gpower-primary-1': () => import('./story-data/story-gpower-primary-1'),
+  'gpower-primary-2': () => import('./story-data/story-gpower-primary-2'),
+  'gpower-primary-3': () => import('./story-data/story-gpower-primary-3'),
+  'gpower-primary-4': () => import('./story-data/story-gpower-primary-4'),
+  'gpower-primary-5': () => import('./story-data/story-gpower-primary-5'),
+  'gpower-primary-6': () => import('./story-data/story-gpower-primary-6'),
 }
 
 export function storyKey(growName: string | null, klass: string | undefined): string | null {
