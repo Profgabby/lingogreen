@@ -24,8 +24,12 @@ export type Story = {
 // Maps Supabase grow_name -> story garden key (mirrors vocab GROW_TO_KEY).
 const GROW_TO_STORYKEY: Record<string, string> = {
   GrowMeal: 'gmeal',
-  // SSS advanced garden that reuses GrowMeal stories:
-  // (none yet — GrowMeal appears as itself at SSS via slug sss-seed/grow_name GrowMeal)
+  GrowFlow: 'gflow',
+  GrowFloat: 'gfloat',
+  GrowAqua: 'gaqua',
+  // SSS advanced garden aliases (reuse base-garden stories):
+  GrowOptimize: 'gfloat',
+  GrowAquaSystem: 'gaqua',
 }
 
 const KLASS_OK = new Set([
@@ -47,6 +51,42 @@ const LOADERS: Record<string, () => Promise<Record<string, unknown>>> = {
   'gmeal-sss-1': () => import('./story-data/story-gmeal-sss-1'),
   'gmeal-sss-2': () => import('./story-data/story-gmeal-sss-2'),
   'gmeal-sss-3': () => import('./story-data/story-gmeal-sss-3'),
+  'gflow-primary-1': () => import('./story-data/story-gflow-primary-1'),
+  'gflow-primary-2': () => import('./story-data/story-gflow-primary-2'),
+  'gflow-primary-3': () => import('./story-data/story-gflow-primary-3'),
+  'gflow-primary-4': () => import('./story-data/story-gflow-primary-4'),
+  'gflow-primary-5': () => import('./story-data/story-gflow-primary-5'),
+  'gflow-primary-6': () => import('./story-data/story-gflow-primary-6'),
+  'gflow-jss-1': () => import('./story-data/story-gflow-jss-1'),
+  'gflow-jss-2': () => import('./story-data/story-gflow-jss-2'),
+  'gflow-jss-3': () => import('./story-data/story-gflow-jss-3'),
+  'gflow-sss-1': () => import('./story-data/story-gflow-sss-1'),
+  'gflow-sss-2': () => import('./story-data/story-gflow-sss-2'),
+  'gflow-sss-3': () => import('./story-data/story-gflow-sss-3'),
+  'gfloat-primary-1': () => import('./story-data/story-gfloat-primary-1'),
+  'gfloat-primary-2': () => import('./story-data/story-gfloat-primary-2'),
+  'gfloat-primary-3': () => import('./story-data/story-gfloat-primary-3'),
+  'gfloat-primary-4': () => import('./story-data/story-gfloat-primary-4'),
+  'gfloat-primary-5': () => import('./story-data/story-gfloat-primary-5'),
+  'gfloat-primary-6': () => import('./story-data/story-gfloat-primary-6'),
+  'gfloat-jss-1': () => import('./story-data/story-gfloat-jss-1'),
+  'gfloat-jss-2': () => import('./story-data/story-gfloat-jss-2'),
+  'gfloat-jss-3': () => import('./story-data/story-gfloat-jss-3'),
+  'gfloat-sss-1': () => import('./story-data/story-gfloat-sss-1'),
+  'gfloat-sss-2': () => import('./story-data/story-gfloat-sss-2'),
+  'gfloat-sss-3': () => import('./story-data/story-gfloat-sss-3'),
+  'gaqua-primary-1': () => import('./story-data/story-gaqua-primary-1'),
+  'gaqua-primary-2': () => import('./story-data/story-gaqua-primary-2'),
+  'gaqua-primary-3': () => import('./story-data/story-gaqua-primary-3'),
+  'gaqua-primary-4': () => import('./story-data/story-gaqua-primary-4'),
+  'gaqua-primary-5': () => import('./story-data/story-gaqua-primary-5'),
+  'gaqua-primary-6': () => import('./story-data/story-gaqua-primary-6'),
+  'gaqua-jss-1': () => import('./story-data/story-gaqua-jss-1'),
+  'gaqua-jss-2': () => import('./story-data/story-gaqua-jss-2'),
+  'gaqua-jss-3': () => import('./story-data/story-gaqua-jss-3'),
+  'gaqua-sss-1': () => import('./story-data/story-gaqua-sss-1'),
+  'gaqua-sss-2': () => import('./story-data/story-gaqua-sss-2'),
+  'gaqua-sss-3': () => import('./story-data/story-gaqua-sss-3'),
 }
 
 export function storyKey(growName: string | null, klass: string | undefined): string | null {
