@@ -20,7 +20,7 @@ export default function EnglishHubPage() {
   const [checking, setChecking] = useState(true)
   const [level, setLevel] = useState<string>('primary')
   const [klass, setKlass] = useState<string>('primary-1')
-  const [gardens, setGardens] = useState<{ slug: string; name_en: string; grow_name: string | null }[]>([])
+  const [gardens, setGardens] = useState<{ slug: string; name_en: string; grow_name: string | null; level: string }[]>([])
   const [garden, setGarden] = useState('')
   const [words, setWords] = useState<VocabEntry[]>([])
   const [stories, setStories] = useState<Story[]>([])
@@ -34,7 +34,7 @@ export default function EnglishHubPage() {
       if (error || !data.user) router.replace('/login')
       else {
         setChecking(false)
-        browserClient().from('garden_types').select('slug,name_en,grow_name').then(({ data, error: gardenError }) => {
+        browserClient().from('garden_types').select('slug,name_en,grow_name,level').then(({ data, error: gardenError }) => {
           if (!mounted) return
           if (gardenError) setResourceError('Garden catalogue unavailable. Please try again later.')
           else setGardens((data || []) as { slug: string; name_en: string; grow_name: string | null }[])
@@ -69,7 +69,7 @@ export default function EnglishHubPage() {
         <p style={{ lineHeight: 1.7, color: '#e5eee9' }}>Explore English through food, energy, water and garden-based learning. This hub is under preview validation; existing quizzes and learner records are unchanged.</p>
         <div style={{ display: 'grid', gap: 18, marginTop: 30 }}>
           <label htmlFor="en-level">School level</label>
-          <select id="en-level" value={level} onChange={e => { const next = LEVELS.find(x => x.id === e.target.value); if (next) { setLevel(next.id); setKlass(next.classes[0]) } }} style={{ padding: 14, borderRadius: 8, fontSize: 16 }}>
+          <select id="en-level" value={level} onChange={e => { const next = LEVELS.find(x => x.id === e.target.value); if (next) { setLevel(next.id); setKlass(next.classes[0]); setGarden('') } }} style={{ padding: 14, borderRadius: 8, fontSize: 16 }}>
             {LEVELS.map(x => <option key={x.id} value={x.id}>{x.label}</option>)}
           </select>
           <label htmlFor="en-class">Class</label>
@@ -80,7 +80,7 @@ export default function EnglishHubPage() {
         <label htmlFor="en-garden" style={{ display: 'block', marginTop: 22 }}>Garden learning theme</label>
         <select id="en-garden" value={garden} onChange={e => setGarden(e.target.value)} style={{ padding: 14, borderRadius: 8, fontSize: 16, width: '100%', marginTop: 12 }}>
           <option value="">Choose a garden</option>
-          {gardens.filter(g => hasVocab(g.grow_name, klass) || hasStory(g.grow_name, klass)).map(g => <option key={g.slug} value={g.slug}>{g.name_en}</option>)}
+          {gardens.filter(g => g.level === level && (hasVocab(g.grow_name, klass) || hasStory(g.grow_name, klass))).map(g => <option key={g.slug} value={g.slug}>{g.name_en}</option>)}
         </select>
         {resourceError && <p role="alert">{resourceError}</p>}
         {resourcesLoading && <p role="status">Loading English resources…</p>}
