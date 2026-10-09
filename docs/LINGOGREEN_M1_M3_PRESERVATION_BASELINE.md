@@ -34,3 +34,11 @@ Canonical Vercel project: prj_cCJkY0Ju1PYbLbvauJx3rPiBISZn.
 3. Existing routes/auth/quiz/story workflows pass regression tests.
 4. Both EN and FR have independently functioning learner pathways.
 5. User approves any merge, production release or DB migration.
+
+## M1B verified preview results (2026-10-09)
+- Preview deployment dpl_D2T943PAk7TEQdEA8ukt7zhwVgfo, commit dc5b2c4793c1d0aa20cb00279454418faa228265: READY; build logs confirm static generation 10/10 and deployment completed.
+- Exactly two legacy routes were minimally wrapped in React Suspense: coming-soon and teacher/teach. Existing inner component behavior preserved. No quiz banks, stories, database code or external AgriShine project changed.
+- Read-only preview HTTP smoke checks: / => 200, /hub/fr => 200, /hub/fr/agrishine/coming-soon?role=teacher => 200, /hub/fr/agrishine/teacher/teach => 200, /hub/en => 404 (expected because English hub not yet implemented). /login fetch blocked by tool safety checks; NOT validated.
+- HTTP 200 for authenticated client-side pages is not proof of successful authentication, hydration or learner flow.
+- Still unverified: login, auth redirects, student/teacher/school enrolment, story reader interactions, quizzes, score persistence, badges, Supabase RLS and child-account isolation.
+- M1 build gate passed. M1 runtime/regression gate pending. M3 English hub remains unimplemented and must not be advertised as live.
