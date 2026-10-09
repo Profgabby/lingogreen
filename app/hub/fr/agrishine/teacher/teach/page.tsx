@@ -1,5 +1,5 @@
 'use client'
-import { useState, useMemo } from 'react'
+import { Suspense, useState, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import { CURRICULUM, weekType, getLesson, type Lesson } from '@/app/lib/teach-curriculum'
@@ -112,7 +112,7 @@ const UI: Record<TeachLang, {
 
 const WEEKS = Array.from({ length: 12 }, (_, i) => i + 1)
 
-export default function TeachCurriculum() {
+function TeachCurriculumContent() {
   const router = useRouter()
   const search = useSearchParams()
   const lang = (search.get('lang') as TeachLang) || 'en'
@@ -288,4 +288,8 @@ function LessonBody({ lesson, t }: { lesson: Lesson; t: (typeof UI)['en'] }) {
       {lesson.safety?.length ? <Sec h={t.safety}><List items={lesson.safety} /></Sec> : null}
     </>
   )
+}
+
+export default function TeachCurriculum() {
+  return <Suspense fallback={null}><TeachCurriculumContent /></Suspense>
 }
