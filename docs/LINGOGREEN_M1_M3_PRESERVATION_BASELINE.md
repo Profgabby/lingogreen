@@ -65,3 +65,12 @@ Source-inspected routes: quiz/[class], language/[category], knowledge/[category]
 - Supabase RLS / DB writes: NOT RUN.
 - Question-bank duplicate audit: NOT YET EXECUTED; no content edits authorized.
 - English hub: NOT IMPLEMENTED.
+
+## M2 live Supabase read-only verification (2026-10-09)
+- Verified distinct Supabase project named lingogreen, ref vueswsveabqkqjgdhxgo; no queries against AgriShine.
+- quiz_attempts has RLS enabled. SELECT policy authenticated with auth.uid() = user_id; INSERT WITH CHECK authenticated with auth.uid() = user_id; no UPDATE or DELETE policy found.
+- Existing quiz_attempts: 11 records across 3 learner IDs (8 knowledge, 3 language). No invalid numeric ranges found for score/correct/completed/total/accuracy in this limited consistency check.
+- Existing rows demonstrate historical writes, not proof of present preview browser submission. No user identities or answers disclosed.
+- No synthetic auth accounts created, no new attempts inserted, and no actual cross-user RLS probe executed. Runtime end-to-end and cross-account isolation remain UNVERIFIED.
+- Do not use service-role/admin SQL results as evidence that JWT-scoped client RLS works; test with two synthetic authenticated sessions and confirm forbidden cross-user SELECT/INSERT.
+- No production promotion, schema migration or question-bank modifications.
