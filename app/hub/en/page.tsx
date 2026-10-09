@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { browserClient } from '@/app/lib/supabase-browser'
 import { loadVocab, hasVocab, type VocabEntry } from '@/app/lib/vocab-types'
 import { loadStories, hasStory, type Story } from '@/app/lib/story-types'
+import EnglishComprehension from './EnglishComprehension'
 
 // Independent English hub, preview-only until learner isolation and quiz persistence pass.
 // Do not redirect to the French hub or modify the existing quiz engines.
@@ -94,7 +95,7 @@ export default function EnglishHubPage() {
           <div style={{ background: '#fff', color: '#221B12', borderRadius: 16, padding: 22 }}>
             <h2>Storybooks</h2>
             <p>{stories.length ? `${stories.length} English stories available.` : 'Choose a supported garden to see available stories.'}</p>
-            {stories.map(st => <details key={st.id} style={{ borderTop: '1px solid #ddd', padding: '9px 0' }}><summary style={{ cursor: 'pointer' }}>{st.title}</summary><p>{st.objective}</p>{st.chapters.map((ch,i) => <details key={i}><summary>{ch.title}</summary><p style={{ whiteSpace: 'pre-line' }}>{ch.prose}</p></details>)}</details>)}
+            {stories.map(st => <details key={st.id} style={{ borderTop: '1px solid #ddd', padding: '9px 0' }}><summary style={{ cursor: 'pointer' }}>{st.title}</summary><p>{st.objective}</p>{st.chapters.map((ch,i) => <details key={i}><summary>{ch.title}</summary><p style={{ whiteSpace: 'pre-line' }}>{ch.prose}</p><EnglishComprehension key={`${st.id}-${i}`} storyId={st.id} chapterIndex={i} questions={ch.questions} /></details>)}</details>)}
           </div>
           <div style={{ background: '#fff', color: '#221B12', borderRadius: 16, padding: 22 }}>
             <h2>Quizzes and progress</h2>
