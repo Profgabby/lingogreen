@@ -37,7 +37,7 @@ export default function EnglishHubPage() {
         browserClient().from('garden_types').select('slug,name_en,grow_name,level').then(({ data, error: gardenError }) => {
           if (!mounted) return
           if (gardenError) setResourceError('Garden catalogue unavailable. Please try again later.')
-          else setGardens((data || []) as { slug: string; name_en: string; grow_name: string | null }[])
+          else setGardens((data || []) as { slug: string; name_en: string; grow_name: string | null; level: string }[])
         })
       }
     }).catch(() => { if (mounted) router.replace('/login') })
