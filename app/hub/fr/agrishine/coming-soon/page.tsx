@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 const T = { forest: '#0B3D26', gold: '#C8912E' }
 const MSG: Record<string, { en: string; sub: string }> = {
@@ -11,7 +12,7 @@ const MSG: Record<string, { en: string; sub: string }> = {
     sub: 'Programs, people management, garden monitoring and school-wide reports are being built. In the meantime you can explore the student learning tools to see what your school will offer.',
   },
 }
-export default function ComingSoonPage() {
+function ComingSoonContent() {
   const router = useRouter()
   const search = useSearchParams()
   const role = search.get('role') || 'teacher'
@@ -35,4 +36,9 @@ export default function ComingSoonPage() {
       </div>
     </main>
   )
+}
+export default function ComingSoonPage() {
+  return <Suspense fallback={<main style={{ minHeight: '100vh', background: T.forest }} />}>
+    <ComingSoonContent />
+  </Suspense>
 }
