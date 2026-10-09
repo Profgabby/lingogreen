@@ -89,7 +89,7 @@ export default function EnglishHubPage() {
             <h2>Vocabulary</h2>
             <p>{words.length ? `${words.length} English entries available for this class and garden.` : 'Choose a supported garden to browse existing English vocabulary.'}</p>
             {words.slice(0, 12).map(w => <details key={w.id} style={{ borderTop: '1px solid #ddd', padding: '9px 0' }}><summary style={{ cursor: 'pointer' }}>{w.term}</summary><p>{w.def}</p><p><em>{w.example}</em></p></details>)}
-            {words.length > 12 && <p>Showing the first 12 entries.</p>
+            {words.length > 12 && <p>Showing the first 12 entries.</p>}
           </div>
           <div style={{ background: '#fff', color: '#221B12', borderRadius: 16, padding: 22 }}>
             <h2>Storybooks</h2>
