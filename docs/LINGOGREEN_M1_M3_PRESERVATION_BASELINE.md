@@ -42,3 +42,26 @@ Canonical Vercel project: prj_cCJkY0Ju1PYbLbvauJx3rPiBISZn.
 - HTTP 200 for authenticated client-side pages is not proof of successful authentication, hydration or learner flow.
 - Still unverified: login, auth redirects, student/teacher/school enrolment, story reader interactions, quizzes, score persistence, badges, Supabase RLS and child-account isolation.
 - M1 build gate passed. M1 runtime/regression gate pending. M3 English hub remains unimplemented and must not be advertised as live.
+
+## M2 learner-workflow source audit and regression matrix (2026-10-09)
+Source-inspected routes: quiz/[class], language/[category], knowledge/[category], quiz dashboard, storybooks and login.
+- Both quiz engines shuffle question order and answer options with tracked correct index; their code attempts Supabase quiz_attempts inserts. No edits to question banks or engines made.
+- Quiz dashboard reads quiz_attempts and computes per-category best scores. Verify DB RLS, saved attempt visibility, badge consistency and class-specific category mapping using synthetic test accounts.
+- Storybook reader computes chapter-question correctness in client-side state; do NOT infer this is persisted to quiz_attempts.
+- Authentication checks appear in quiz routes and storybook reader; login success and role/record isolation not tested in browser.
+### Required manual browser checks on preview (synthetic accounts only)
+1. Sign in with authorized synthetic learner, verify homepage and French hub render; sign out and verify protected routes redirect.
+2. Select class Primary 1; visit both quiz category selectors. Verify displayed categories and question counts match expected baseline.
+3. For one knowledge and one language quiz, record question IDs and correct-option index before and after shuffle; check scores, feedback, retry and completion without changing content.
+4. Verify each finished attempt appears exactly once in dashboard, correct class/category/type, accurate score, badge and signed-in user ID; check error handling when insert fails.
+5. Open storybooks for a supported class/garden; navigate chapters, answer comprehension questions, confirm local score and browser TTS. Test unsupported content empty states.
+6. With separate learner accounts, verify quiz_attempts are not readable or writable across users; validate RLS in Supabase, including direct API attempts in controlled test environment.
+7. Test teacher and school navigation and role authorization; do not create real child accounts.
+8. Confirm mobile and keyboard navigation, loading/error states, and that all eight language cards remain visible while English is inactive.
+### Gate status
+- Build/preview READY: PASS.
+- Unauthenticated HTTP smoke checks: partial PASS.
+- Authenticated browser E2E: NOT RUN.
+- Supabase RLS / DB writes: NOT RUN.
+- Question-bank duplicate audit: NOT YET EXECUTED; no content edits authorized.
+- English hub: NOT IMPLEMENTED.
