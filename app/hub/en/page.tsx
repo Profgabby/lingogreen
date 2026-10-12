@@ -16,7 +16,7 @@ const LEVELS = [
   { id: 'sss', label: 'Senior Secondary', classes: ['sss-1', 'sss-2', 'sss-3'] },
 ] as const
 
-export default function EnglishHubPage() {
+export default function EnglishHubPage({ previewMode = false }: { previewMode?: boolean }) {
   const router = useRouter()
   const [checking, setChecking] = useState(true)
   const [level, setLevel] = useState<string>('primary')
@@ -29,6 +29,18 @@ export default function EnglishHubPage() {
   const [resourceError, setResourceError] = useState('')
 
   useEffect(() => {
+    if (previewMode) {
+      setGardens([
+        ...(['primary', 'jss', 'sss'] as const).flatMap(level =>
+          [
+            ['growmeal', 'GrowMeal'], ['growflow', 'GrowFlow'], ['growfloat', 'GrowFloat'],
+            ['growaqua', 'GrowAqua'], ['growfarm', 'GrowFarm'], ['growpower', 'GrowPower'],
+          ].map(([slug, grow_name]) => ({ slug: level + '-' + slug, name_en: grow_name, grow_name, level }))
+        ),
+      ])
+      setChecking(false)
+      return
+    }
     let mounted = true
     browserClient().auth.getUser().then(({ data, error }) => {
       if (!mounted) return
@@ -43,7 +55,7 @@ export default function EnglishHubPage() {
       }
     }).catch(() => { if (mounted) router.replace('/login') })
     return () => { mounted = false }
-  }, [router])
+  }, [router, previewMode])
 
   useEffect(() => {
     let mounted = true
@@ -67,7 +79,7 @@ export default function EnglishHubPage() {
         <button type="button" onClick={() => router.push('/')} style={{ background: 'transparent', color: '#fff', border: '1px solid #ffffff66', borderRadius: 8, padding: '10px 16px', cursor: 'pointer' }}>← All eight languages</button>
         <p style={{ marginTop: 36, letterSpacing: 2, color: '#FDB515' }}>LINGOGREEN · ENGLISH</p>
         <h1 style={{ fontSize: 'clamp(30px,5vw,48px)', margin: '8px 0' }}>English learning hub</h1>
-        <p style={{ lineHeight: 1.7, color: '#e5eee9' }}>Explore English through food, energy, water and garden-based learning. This hub is under preview validation; existing quizzes and learner records are unchanged.</p>
+        <p style={{ lineHeight: 1.7, color: '#e5eee9' }}>Explore English through food, energy, water and garden-based learning. This hub is under preview validation; existing quizzes and learner records are unchanged. {previewMode ? 'Public read-only demonstration: no sign-in, saved scores or learner data.' : ''}</p>
         <div style={{ display: 'grid', gap: 18, marginTop: 30 }}>
           <label htmlFor="en-level">School level</label>
           <select id="en-level" value={level} onChange={e => { const next = LEVELS.find(x => x.id === e.target.value); if (next) { setLevel(next.id); setKlass(next.classes[0]); setGarden('') } }} style={{ padding: 14, borderRadius: 8, fontSize: 16 }}>
